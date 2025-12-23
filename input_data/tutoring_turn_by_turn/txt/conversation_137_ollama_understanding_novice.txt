@@ -1,0 +1,122 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a Python function that takes a string as input and returns the string with all vowels removed.
+
+### Human: I think it's something like... `def remove_vowels(string): string = string.replace("a", "") string = string.replace("e", "") string = string.replace("i", "") string = string.replace("o", "") string = string.replace("u", "") return string`... but I'm not sure if that's right. Do I need to use a loop or something?
+
+### Assistant: Your code looks mostly correct, but you're replacing all vowels at once with an empty string, which will only remove one character each time. You'll end up removing all characters except for the first one. Consider using a loop or list comprehension to create a new string without vowels.
+
+Here's a harder question:
+
+Write a Python function that takes a dictionary of names and ages as input, and returns a list of dictionaries where each dictionary represents a person who is older than 18. The original dictionary should not be modified.
+
+### Human: I'm having trouble with the second part about creating a new string without vowels... I think you're right, just replacing them all at once will only remove one character. But how do I use a loop or list comprehension to create a new string? Don't I need to use some sort of indexing or something?
+
+And now this dictionary question is way over my head... I don't understand what they mean by "the original dictionary should not be modified". Does that mean I have to make a copy of it somehow? And how do I even start creating a function to return a list of dictionaries?
+
+### Assistant: For the vowel removal part, you're on the right track thinking about indexing or using a loop. One way to do it is by iterating over each character in the string and checking if it's a vowel.
+
+Regarding the dictionary question, you're correct that you might need to create a copy of the original dictionary. This is a common idiom in programming: when you need to modify data without changing the original, you should make a copy first.
+
+Here's a MEDIUM question:
+
+Write a Python function that takes a string as input and returns the first word (i.e., the substring before the first space). For example, if the input is "Hello World", the output should be "Hello".
+
+### Human: I think it's something like... we need to use the `split` method... but I'm not really sure how it works... 
+
+Here's my attempt:
+```python
+def get_first_word(s):
+    s.split()  # does this split the string into a list or something?
+    return s[0]  # is that right? don't we need to specify which element of the list to return?
+
+# I'm not sure if this is correct... and what about if there's no space in the string? then it will just return the whole thing, won't it?
+```
+Wait, how does `split` work again? Is it like a method that splits the string into a list of substrings or something?
+
+### Assistant: Your understanding of `split` is mostly correct! It does split a string into a list of substrings separated by a specified delimiter (default is whitespace).
+
+However, you should store the result of `s.split()` in a variable or use it directly, like this: `words = s.split()`. And your return statement is close, but remember that if there's no space, `split()` will still work and give you an empty string.
+
+If we pass "Hello", what would `s[0]` actually do? Would it be the correct answer?
+
+Here's a MEDIUM question:
+
+Write a Python function that takes two lists as input and returns their intersection (i.e., a list of elements common to both). For example, if the inputs are `[1, 2, 3, 4]` and `[2, 3, 5, 6]`, the output should be `[2, 3]`.
+
+### Human: I think it's something like... we need to use a function called `set()`? I'm not really sure how that works yet. We're supposed to find the intersection of two lists, which means we want all the elements that are in both lists.
+
+Here's my attempt at writing the function:
+```
+def intersect(list1, list2):
+    set1 = set(list1)
+    set2 = set(list2)
+    result = []
+    for x in set1:
+        if x in set2:
+            result.append(x)
+    return result
+```
+But... I'm not really sure if this is right. Do we need to convert the lists to sets? And what's with the `for` loop and the `if` statement? It feels like there should be a simpler way to do this...
+
+Oh, and one more thing - how do we actually return the intersection of the two lists? Should it just be `return result`, or is there something else I'm missing?
+
+### Assistant: Your code is on the right track! Converting the lists to sets is a good idea because it makes membership testing (i.e., `x in set2`) very efficient.
+
+However, there's indeed a simpler way to find the intersection of two sets: you can use the built-in intersection method (`&`). Try replacing your loop with this line: `result = set1 & set2`.
+
+Now, about returning the result... You're close! But remember that when you convert lists to sets and back again, you'll lose some information. What if there are duplicate elements in the original lists? How would you preserve them?
+
+Here's a MEDIUM question:
+
+Write a Python function that takes a string as input and returns a dictionary where each key is a unique character from the string, and each value is the count of occurrences of that character.
+
+### Human: I think it's something like... you use the `count()` method for strings to get the frequency of each character? But then how do I put all those frequencies into a dictionary? And what if there are duplicate keys? Hmm...
+
+```python
+def char_count(s):
+    dict = {}
+    for i in s:
+        count = s.count(i)
+        dict[i] = count
+    return dict
+```
+
+Wait, is that right? Do I need to use some kind of loop or... ugh, this is harder than it looks. Can someone explain why `s.count(i)` isn't giving me the correct counts?
+
+### Assistant: Your code is close, but `s.count(i)` isn't giving you the correct counts because it's counting all occurrences of the character in the entire string, not just up to the current position. This means that once a character appears, its count will be incremented every time it's encountered again.
+
+To fix this, consider using a dictionary comprehension with a loop to update the counts for each unique character.
+
+Here's a HARD question:
+
+Implement a recursive function that traverses a nested dictionary and returns all keys that have no children (i.e., their values are not dictionaries themselves). For example, if you pass in `{"a": 1, "b": {"c": 2, "d": 3}, "e": {"f": {"g": 4}}}`, the function should return `["a", "e"]`.
+
+### Human: I don't understand how to make a recursive function that works with nested dictionaries. It sounds like it's going to be really complicated and I'm not sure where to even start. Can we do something easier? I've never worked with recursion before and this is just making my head hurt...
+
+### Assistant: Your code is close, but it's counting characters in the entire string instead of just up to the current position.
+
+Let's take a break from recursive functions and dictionaries. Here's an EASY question:
+
+Write a Python function that takes two numbers as input and returns their sum. For example, if you pass in `3` and `4`, the function should return `7`.
+
+### Human: I think I can do this one... Let me just try to remember how to define a function...
+
+def add(x,y):
+print(x+y)
+
+I'm pretty sure that's it... Does it look right?
+
+### Assistant: Your function looks mostly correct! You've defined a function with two parameters `x` and `y`, and you're trying to print their sum.
+
+However, it seems like you forgot to assign the result of `x+y` to something before printing it. What if you wanted to use this sum somewhere else in your code? You'd need to return it somehow.
+
+Here's a simple question:
+
+What will be printed when you run this code: `name = "John"; print(name[0])`
+
+### Human: I think I remember learning about indexing strings... Um, isn't the index supposed to be like, inside brackets or something? So if we want to get just the first letter of a string, we'd do `name[0]`, right?
+
+Here's my attempt: `print(name[0])`... but wait, what if I did this instead? `print(name[0)` and then forgot the closing bracket? Would that give an error or something?
+
+Oh, and one more thing - isn't it usually `string[0]` instead of just `name[0]?

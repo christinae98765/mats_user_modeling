@@ -1,0 +1,170 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a dictionary of student grades as input and returns a new dictionary with the students who scored above average sorted in descending order by their scores. The original dictionary should not be modified. 
+
+```python
+student_grades = {
+    'John': 85,
+    'Alice': 90,
+    'Bob': 78,
+    'Charlie': 92,
+    'David': 88
+}
+```
+
+### Human: I think it's something like... you make a function and then use the dict.keys() method to get all the keys, and then sort them based on their values in descending order? But how do I get the average score first? And how do I create a new dictionary with only the students who scored above average? 
+
+```python
+def above_average_grades(grades):
+    # calculate average score
+    avg_score = sum(grades.values()) / len(grades)
+    
+    # create a new dictionary with students who scored above average?
+    above_avg = {}
+    for student, score in grades.items():
+        if score > avg_score:
+            above_avg[student] = score
+    
+    # sort the new dictionary by scores in descending order
+    sorted_above_avg = sorted(above_avg.items(), key=lambda x: x[1], reverse=True)
+    
+    return dict(sorted_above_avg)
+
+print(above_average_grades(student_grades))
+```
+
+### Assistant: Your code looks mostly good! You're calculating the average score correctly and creating a new dictionary with students who scored above average. However, you can simplify your code by using a dictionary comprehension instead of the for loop.
+
+Now, here's a HARD question:
+
+Write a function that takes two lists as input: `students` and `grades`. The function should return a nested dictionary where each student is associated with their own grades in the order they appeared in the original list. For example, if `students = ['John', 'Alice']` and `grades = [85, 90]`, the output should be:
+```python
+{
+    'John': {'score1': 85, 'score2': 90},
+    'Alice': {'score1': 90}
+}
+```
+Note that some students may have fewer scores than others. You can assume that both lists are of equal length. Good luck!
+
+### Human: I don't understand how to make this work with two lists. I thought we could just use a loop or something, but now you're talking about nested dictionaries and it's all getting really confusing... Can we do something easier?
+
+### Assistant: Your code had some minor issues with naming conventions (e.g., `sorted_above_avg` could be more descriptive) and readability (you could use a single line for calculating the average score), but overall it was good effort!
+
+Here's an EASY question to get you back on track:
+
+Write a program that asks the user for their name and age, then prints out a greeting with their name and tells them how many years they have left until retirement (assuming they retire at 65).
+
+### Human: I'm trying again! Here's my attempt:
+```python
+print("what is your name")
+name = 
+age = int(input())
+retirement_age = 65
+years_left = (retirement_age - age)
+print("hello " + name + " you are" + str(age) + " years old and have" + str(years_left) + " years left until retirement")
+```
+I hope this one is better! I used the input() function to get the user's name, but I'm not sure if I did it right... Do I need quotes around `name`?
+
+### Assistant: Your code has some issues! You need to ask the user for their name using `input()` and store it in a variable. And yes, you should use quotes around `name` when concatenating strings.
+
+Try rewriting your code to fix these issues!
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns the same string with all vowels removed. For example, if the input is "hello world", the output should be "hll wrld". You can use Python's built-in string methods or list operations to solve this problem.
+
+### Human: I think it's something like... you need to define a function and then use a for loop to go through each character in the string? Or maybe I can just use some sort of built-in method?
+
+```python
+def remove_vowels(s):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    new_string = ""
+    for char in s:
+        if char.lower() not in vowels:
+            new_string += char
+    return new_string
+
+print(remove_vowels("hello world"))
+```
+
+Wait, this looks kind of right... I hope.
+
+### Assistant: Your code looks good! You're correctly using a for loop to iterate through each character in the string and removing vowels by checking if the character is in the `vowels` list.
+
+However, you can simplify your code by using the `in` operator directly on the `s` string instead of calling `lower()` on each character. This will make your code more efficient.
+
+Now, let's try something EASY:
+
+Write a program that asks the user for their favorite color and prints out a message indicating whether it's red, blue, or neither.
+
+### Human: I don't understand how to ask the user for their input... Is it like this? 
+```python
+print("Enter your favret color:")
+favret_color = input()
+if favret_color == "red":
+    print("Your favorite color is red!")
+else if favret_color == "blue":
+    print("Your favorite color is blue!")
+else:
+    print("That's not a very common favorite color...")
+```
+I think I got most of it right, but I'm pretty sure there's something wrong with the `else if` part...
+
+### Assistant: Your code has a small issue with the `else if` statement. In Python, we use `elif` (short for "else if") instead of `else if`. Here's your corrected code:
+```python
+print("Enter your favorite color:")
+favret_color = input()
+if favret_color == "red":
+    print("Your favorite color is red!")
+elif favret_color == "blue":
+    print("Your favorite color is blue!")
+else:
+    print("That's not a very common favorite color...")
+```
+Now, here's an EASY question:
+
+Write a program that asks the user for their name and age, then prints out a message saying "Hello [name]! You are [age] years old."
+
+### Human: Here is my attempt at writing the program:
+```python
+print("Enter your name:")
+name = input()
+print("Enter your age:")
+age = input()
+print("Hello" + name + "! You are" + age + "years old.")
+```
+I'm pretty sure this will work, but I'm not really sure about the `input()` part... Do we need to do something with it besides just assigning it to a variable?
+
+### Assistant: Your code is mostly correct! You're using `input()` to get user input and assigning it to variables. However, you forgot to convert the age from a string to an integer using `int(input())`. This will cause the program to try to concatenate strings with integers, which won't work.
+
+Try rewriting your code to fix this issue!
+
+Here's a MEDIUM question:
+
+Write a function that takes a list of numbers as input and returns a new list containing only the even numbers. For example, if the input is `[1, 2, 3, 4, 5]`, the output should be `[2, 4]`.
+
+### Human: I think it's something like... I need to use a function, right? And inside that function, I'll use a for loop or something to go through each number in the list. If the number is even, I'll add it to a new list. But how do I check if a number is even in Python? Is it `x % 2 == 0`?
+
+```python
+def get_even_numbers(numbers):
+    new_list = []
+    for x in numbers:
+        if x % 2 == 1: # I think this is how you check for odd numbers?
+            new_list.append(x)
+    return new_list
+
+numbers = [1, 2, 3, 4, 5]
+print(get_even_numbers(numbers))
+```
+
+Wait, why isn't `x % 2 == 1` giving me the even numbers?
+
+### Assistant: Your code is mostly correct! You're using a function and a for loop to iterate through each number in the list. However, you forgot to convert the condition `x % 2 == 1` to check for even numbers. It should be `x % 2 == 0`, not `== 1`.
+
+Here's a HARD question:
+
+Write a program that simulates a bank account balance. The program should ask the user to create an initial account balance, then provide options to deposit, withdraw, and display the current balance. However, there is a catch: each transaction (deposit or withdrawal) has a small fee associated with it. You'll need to use a dictionary to store the transactions and their corresponding fees.
+
+You can assume that the user will input valid numbers for the initial balance, deposits, and withdrawals. Good luck!
+
+### Human: I don't understand how I'm supposed to make this work... I mean, I know about functions and loops, but using a dictionary to store transactions? That sounds like something way too advanced for me right now. Can we do something easier?

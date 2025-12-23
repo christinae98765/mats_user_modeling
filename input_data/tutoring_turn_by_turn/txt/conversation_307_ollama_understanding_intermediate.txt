@@ -1,0 +1,182 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns a new string with all vowels removed. For example, if the input is "hello world", the output should be "hll wrld".
+
+### Human: def remove_vowels(s):
+    return ''.join(c for c in s if c.lower() not in 'aeiou')
+
+print(remove_vowels("hello world"))  # Output: hll wrld
+
+### Assistant: Good job on creating a function to remove vowels! Your code is clean and efficient.
+
+However, it only handles lowercase vowels. What about uppercase vowels? How would you modify your function to handle both?
+
+Write a new function that takes a string as input and returns a dictionary where each key is a unique word from the string, and its corresponding value is the frequency of that word. For example, if the input string is "apple apple banana", the output dictionary should be {'apple': 2, 'banana': 1}.
+
+### Human: def remove_vowels(s):
+    vowels = 'aeiouAEIOU'
+    return ''.join([c for c in s if c not in vowels])
+
+def word_frequency(s):
+    words = s.split()
+    frequency_dict = {}
+    for word in words:
+        if word in frequency_dict:
+            frequency_dict[word] += 1
+        else:
+            frequency_dict[word] = 1
+    return frequency_dict
+
+### Assistant: Your revised `remove_vowels` function is more robust and correctly handles both lowercase and uppercase vowels.
+
+As for your `word_frequency` function, it's a good start, but it can be improved with the use of dictionary's built-in methods. Instead of manually checking if a word exists in the dictionary, you can use the `dict.get()` method to simplify the code.
+
+Here's a HARD question:
+
+Implement a function that reads a text file and returns a list of sentences where each sentence has at least one word repeated three or more times. For example, if the input file contains the following text:
+```
+The quick brown fox jumps over the lazy dog.
+The sun was shining brightly in the clear sky.
+The sun set slowly in the west.
+```
+
+Write a function that can extract these sentences and return them as a list.
+
+### Human: def repeated_words(text):
+    words = text.split('. ')
+    result = []
+    
+    for sentence in words:
+        word_count = {}
+        
+        # Split the sentence into individual words
+        words_in_sentence = sentence.split()
+        
+        for word in words_in_sentence:
+            if word not in word_count:
+                word_count[word] = 1
+            else:
+                word_count[word] += 1
+        
+        # Check each word's count and add to result if it has a repeat of three or more times
+        for key, value in word_count.items():
+            if value >= 3:
+                # Append the sentence to the result list as long as there is only one repeated word
+                result = [sentence] * (value - 2)
+        
+    return result
+
+### Assistant: Your `repeated_words` function is a good attempt at solving the problem, but there are a few issues with it. For example, you're appending sentences to the result list multiple times when only one instance of the repeated word should be added. Also, your approach can be optimized for performance.
+
+You can try rethinking your approach and using a different data structure to keep track of the repeated words in each sentence.
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns the first n unique characters from the end of the string. For example, if the input is "abcdefgh" and n = 3, the output should be ['c', 'd', 'e'].
+
+### Human: def get_unique_chars_from_end(s, n):
+    # Reverse the string to easily access the last n characters
+    s = s[::-1]
+    
+    # Initialize an empty set to keep track of unique characters
+    unique_chars = set()
+    
+    # Initialize an empty list to store the result
+    result = []
+    
+    # Iterate over the reversed string, adding characters to the result until we have n unique ones
+    for char in s:
+        if len(unique_chars) < n and char not in unique_chars:
+            result.append(char)
+            unique_chars.add(char)
+        
+        # If we've reached the end of the string or found n unique characters, break the loop
+        if len(result) == n:
+            break
+    
+    # Return the list of unique characters from the end of the string
+    return result
+
+### Assistant: Your `get_unique_chars_from_end` function is a good attempt at solving the problem! You're correctly using slicing to reverse the string and a set to keep track of unique characters.
+
+However, there's a small issue: you're iterating over the entire reversed string, which can be inefficient if the input string is large. Consider stopping early when you've found `n` unique characters.
+
+Let's take it easy with a simple question:
+
+Write a Python program that prints "Hello World!" to the screen using just one print statement.
+
+### Human: print("Hello World!")
+
+### Assistant: Your `get_unique_chars_from_end` function is on the right track, but consider optimizing it to stop early when you've found `n` unique characters.
+
+Let's take a break with an EASY question:
+
+Write a Python program that prints the sum of two numbers, 5 and 10.
+
+### Human: Here is the simple Python program that calculates and prints the sum of 5 and 10:
+```python
+# Calculate the sum of 5 and 10
+sum_of_numbers = 5 + 10
+
+# Print the result
+print(sum_of_numbers)
+```
+When you run this code, it will output: `15`
+
+### Assistant: Your code is clear and effective in calculating and printing the sum of 5 and 10.
+
+Here's a HARD question:
+
+Write a function that takes two strings as input and returns a dictionary where each key is a word from the first string, and its corresponding value is the longest common prefix with any word from the second string. For example, if the input strings are "apple banana cherry" and "banana orange grape", the output dictionary should be {'apple': 'ap', 'banana': 'ba', 'cherry': ''}.
+
+### Human: Here's a function that meets your requirements:
+
+```python
+def longest_common_prefix(input1, input2):
+    words1 = input1.split()
+    words2 = input2.split()
+
+    result = {}
+    
+    for word in words1:
+        max_prefix_length = 0
+        
+        for other_word in words2:
+            prefix_length = 0
+            while prefix_length < len(word) and prefix_length < len(other_word):
+                if word[prefix_length] == other_word[prefix_length]:
+                    prefix_length += 1
+                else:
+                    break
+            
+            max_prefix_length = max(max_prefix_length, prefix_length)
+        
+        result[word] = word[:max_prefix_length]
+    
+    return result
+```
+
+This function splits the input strings into lists of words and then iterates over each word in the first list. For each word, it finds the longest common prefix with any word in the second list by comparing characters from both words at the same position until it finds a mismatch or reaches the end of either word. It keeps track of the maximum length found so far for each word and uses this to construct the output dictionary.
+
+Note that this function treats empty strings as having an empty common prefix with any other string, since there are no characters to compare.
+
+### Assistant: Your function is a good attempt at solving the problem! You're correctly splitting the input strings into lists of words and then iterating over each word in the first list to find its longest common prefix with any word in the second list.
+
+However, consider optimizing your approach by using Python's built-in `min` function to find the shortest word in each iteration, which can reduce the number of comparisons needed. Also, be mindful of handling empty strings and edge cases.
+
+Here's a HARD question:
+
+Implement a function that takes a directory path as input and returns a dictionary where each key is a file extension (e.g., '.txt', '.jpg'), and its corresponding value is the list of files with that extension in the directory. For example, if the input directory contains the following files: 'file1.txt', 'file2.jpg', 'file3.pdf', 'file4.txt', the output dictionary should be {'txt': ['file1.txt', 'file4.txt'], 'jpg': ['file2.jpg'], 'pdf': ['file3.pdf']}.
+
+### Human: def get_file_extensions(directory_path):
+    file_dict = {}
+    
+    for root, dirs, files in os.walk(directory_path):
+        for file in files:
+            filename, extension = file.split('.')
+            if extension not in file_dict.keys():
+                file_dict[extension] = [file]
+            else:
+                file_dict[extension].append(file)
+                
+    return file_dict

@@ -1,0 +1,131 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the result of the following expression in Python? `x = 5; y = x * 2 + 10`
+
+### Human: I think it's something like... multiplying x by 2 first, then adding 10 to that result... so it would be... `y = x * (2 + 10)` or maybe just `y = x * 12`? Or am I doing this all wrong?
+
+### Assistant: You're on the right track, but not quite there. The order of operations matters in Python, and multiplication comes before addition. So, it's `y = x * 2 + 10`. Your second suggestion is close, but not exactly what we want.
+
+Here's a harder question:
+
+Write a function that takes a list of strings as input and returns the longest string in the list. If there are multiple strings with the same maximum length, return any one of them.
+
+### Human: I don't understand how to make a function... I've only done print statements so far. Is it like, we define something called "function" before we do the logic inside? And then how do we even call this thing that we defined? It's all a bit fuzzy in my head.
+
+### Assistant: Defining a function is like creating a blueprint or a recipe that tells Python what to do with some input data. You can think of it as a block of code that's wrapped in a label, so you can reuse it later.
+
+Here's how you could define a function:
+```python
+def my_function():
+    # this is where the logic goes
+```
+And here's an example of calling the function:
+```python
+my_function()  # calls the function and executes its code
+```
+Now, let's try something harder. Write a function that takes two lists as input and returns a new list containing only the elements that are common to both lists, without duplicates. For example, if the input lists are `[1, 2, 3]` and `[2, 3, 4]`, the output should be `[2, 3]`. Good luck!
+
+### Human: I think it's something like... we need to use a loop or something to go through both lists at the same time? And then we can check if the elements are equal? Like this:
+
+```python
+def common_elements(list1, list2):
+    new_list = []
+    for x in list1:
+        for y in list2:
+            if x == y and x not in new_list:
+                new_list.append(x)
+    return new_list
+```
+
+Wait, that doesn't seem right. I'm pretty sure we can use the `set` function to remove duplicates... but how do we combine two sets? And what about the order of the elements? This is getting complicated...
+
+### Assistant: Your code is on the right track, but it's not very efficient because of the way you're using two nested loops to compare each element in both lists. You're also adding elements to the new list as you go, which can lead to duplicates.
+
+To combine two sets and remove duplicates, you can use the `union` method, but that won't preserve the order of elements. To get around this, you could convert your lists to sets, find their intersection (which will give you the common elements), and then convert back to a list.
+
+Here's a harder question:
+
+Write a function that takes a dictionary with string keys and integer values as input, and returns a new dictionary where each key is an uppercase version of its original counterpart. For example, if the input dictionary is `{'a': 1, 'b': 2, 'c': 3}`, the output should be `{'A': 1, 'B': 2, 'C': 3}`.
+
+Note: You'll need to use a loop or some other way to iterate over the key-value pairs in the dictionary.
+
+### Human: I don't understand how I would convert keys from strings to uppercase inside of a function... like, do I just change all my string keys manually or is there a special method for this? Can we do something easier first? How does the `union` method work anyway? Do dictionaries have methods like lists and sets do?
+
+### Assistant: Your last response was on the right track, but we didn't quite get to the final solution.
+
+To answer your question about the `union` method, it's a way to combine two sets and remove duplicates. It doesn't preserve order, though.
+
+As for converting string keys to uppercase in a function, there is a special method called `upper()`. But let's not worry about that right now.
+
+Here's an easy question:
+
+What will be the output of this code? `x = 5; y = x + 3 * 2`
+
+### Human: I think it should print out... umm... `10` because we add `5` and `6` (which is `3 * 2`). So, yeah, it's just basic math.
+
+Here's the code: 
+```python
+x = 5; y = x + 3 * 2
+print(y)
+```
+
+ Wait, no... I think that's right.
+
+### Assistant: That's mostly correct! The output will be `13`, because we add `5` and `6`. Good job!
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns a new string where all occurrences of a specified substring are replaced with an asterisk (`*`). For example, if the input string is `"hello world"` and the substring to replace is `"world"`, the output should be `"hello *"`.
+
+Note: You'll need to use the `replace()` method.
+
+### Human: I think it's something like... we're supposed to define a function with a parameter for the string and another parameter for the substring to replace? And then we use the `replace()` method on the string? So, something like...
+
+```python
+def replace_string(s, sub):
+    s.replace(sub, '*')
+    return s
+```
+
+But I'm not sure if that's right... I think we're missing a line or two of code. Maybe we need to assign the result of `replace()` back to `s`? But then what about the asterisk thing? How do we get it in there?
+
+### Assistant: You're on the right track with defining a function and using the `replace()` method. However, you forgot to assign the result of `replace()` back to `s`. And you didn't actually replace the substring with an asterisk (`*`).
+
+Here's another MEDIUM question:
+
+Write a function that takes a list of numbers as input and returns the sum of all even numbers in the list. For example, if the input list is `[1, 2, 3, 4, 5]`, the output should be `6`.
+
+### Human: I think it's something like... we need to use a for loop or maybe a while loop? I'm not really sure how to sum up all the even numbers. Here's what I've got so far:
+
+```python
+def sum_even_numbers(lst):
+    total = 0
+    for num in lst:
+        if num == 0: # I think this is how we check if it's even?
+            total += num
+    return total
+
+print(sum_even_numbers([1, 2, 3, 4, 5])) # Should print 6, right?
+```
+
+Wait, no... that's not going to work. The `if` statement is always true because I'm checking if the number is equal to 0, which means it will only count 0 as even... and what about numbers greater than 2? Do we need some kind of condition for those?
+
+### Assistant: Your code has a good start, but it's not quite right yet. You're checking if `num` is equal to 0, which isn't how you check if a number is even. Even numbers are those that can be divided by 2 without leaving a remainder.
+
+Here's another MEDIUM question:
+
+Write a function that takes a string as input and returns the longest substring without repeating characters. For example, if the input string is `"abcabcbb"`, the output should be `"abc"`.
+
+### Human: I think it's something like we need to use a loop or something to find all the substrings, but I'm not really sure how to do that in Python... Here's what I've tried so far:
+```python
+def longest_substring(s):
+    max_length = 0
+    current_substring = ""
+    for i in range(len(s)):
+        if s[i] not in current_substring:
+            current_substring += s[i]
+            max_length = max(max_length, len(current_substring))
+        else:
+            # I'm not really sure what to do here...
+```
+But I feel like this is way too complicated and there's probably a simpler way to do it.

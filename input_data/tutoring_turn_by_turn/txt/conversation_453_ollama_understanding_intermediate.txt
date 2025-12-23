@@ -1,0 +1,208 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a list of strings as input and returns a dictionary where each key is a unique string from the input list and its corresponding value is a list of all other strings in the list that are anagrams of it (case-insensitive). For example, if the input list is ["Listen", "Silent", "Acts", "CATS"], your function should return {'listen': ['silent'], 'acts': [], 'cats': ['acts']}
+
+### Human: ```python
+def find_anagrams(lst):
+    # Create a dictionary to store anagram groups
+    anagrams = {}
+
+    # Iterate over each string in the input list
+    for word in lst:
+        # Convert the current word to lowercase and sort its characters
+        sorted_word = ''.join(sorted(word.lower()))
+
+        # If the sorted word is already in the dictionary, append the current word to its value list
+        if sorted_word in anagrams:
+            anagrams[sorted_word].append(word)
+        # Otherwise, add the sorted word as a key and create a new list with the current word as its value
+        else:
+            anagrams[sorted_word] = [word]
+
+    # Remove each word from the dictionary's values and add it to the corresponding key's value in lowercase
+    for key in anagrams:
+        anagrams[key.lower()] = anagrams.pop(key)
+
+    # Create a new dictionary with each key as its lowercase equivalent
+    result = {}
+    for key, value in anagrams.items():
+        # Remove each word from the list and add it to the corresponding key's value in the result dictionary
+        for w in value:
+            if w.lower() not in result:
+                result[w.lower()] = [x for x in value if x != w]
+
+    return result
+```
+
+### Assistant: Good effort! Your code is mostly correct but could be simplified. You're using a dictionary to store anagrams, which is fine, but you can avoid creating temporary lists and sorting characters for each word by using a single pass through the input list. You also don't need to create a new dictionary at the end; just return the one you've built up.
+
+Here's a harder question:
+
+Write a function that takes two files as input (e.g., 'file1.txt', 'file2.txt') and returns a dictionary where each key is a word from the first file, and its corresponding value is a list of words from the second file that have an edit distance of 1 (i.e., they differ by only one character) with it. You can assume both files contain text in lowercase, one word per line.
+
+### Human: def edit_distance_words(file1, file2):
+    # Read all lines from file1 into a list
+    words_in_file1 = [line.strip() for line in open(file1)]
+    
+    # Create an empty dictionary to store results
+    result = {}
+    
+    # Iterate over each word in the first file
+    for word in words_in_file1:
+        # Initialize an empty list to store words with edit distance of 1
+        nearby_words = []
+        
+        # Read all lines from file2 into a list
+        words_in_file2 = [line.strip() for line in open(file2)]
+        
+        # Iterate over each word in the second file
+        for w in words_in_file2:
+            # Calculate edit distance (count of different characters)
+            diff_count = sum(c1 != c2 for c1, c2 in zip(word, w))
+            
+            # If the difference is 1, add this word to nearby_words list
+            if diff_count == 1:
+                nearby_words.append(w)
+        
+        # Add word from file1 and its corresponding nearby words to result dictionary
+        result[word] = nearby_words
+    
+    return result
+
+### Assistant: Good job on the previous questions! Your code is mostly clear and easy to follow.
+
+Here's some feedback:
+
+* You're opening the files inside the loop over each word in the file. This can be inefficient if the files are large. Consider moving the file reads outside the loops.
+* You're using `zip` with two lists of different lengths, which will raise an error when one list is exhausted before the other. Make sure to check that both words have the same length before calculating the edit distance.
+
+Here's a new EASY question:
+
+What will be printed out by this code? Don't write any code yet, just think about it.
+```python
+x = 5
+y = x * 2
+print(y)
+```
+Can you tell me what value will be printed?
+
+### Human: The value that will be printed is 10. The expression `x * 2` multiplies the current value of `x` (which is 5) by 2, resulting in 10, which is then assigned to `y`. So when we print out `y`, it will display 10.
+
+### Assistant: Your code looks good and your explanation of how it works is clear. You correctly identified that `x * 2` multiplies the current value of `x` by 2, resulting in 10 being assigned to `y`, which is then printed.
+
+Here's a HARD question:
+
+Implement a function called `find_max_path_sum` that takes as input an undirected graph represented as a dictionary where each key is a node and its corresponding value is another dictionary with neighboring nodes as keys and edge weights as values. The function should return the maximum path sum from any node to any other node in the graph, or -1 if no such path exists.
+
+You can assume that the graph is connected, i.e., there's at least one path between every pair of nodes. You can also use any data structures you like (e.g., dictionaries, lists, sets) to help with your implementation.
+
+### Human: def find_max_path_sum(graph):
+    max_sum = float('-inf')
+    
+    def dfs(node, current_sum, visited):
+        nonlocal max_sum
+        if node not in graph or node in visited:
+            return
+        
+        visited.add(node)
+        
+        for neighbor, weight in graph[node].items():
+            if neighbor not in visited:
+                new_sum = current_sum + weight
+                if neighbor == 'end':
+                    max_sum = max(max_sum, new_sum)
+                else:
+                    dfs(neighbor, new_sum, visited.copy())
+                    
+    start_node = next(iter(graph))
+    dfs(start_node, 0, set())
+
+    return -1 if max_sum == float('-inf') else max_sum
+
+### Assistant: Your code looks good and it correctly implements a depth-first search (DFS) to find the maximum path sum in the graph.
+
+Here's a brief feedback on your last response:
+
+* You're using a recursive approach with a `dfs` function inside the main function, which is fine.
+* You're using a `visited` set to keep track of visited nodes, but you might want to consider using a more efficient data structure like a dictionary to store the parent of each node.
+
+Here's an EASY question:
+
+What will be printed out by this code?
+```python
+x = 5
+y = x * 3 + 2
+print(y)
+```
+Can you tell me what value will be printed?
+
+### Human: The code calculates `y` as follows:
+1. `x` is multiplied by 3, which gives `15`.
+2. Then, `15` is added to `2`, resulting in `17`.
+
+So, the output of this code will be: `17`
+
+### Assistant: Your code looks good and your explanation of how it works is clear.
+
+As for your last response, you correctly identified that `y` would be calculated as `15 + 2 = 17`, which would be printed out by the code.
+
+Here's a new EASY question:
+
+What will be printed out by this code?
+```python
+x = "hello"
+y = x[0] + "world"
+print(y)
+```
+Can you tell me what value will be printed?
+
+### Human: The code `x = "hello"` assigns the string "hello" to the variable `x`. Then, `x[0]` accesses the first character of the string, which is 'h'. The expression `x[0] + "world"` concatenates this character with the string "world", resulting in the string "hworld". 
+
+So, when we print `y`, it will print out: 
+```
+hworld
+```
+
+### Assistant: Your code looks good and your explanation of how it works is clear.
+
+Here's a brief feedback on your last response:
+
+* Your explanation was easy to follow and accurately described what the code does.
+* You correctly identified that `x[0]` accesses the first character of the string "hello", which is 'h'.
+* You also correctly identified that concatenating 'h' with "world" results in the string "hworld".
+
+Here's a MEDIUM question:
+
+Write a function called `find_longest_word` that takes as input a list of strings and returns the longest word in the list. If there are multiple words of the same maximum length, return any one of them. You can assume that all words in the list contain only letters (a-z or A-Z).
+
+### Human: def find_longest_word(words):
+    max_length = 0
+    longest_word = ""
+
+    for word in words:
+        if len(word) > max_length:
+            max_length = len(word)
+            longest_word = word
+
+    return longest_word
+
+### Assistant: Your code looks good and it correctly implements a loop to find the longest word in the list.
+
+Here's brief feedback on your last response:
+
+* Your code is clear and easy to follow.
+* You're using a simple variable `max_length` to keep track of the maximum length found so far, and updating `longest_word` whenever you find a new word that's longer than the current maximum.
+* However, you might want to consider handling the case where there are multiple words with the same maximum length. Currently, your code will only return one of them.
+
+Here's a MEDIUM question:
+
+Write a function called `count_vowels` that takes as input a string and returns the number of vowels in the string. Vowels are 'a', 'e', 'i', 'o', and 'u' (both lowercase and uppercase). You can assume that the input string only contains letters (no spaces or punctuation).
+
+Don't worry about handling non-letter characters; just count the vowels.
+
+### Human: def count_vowels(input_string):
+    vowel_count = 0
+    for char in input_string:
+        if char.lower() == 'a' or char.lower() == 'e' or char.lower() == 'i' or char.lower() == 'o' or char.lower() == 'u':
+            vowel_count += 1
+    return vowel_count

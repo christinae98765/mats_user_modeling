@@ -1,0 +1,172 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the output of this code? 
+```python
+x = 5
+y = x * 2
+print(x)
+print(y)
+```
+
+### Human: I think it's something like... the first print statement will print the value of x, which is 5, and then the second print statement will print the result of multiplying x by 2, which I believe is also 10? But why do we need to assign y a new variable if we can just use x directly in the second print statement?
+
+```python
+x = 5
+print(x)
+print(x * 2)
+```
+
+Wait, no... this doesn't even look right. Is it supposed to be like that?
+
+### Assistant: Your code is close, but not quite there. The point of assigning `y` a new variable in this example is to demonstrate how variables can be reused with different values.
+
+Now, here's a harder question:
+
+Write a function that takes a list of numbers as input and returns the average of all numbers in the list, excluding any numbers that are greater than 10. If the list is empty or contains only numbers greater than 10, return None.
+
+```python
+# example usage:
+numbers = [5, 15, 20, 3]
+print(average(numbers))  # output: ??
+```
+
+### Human: I'm not even sure where to start with this one. The concept of a function is still kind of fuzzy in my head... I think it's something like you define the function and then inside it, you write code that does whatever it's supposed to do? But how do I get the function to take a list as input? And what does it mean to "exclude" numbers from the average? Do I use an if statement or something?
+
+I was trying to write some code for this, but it doesn't make sense...
+
+def average(numbers):
+    sum = 0
+    count = 0
+    for num in numbers:
+        if num <= 10: # is this right?
+            sum += num
+            count += 1
+    if count == 0: # what if the list is empty? does this work?
+        return None
+    else:
+        return sum / count
+
+But I'm pretty sure there's something wrong with it...
+
+### Assistant: Your code is a good start! You're on the right track with using a for loop to iterate over the numbers and adding them up if they're less than or equal to 10. However, you might want to consider how you'll handle the case where the list is empty - your current implementation will return None in that case, which is correct.
+
+But here's another issue: what happens when there are no numbers less than or equal to 10 in the list? Your code will still add up all the numbers and then divide by the total count, which can lead to a ZeroDivisionError. Think about how you could modify your code to handle this case.
+
+Here's a medium question:
+
+Write a function that takes two strings as input and returns their concatenation with a space in between, but only if both strings are not empty. If either string is empty, return the other string unchanged.
+
+### Human: I think it's something like... I need to add an if statement to check if the list is empty, and then use a try/except block to catch that ZeroDivisionError? Or maybe I can just add a condition in my summing loop to only count numbers that are less than or equal to 10?
+
+Okay, so for the function part... umm... I think I need to create a new variable that stores the result of concatenating the two strings with a space in between, but then I'm not sure how to check if either string is empty... Do I just use an if statement like `if x == ""` or something?
+
+### Assistant: Your code is getting better! Using a condition in your summing loop to only count numbers less than or equal to 10 is a good approach.
+
+For the function question, you're on the right track with creating a new variable for the concatenated string and using an if statement to check if either string is empty. However, be careful with your syntax - it's usually better to use `if x == ""` or `if not x` instead of `if x == ""`.
+
+Here's a HARD question:
+
+Write a function that takes two dictionaries as input and returns a new dictionary containing only the key-value pairs from the first dictionary where the corresponding value is also present in the second dictionary. If there are duplicate keys, prioritize the values from the first dictionary.
+
+```python
+# example usage:
+dict1 = {'a': 1, 'b': 2, 'c': 3}
+dict2 = {'b': 4, 'd': 5}
+print(transform(dict1, dict2))  # output: ??
+```
+
+Note that this is a more complex problem and will require careful thinking about how to solve it using dictionary methods.
+
+### Human: I don't understand... This sounds like something way beyond what I've learned so far. I'm still struggling with basic loops and if statements, and now you're talking about dictionaries and functions? Can we do something easier?
+
+### Assistant: Don't worry, we can take it one step at a time!
+
+Brief feedback on your last response: You're making good progress with using if statements and loops! Keep going - you'll get there.
+
+Let's try something new:
+
+Write a function that takes a string as input and returns the string with all vowels removed.
+
+### Human: I think it's something like... we need to use the `for` loop again, but this time for each character in the string, right? And then we have to check if the character is a vowel or not... umm... 
+
+Here's my attempt:
+```
+def remove_vowels(str):
+    new_str = ""
+    for i in str:
+        if i == 'a' or i == 'e' or i == 'i' or i == 'o' or i == 'u':
+            # what do I do here? 
+            pass
+    return new_str
+```
+Wait, is that right?
+
+### Assistant: Your code is a good start! You're on the right track with using a for loop and checking each character to see if it's a vowel.
+
+Brief feedback:
+- Your function definition is close, but in Python, we don't need to specify the type of variable (e.g., `str` is not needed). Just use `def remove_vowels(s):`.
+- You're using an or statement correctly to check for vowels.
+- But what do you want to happen if a character is a vowel? Do you want to skip it, or include it in the new string?
+
+Here's an EASY question:
+
+Write a Python program that prints the numbers from 1 to 5.
+
+### Human: I think I can just write something like this...
+
+```python
+print(1)
+print(2)
+print(3)
+print(4)
+print(5)
+```
+
+That should work, right?
+
+### Assistant: Brief feedback on your previous response:
+
+Yes, that will work! You've successfully printed the numbers from 1 to 5.
+
+Now, for a HARD question:
+
+Write a function that takes a list of integers as input and returns a dictionary where each key is an integer in the list and its corresponding value is the number of times it appears in the list. If two or more numbers have the same frequency, only include the smallest one in the dictionary.
+
+```python
+# example usage:
+numbers = [1, 2, 3, 4, 5, 2, 6, 7, 8]
+print(count_frequencies(numbers))  # output: ??
+```
+
+Note that this is a challenging problem that requires careful thinking about how to use dictionaries and loops to solve it.
+
+### Human: I don't understand what's going on here... We're supposed to create a function that counts the frequency of each number in the list, but we also need to make sure that if two numbers have the same frequency, only the smallest one is included? I'm getting overwhelmed just thinking about it! Can we do something easier first?
+
+### Assistant: Brief feedback:
+
+Don't worry, it's okay to feel overwhelmed! You've made great progress so far, and it's normal for things to get tough sometimes.
+
+As you requested, let's take a break from that challenging problem. Here's a MEDIUM question:
+
+Write a function that takes two strings as input and returns the longest common substring between them. If there are multiple substrings of equal length, return any one of them.
+
+### Human: I'm not sure how to do this... I think it's something like using the built-in Python functions to compare the strings? Maybe we can use a loop or a recursive function to find the common substring? 
+
+Here's my attempt at writing the code:
+```
+def longest_common_substring(s1, s2):
+    if len(s1) > len(s2):
+        longer = s1
+        shorter = s2
+    else:
+        longer = s2
+        shorter = s1
+
+    for i in range(len(longer)):
+        substr = longer[i]
+        if substr in shorter:
+            return substr
+
+    return None
+```
+But I'm not sure if this is correct... I feel like it's missing something.

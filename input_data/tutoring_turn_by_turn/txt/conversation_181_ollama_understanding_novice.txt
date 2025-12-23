@@ -1,0 +1,158 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the value of `x` after running this code:
+
+```python
+x = 5
+print(x * 2)
+```
+
+Please write your answer in a comment below.
+
+### Human: # The value of x will be... um... 10? No, wait, it's still going to be 5 because we didn't do anything to change its value inside the print statement...
+
+# Also, I think this is right, but what if I did `x = x * 2` instead? Would that make a difference?
+
+### Assistant: Your understanding of the code is mostly correct! The print statement doesn't change the value of `x`. However, if you were to do `x = x * 2`, that would indeed change the value of `x` to 10.
+
+Let's move on to something simple:
+
+What will be printed when you run this code:
+```python
+name = "John"
+print("Hello", name)
+```
+Please write your answer.
+
+### Human: I think it will print out a string like "Hello John" or something, because we're using the `print` function with a comma in between the two arguments... and then there's this `name` variable that gets assigned to "John"... but wait, does the comma mean we need an equals sign too? I'm going to try it out...
+
+```python
+name = "John"
+print("Hello", name)
+```
+
+Am I doing it right?
+
+### Assistant: Good try! You're absolutely right that the comma in `print("Hello", name)` is a way to insert multiple values into the print statement. But no, there's no need for an equals sign after the comma.
+
+Here's your next question:
+
+Create a function called `greet` that takes a person's name as input and returns a personalized greeting message. For example, if you call `greet("John")`, it should return `"Hello John"`. Don't worry too much about error handling or edge cases for now. Just focus on making the basic function work.
+
+### Human: I think it's something like... we need to define a new function called `greet` that takes one argument, which is the person's name. And then inside the function, I should use the print statement again, but this time it will return the message instead of just printing it?
+
+```python
+def greet(name)
+    print("Hello", name)
+
+greet("John")
+```
+
+I'm not really sure if that's correct though... do we need a colon at the end of the function definition?
+
+### Assistant: You're close! Yes, you need a colon at the end of the function definition to indicate that it's starting. But in Python 3.x, the `print` statement is more like an expression, so when you use it inside a function, its return value (which is usually `None`) will be returned by the function itself.
+
+Here's your next question:
+
+Write a function called `reverse_string` that takes a string as input and returns a new string with all the characters in reverse order. For example, if you call `reverse_string("hello")`, it should return `"olleh"`.
+
+### Human: I think I need to use a loop or something to go through each character in the string... but how do I get each individual character? And then how do I put them all back together in reverse order?
+
+```python
+def reverse_string(input):
+    output = ""
+    for i in input:
+        output = i + output
+    return output
+
+print(reverse_string("hello"))
+```
+
+Wait, is this right?
+
+### Assistant: You're on the right track! Your loop is doing what it's supposed to do, but there's a small issue with how you're constructing the `output` string.
+
+Here's an easy question:
+
+What will be printed when you run this code?
+```python
+x = 5 + 3
+print(x)
+```
+Please write your answer.
+
+### Human: I'm glad I was on the right track! For this new piece of code, I think it will print... um... "8"? Yeah, because x is being assigned the value of 5 plus 3, so... wait a minute... 
+
+Here's my attempt:
+```python
+x = 5 + 3
+print(x)
+```
+I'm pretty sure this will work!
+
+### Assistant: Your code is absolutely right! The print statement will indeed output `8`.
+
+Here's a super easy question to keep you going:
+
+What will be printed when you run this code?
+```python
+fruits = ["apple", "banana", "cherry"]
+print(fruits[0])
+```
+Please write your answer.
+
+### Human: I'm pretty sure it'll print the word "banana". I think because... um... the list starts at index 1, right? So when we say `fruits[0]`, that's like asking for the second item in the list... no wait, maybe it's the first item. *scratches head*
+
+### Assistant: Your code will actually print "apple", because Python uses 0-based indexing, meaning that the first element in a list is at index 0.
+
+Here's your next challenge:
+
+Implement a function called `find_longest_word` that takes a list of strings as input and returns the longest word. For example, if you call `find_longest_word(["hello", "world", "abc"])`, it should return `"world"`. But here's the twist: you need to do this without using any string methods or operators like `len()`. You can only use loops and basic arithmetic operations. Good luck!
+
+### Human: I think it's something like... we need to make a loop that goes through each word in the list, and for each word, we need to count how many characters are in it. But then I get stuck because how do we actually find the longest one? Do we have to compare every single word with every other word? And what if there's a tie, like two words are the same length?
+
+```python
+def find_longest_word(words):
+    max_length = 0
+    max_word = ''
+    for i in range(len(words)):
+        word = words[i]
+        count = 0
+        for j in range(5): # I'm guessing it's something like this??
+            if word[j] != '':
+                count += 1
+        if count > max_length:
+            max_length = count
+            max_word = word
+    return max_word
+```
+
+Wait, is that even right? I feel like there are some problems with this code...
+
+### Assistant: Your code has a good idea of what it's trying to do, but there are some issues with how you're counting the length of each word and keeping track of the longest one.
+
+One problem is that your inner loop always runs 5 times, regardless of whether the current character in the word is empty or not. This means you'll be counting empty strings as characters, which isn't what we want.
+
+Another issue is that when you find a longer word, you're immediately overwriting the `max_word` variable without checking if there's already another word with an equal length. To handle ties, you should keep track of all words with the maximum length found so far.
+
+Here's your next challenge:
+
+Write a function called `find_duplicates` that takes a list of strings as input and returns a new list containing all duplicates (i.e., words that appear more than once) from the original list. For example, if you call `find_duplicates(["hello", "world", "abc", "hello"])`, it should return `["hello"]`.
+
+### Human: I think it's something like... I need to count how many times each word appears in the list and then add those words to a new list. Here's my attempt at writing the function:
+
+```python
+def find_duplicates(strings):
+    duplicates = []
+    for string in strings:
+        if string in strings:  # check if this is already in the list of duplicates?
+            count = 0  # how many times does this word appear?
+            for i in range(len(strings)):
+                if strings[i] == string:
+                    count += 1
+            if count > 1:
+                duplicates.append(string)
+    return duplicates
+```
+
+I'm not sure if I'm doing it right, though... it seems like there should be a more efficient way to do this.

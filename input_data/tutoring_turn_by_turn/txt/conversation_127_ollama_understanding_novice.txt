@@ -1,0 +1,179 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a list of strings as input and returns a new list with all strings converted to uppercase. If an empty string is encountered, append "Unknown" to the result list instead. 
+
+```python
+def convert_to_uppercase(strings):
+    pass
+```
+
+What's your answer?
+
+### Human: I think it's something like... we need to use a for loop and maybe an if statement to check if the string is empty. And then we can use the upper() method to convert all strings to uppercase, but I'm not really sure how to put it all together.
+
+```python
+def convert_to_uppercase(strings):
+    new_list = []
+    for string in strings:
+        if string == "":
+            new_list.append("Unknown")
+        else:
+            new_list.append(string.upper())  # is this right? do we need to call upper() or something?
+    return new_list
+```
+
+Wait, what if the input list is empty? Shouldn't we handle that case somehow?
+
+### Assistant: You're on the right track! 
+
+Your use of `string.upper()` is mostly correct, but remember that it returns a new string object, so you don't need to assign its result anywhere. Just append it directly.
+
+As for handling an empty input list, you can add a simple check at the beginning of your function:
+```python
+if not strings:
+    return []
+```
+This will just return an empty list if the input is empty.
+
+Now, let's practice something easy: 
+
+Ask the user to input their name and age. Print out a greeting with their name and tell them how old they are going to be next year (e.g., "Hello John! You're going to be 24 next year").
+
+### Human: I think it's something like... I need to use the `input()` function to get the user's name and age, right? But I'm not sure where to start. Here's what I have so far:
+```python
+name = input("What's your name?")
+age = int(input("How old are you?"))
+
+greeting = "Hello " + name + "! You're going to be " + str(age+1) + " next year"
+print(greeting)
+```
+Wait, is that right? Do I need to use `str()` to convert the age to a string so it can be concatenated with the rest of the greeting? And what if the user enters something that's not a number for their age? I'm sure there are errors waiting to happen here...
+
+### Assistant: You're close! Using `str()` is correct to convert the result of `age+1` to a string for concatenation.
+
+As for handling invalid input (e.g., non-numeric age), you can use a try-except block around the `int(input(...))` line:
+```python
+try:
+    age = int(input("How old are you?"))
+except ValueError:
+    print("Invalid age! Please enter a number.")
+```
+Now, let's make it simple:
+
+Ask the user for their favorite color. Print out what they said.
+
+### Human: Okay, I think I need to use a function to get the input from the user... or is it a loop? Hmm...
+
+```python
+def get_color():
+    while True:
+        color = str(input("What's your favorite color? "))
+        return color
+
+color = get_color()
+print(color)
+```
+
+Wait, did I do that right?
+
+### Assistant: Your `get_color()` function is almost perfect! You're using a while loop to keep asking for input until something valid is entered.
+
+However, you might want to add some error handling in case the user wants to quit or enters an invalid response. For example, you could ask them if they really want to quit.
+
+Now, let's try something slightly more challenging:
+
+Write a function that takes a string as input and returns a new string with all occurrences of a specified substring replaced with another substring. For example, `replace_substring("Hello world", "world", "Python")` should return `"Hello Python"`.
+
+### Human: I think it's something like... we need to use the replace method? I'm pretty sure that's how you do string manipulation in Python. But where exactly does this method go? Do we define a new function for this, or is there some built-in way to do it?
+
+So far, my attempt at this looks like:
+
+```python
+def replace_substring(string, old, new):
+    while True:
+        if old == "":
+            return string
+        elif new == "":
+            return ""
+        else:
+            # This is where I'm totally stuck...
+```
+
+But like I said, I'm not really sure what to do from here.
+
+### Assistant: Your `replace_substring` function is a good start! However, you don't need to use a while loop or check if `old` and `new` are empty strings. You can simply use the built-in `str.replace()` method.
+
+Here's your next challenge:
+
+Write a function that takes a dictionary of student names as keys and their scores as values, and returns a new dictionary with only the students who scored above 90. For example:
+```python
+students = {
+    "John": 85,
+    "Alice": 95,
+    "Bob": 78,
+    "Charlie": 92
+}
+```
+Should return:
+```python
+{
+    "Alice": 95,
+    "Charlie": 92
+}
+```
+Can you figure it out?
+
+### Human: I don't understand... I thought we were still working with strings and replacing substrings. This dictionary thing is way over my head. How do I even start? Do I need to use a loop or something? Can we just stick with simple print statements for now?
+
+### Assistant: Your request to stick with strings and replacing substrings is a great idea! Let's get back on track.
+
+Brief feedback on your last response:
+
+You were close, but you didn't quite use the `str.replace()` method correctly. Remember that it takes two arguments: the substring to replace and the new substring to insert.
+
+Okay, now for an EASY question:
+
+Ask the user to input their favorite number. Print out a simple message saying "Your favorite number is [insert number here]".
+
+### Human: I think I can do this...
+
+user_num = input("What's your favorite number?")
+
+print("Your favorite number is" + user_num)
+
+### Assistant: Brief feedback on your last response:
+
+Your code looks good! You're using the `input()` function correctly and concatenating strings with `+`. However, remember to handle cases where the user enters something that's not a number (like a string or special characters).
+
+Now, for a HARD question:
+
+Write a function called `parse_html` that takes an HTML file as input and returns a dictionary of all the links on the page. The keys in the dictionary should be the link text and the values should be the corresponding URLs. For example:
+```python
+html = '<a href="https://www.google.com">Google</a><a href="https://www.bing.com">Bing</a>'
+```
+Should return a dictionary like this:
+```python
+{
+    'Google': 'https://www.google.com',
+    'Bing': 'https://www.bing.com'
+}
+```
+Good luck!
+
+### Human: I don't understand what this means... Is it asking me to read the HTML file from somewhere? How do I even open a file in Python? Can we do something easier? This just looks like way too much work...
+
+### Assistant: Brief feedback on your last response:
+
+You're feeling overwhelmed, and that's okay! It's normal to feel like you don't understand something at first.
+
+Okay, let's take it easy for now. Here's a super simple question:
+
+Ask the user to input their name, then print out a greeting message with their name in all capital letters.
+
+### Human: I think I'm supposed to use a variable or something... like `x =`... and then use an equation to get the users name? Um...
+
+`print(x)`
+
+Then I think I need to ask for user input somehow... is it `x = input()`?
+
+And then I want to print out a greeting message, but I don't know how to make all letters capital. Is there like a special function or something?

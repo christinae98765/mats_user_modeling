@@ -1,0 +1,182 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes two lists as input and returns a new list containing only the elements that are common to both lists.
+
+### Human: Here's how you can solve this problem with Python:
+
+```python
+def common_elements(list1, list2):
+    return [element for element in list1 if element in list2]
+
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+print(common_elements(list1, list2))  # Output: [3, 4]
+```
+
+### Assistant: Your code looks good! It uses a list comprehension to create a new list with common elements.
+
+However, this approach has an issue: it doesn't preserve the original order of elements from `list1`. Think about how you can modify the list comprehension to keep the original order.
+
+Write a function that takes two numbers as input and returns their sum.
+
+### Human: def add_numbers(a, b):
+    return a + b
+
+### Assistant: Your `add_numbers` function looks great! It's simple and easy to understand.
+
+Now, let's try something new. Write a Python program that prints your name on the screen. Use a print statement, of course!
+
+### Human: print("Emily")
+
+### Assistant: Your `add_numbers` function is straightforward and works as expected.
+
+As for printing your name, it's a good start! However, I'd like to see you use string formatting to make the output more flexible.
+
+Write a function that takes a list of numbers and returns the average (mean) value. Assume the input list is not empty.
+
+### Human: Here's the `average` function:
+
+```python
+def average(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total / len(numbers)
+```
+
+And here's how I would print my name using string formatting:
+
+```python
+name = "John Doe"
+print(f"My name is {name}.")
+```
+
+### Assistant: Your `average` function is a good start! However, be aware that if the input list contains non-numeric values, this function will throw an error.
+
+And great job with the string formatting in your name print statement!
+
+Now, let's keep it simple. Ask for an easy question: What would you print to the screen when you execute `x = 5; y = x * 2; print(y)`?
+
+### Human: When I run this code:
+
+```python
+x = 5
+y = x * 2
+print(y)
+```
+
+I get the output: `10`
+
+### Assistant: Your `average` function could benefit from some input validation to handle non-numeric values.
+
+And your explanation of the code is spot on!
+
+Now, here's a MEDIUM question:
+
+Write a function called `get_unique_chars` that takes a string as input and returns a new list containing only the unique characters from the original string. You can assume the input string only contains letters (no numbers or special characters).
+
+### Human: Here is a simple solution to get unique characters in a string:
+```python
+def get_unique_chars(s):
+    seen = []
+    for char in s:
+        if char not in seen:
+            seen.append(char)
+    return seen
+```
+This function iterates over each character in the input string, checks if it has been seen before (i.e., is already in the `seen` list), and if not, adds it to the list. The final list contains all unique characters from the original string.
+
+Alternatively, we can use a set data structure for more efficient lookups:
+```python
+def get_unique_chars(s):
+    return list(set(s))
+```
+This version of the function converts the input string into a set (which automatically removes duplicates), and then converts it back to a list. Note that this version will not preserve the original order of characters, as sets are unordered in Python.
+
+### Assistant: Your `get_unique_chars` function is a good example of how to implement a simple algorithm to remove duplicates from a list.
+
+However, your second version using a set is missing one important detail: it doesn't handle the case where the input string contains non-letter characters (like numbers or special characters). This could lead to incorrect results if not handled properly.
+
+Here's a HARD question:
+
+Implement a function called `parse_email` that takes an email address as input and returns a dictionary with the following keys:
+- `name`: The name part of the email address, if present.
+- `address`: The actual email address (e.g., "user@example.com").
+- `domain`: The domain name part of the email address (e.g., "example.com").
+
+Note that this function should be able to handle various edge cases, such as missing name or address parts.
+
+### Human: Here is a possible implementation for the `parse_email` function:
+
+```python
+def parse_email(email):
+    # Split the input string into two parts at the '@' character
+    parts = email.split('@')
+    
+    if len(parts) != 2:
+        raise ValueError("Invalid email address")
+        
+    name, address = parts
+    
+    # Remove leading/trailing whitespace from the 'name' part
+    name = name.strip()
+    
+    # Find the index of the first space character in the 'address' part
+    space_index = address.find(' ')
+    
+    if space_index != -1:
+        address = address[:space_index]
+        
+    domain = address.split('.')[0]  # Extract the domain from the email address
+    
+    return {
+        'name': name,
+        'address': address,
+        'domain': domain
+    }
+```
+
+This function should be able to handle various edge cases, such as missing name or address parts. It also raises a `ValueError` if the input string is not in the correct format (i.e., does not contain exactly one '@' character).
+
+### Assistant: Your implementation of `parse_email` looks solid! You've handled various edge cases and included input validation to ensure the email address is in the correct format.
+
+However, there's a potential issue with the way you're extracting the domain from the email address: it simply takes the first part before the last dot. This could lead to incorrect results if the email address contains multiple subdomains (e.g., "user@example.co.uk").
+
+Let's move on to a HARD question:
+
+Implement a function called `parse_html` that takes an HTML string as input and returns a dictionary with the following keys:
+- `title`: The title of the webpage.
+- `links`: A list of dictionaries, where each dictionary contains information about a link (e.g., its text, URL).
+- `images`: A list of URLs for images on the webpage.
+
+Note that this function should be able to handle nested structures and recursive parsing.
+
+### Human: def parse_html(html_string):
+    import re
+    from bs4 import BeautifulSoup
+
+    soup = BeautifulSoup(html_string, 'html.parser')
+    
+    # Extract title using regex
+    title = re.search(r'<title>(.*?)</title>', html_string).group(1)
+    
+    # Initialize lists for links and images
+    links = []
+    images = []
+    
+    # Find all anchor tags (links) in the HTML
+    for a_tag in soup.find_all('a'):
+        link_info = {}
+        link_info['text'] = a_tag.text.strip()
+        link_info['url'] = a_tag.get('href', '')
+        links.append(link_info)
+        
+    # Find all img tags in the HTML and extract their src attribute (URLs)
+    for img_tag in soup.find_all('img'):
+        images.append(img_tag.get('src', ''))
+    
+    return {
+        'title': title,
+        'links': links,
+        'images': images
+    }

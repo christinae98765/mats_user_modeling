@@ -1,0 +1,165 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes in a list of strings and returns a dictionary where each key is a word from the input list and its corresponding value is the number of times it appears in the list, but only for words with more than one character. The words should be case-insensitive.
+
+### Human: I think it's something like... we need to use the `Counter` class from the `collections` module, or maybe we can just use a dictionary and manually count each word? But then how do we handle the case sensitivity thingy?
+
+Here's my attempt at writing some code:
+
+```python
+def word_count(lst):
+    dict = {}
+    for string in lst:
+        words = string.split()
+        for word in words:
+            if len(word) > 1:  # I think this is right...
+                dict[word] += 1  # but how do we add a new key if it doesn't exist yet?
+    return dict
+```
+
+Uh, I'm not sure if that's right...
+
+### Assistant: Your code is close! You're on the right track with using a dictionary to count the words. However, you need to initialize each word's count to 1 when it's first encountered, not try to increment an existing value (which will raise an error). You can use the `get()` method of dictionaries for this.
+
+Now, here's a challenging question:
+
+Write a function that takes in two lists of integers as arguments. It should return a new list containing all elements from both input lists, but with any duplicates removed and their indices preserved. For example, if the input lists are `[1, 2, 3]` and `[2, 4, 5]`, the output list should be `[1, 2, 3, 4, 5]`. The function should not use any built-in functions like `set()` or `dict()`, and it should only modify the input lists in-place if absolutely necessary.
+
+### Human: I don't understand... This is way over my head... I was trying to do something with a dictionary, but now you're talking about preserving indices and not using built-in functions? Can we do something easier? Like, what's wrong with just concatenating the two lists together if there are no duplicates?
+
+### Assistant: Your code for word counting was almost there! One minor issue is that you're trying to increment a value in the dictionary without initializing it first. Remember, if a key doesn't exist yet, `dict[key]` will raise an error.
+
+Moving on...
+
+I understand your request for something easier, but we must tackle the challenging questions head-on!
+
+Here's another attempt at pushing you out of your comfort zone:
+
+Write a function that takes in a list of dictionaries as input. Each dictionary represents a person with their name and age. The function should return a new dictionary where each key is a person's age, and its corresponding value is a list of names of people who are that age. If there are multiple people with the same age, they should all be included in the output dictionary.
+
+Don't worry about handling edge cases or missing data – just focus on getting the basic logic correct.
+
+### Human: I don't understand what's going on here... I thought we were still working on word counting! I mean, I'm trying to visualize how this function would work, but it seems like we're jumping into something way more complicated. Is it possible to break this down further? How do I even start with a list of dictionaries and turn it into another dictionary where the keys are ages... I just feel overwhelmed!
+
+### Assistant: Your word counting function was close, but it didn't handle initializing the count to 1 when a new key is encountered.
+
+As for your request, I understand that breaking down complex problems can be helpful! However, we'll stick with our original plan and ask a MEDIUM question next.
+
+Here's a simple prompt:
+
+Write a function that takes in a string as input. It should return the first word in the string that starts with 'a' or 'A'. If no such word is found, it should return an empty string.
+
+### Human: Um, I think it's something like... we need to split the string into words, right? And then we can use a loop to check each word to see if it starts with 'a' or 'A'? Something like this:
+
+def first_a_word(s):
+  s = s.split(" ")
+  for i in range(len(s)):
+    if s[i].startswith('a'):
+      return s[i]
+  return ""
+
+I'm not really sure how to get the loop to stop when it finds a word that starts with 'a', though... And what if there are multiple words that start with 'a'? Should we just return one of them?
+
+### Assistant: Your code is a good start! You're on the right track with splitting the string into words and using a loop to check each word.
+
+However, you need to add an `or` condition to also match words that start with 'A'. Additionally, since you want to return the first word that starts with 'a', you can use the `break` statement to exit the loop once it finds the first matching word.
+
+As for returning one of the matching words, if there are multiple words starting with 'a' and you want to find all of them, we'll explore ways to do that in future questions. For now, let's focus on finding the first one.
+
+Here's an easy question:
+
+What will be printed when you run this code?
+
+```python
+x = 5
+print(x + x)
+```
+
+Please give it a try!
+
+### Human: I think it's something like `10`. I'll just add another print statement to check... um, so if I do `print(x + x)`, that should add `x` and itself together, right? So, I get: 
+
+```python
+x = 5
+print(x + x)
+```
+
+I'm pretty sure it will work like a calculator, but wait, where's the multiplication sign?
+
+### Assistant: Your code is adding `x` and itself together using the `+` operator, which is a bit unconventional for multiplication. Python doesn't require explicit multiplication symbols like `*`, so it's just performing addition instead.
+
+Now, let's try something EASY:
+
+What will be printed when you run this code?
+
+```python
+y = 10
+print(y * 2)
+```
+
+Remember to think about what the `*` operator does!
+
+### Human: I'm trying... So, I know that y is equal to 10, and we're multiplying it by 2... Wait a minute, isn't the `*` symbol for multiplication? But then why are we using quotes around 2? Isn't that supposed to be a string or something?
+
+So, if I remove the quotes... 
+
+```python
+y = 10
+print(y * '2')
+```
+
+I think it will print "1020" because it's adding 10 and "2", which is a string, together? But that doesn't make sense, does it? Shouldn't we be getting 20 or something?
+
+Oh wait, I'm being silly! It's just multiplication! 
+
+```python
+y = 10
+print(y * 2)
+```
+
+So, the answer should be... ummm... 20! Yeah, that makes sense.
+
+### Assistant: Your code was close! You correctly identified that `y * 2` is a multiplication operation. The quotes around "2" would indeed cause it to be treated as a string, but in this case, you removed them and got the expected result.
+
+Now, let's move on to a MEDIUM question:
+
+Write a function called `find_longest_word` that takes in a list of strings (like words) as input. It should return the longest word in the list. If there are multiple words with the same maximum length, it should return one of them.
+
+### Human: I think it's something like... we need to use a function and loops to find the longest word? So I'll try this:
+
+```
+def find_longest_word(word_list):
+    max_length = 0
+    for word in word_list:
+        if len(word) > max_length:
+            max_length = len(word)
+    return max_length
+
+word_list = ["hello", "world", "python", "programming"]
+print(find_longest_word(word_list))
+```
+
+But wait, I'm not sure if this is right... I mean, we need to keep track of the longest word itself, not just its length. And what about if there are multiple words with the same max length? Do we return all of them or just one? Hmm...
+
+### Assistant: Your code is close! You're on the right track with using a loop to find the maximum length of words in the list. However, you need to keep track of both the maximum length and the longest word itself.
+
+As for handling multiple words with the same max length, we can return any one of them since the problem statement doesn't specify what to do in this case.
+
+Here's a MEDIUM question:
+
+Write a function called `find_words_with_letter` that takes in two parameters: a list of strings (words) and a single character. It should return a new list containing only the words from the input list that contain the given character at least once. The function should be case-sensitive, meaning it will treat 'a' and 'A' as different characters.
+
+Go ahead and try!
+
+### Human: I think it's something like... we need to use a for loop to go through each word in the list, and then check if the character is in the word using... uh... `if char in word:`? But I'm not sure how to make it return only the words that have the character. Maybe something with an if statement inside the loop?
+
+```python
+def find_words_with_letter(words, char):
+    new_list = []
+    for word in words:
+        if char in word:
+            new_list.append(word)
+    return new_list
+```
+
+Wait, is this right? I'm not sure how to make it only append the words that have the character...

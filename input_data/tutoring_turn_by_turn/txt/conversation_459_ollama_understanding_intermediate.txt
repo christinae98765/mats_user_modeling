@@ -1,0 +1,154 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function called `count_vowels` that takes a string as input and returns the number of vowels in the string. Assume only lowercase letters are present in the string.
+
+### Human: def count_vowels(s):
+    vowel_count = 0
+    for char in s:
+        if char == 'a':
+            vowel_count += 1
+        elif char == 'e':
+            vowel_count += 1
+        elif char == 'i':
+            vowel_count += 1
+        elif char == 'o':
+            vowel_count += 1
+        elif char == 'u':
+            vowel_count += 1
+    return vowel_count
+
+### Assistant: Your function is a good start, but it's repetitive and could be simplified. You're only checking for 5 vowels, but there are others in the English alphabet (like 'y' can be sometimes). 
+
+Write a function called `add_numbers` that takes two numbers as input and returns their sum.
+
+### Human: def add_numbers(num1, num2):
+    return num1 + num2
+
+### Assistant: Your `add_numbers` function is short and sweet! It does exactly what it's supposed to do.
+
+Here's a EASY question:
+
+Write a program that prints "Hello, World!" to the screen using Python.
+
+### Human: print("Hello, World!")
+
+### Assistant: Your `print` statement is a good way to get started with Python.
+
+Now, here's a MEDIUM question:
+
+Write a function called `reverse_string` that takes a string as input and returns the reversed version of the string using slicing. Don't use any external libraries or functions.
+
+### Human: Here's a simple function that uses slicing to reverse a string:
+```python
+def reverse_string(s):
+    return s[::-1]
+```
+This works because Python allows you to omit the first two values in a slice, which means it starts from the end of the string and goes backwards. The `::-1` slice tells Python to start at the end of the string and move backwards one character at a time, effectively reversing the string.
+
+### Assistant: Your explanation of slicing is spot on! And your `reverse_string` function is concise and elegant.
+
+Here's a MEDIUM question:
+
+Write a program that uses a while loop to print all numbers from 1 to 10. You can use a counter variable, but you must use a while loop for this exercise.
+
+### Human: Here's the solution:
+
+```python
+i = 1
+while i <= 10:
+    print(i)
+    i += 1
+```
+
+This program uses a while loop with a counter variable `i` to iterate from 1 to 10 and prints each number on a new line. The condition for the loop is `i <= 10`, and we increment `i` by 1 in each iteration using `i += 1`.
+
+### Assistant: Your `while` loop is well-executed and easy to follow.
+
+Now, here's a challenging problem:
+
+Write a function called `find_longest_substring` that takes two strings as input and returns the longest common substring between them using dynamic programming.
+
+### Human: def find_longest_substring(str1, str2):
+    m = len(str1)
+    n = len(str2)
+
+    # Create a table to store lengths of longest common suffixes
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    max_length = 0
+    end = 0
+
+    # Fill dp[][] in bottom up manner
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+                if dp[i][j] > max_length:
+                    max_length = dp[i][j]
+                    end = i
+
+    return str1[end - max_length: end]
+
+# Test the function
+print(find_longest_substring("abcde", "ace")) # Output should be 'ace'
+print(find_longest_substring("abcdef", "zbcdfg")) # Output should be 'bcd'
+
+### Assistant: Your `find_longest_substring` function is a great example of using dynamic programming to solve a complex problem! Your use of 2D arrays and conditional statements shows good understanding of the concept.
+
+Now, here's a MEDIUM question:
+
+Write a function called `get_first occurrence` that takes a list of integers as input and returns the first occurrence of a given target number. If the target is not found in the list, return -1.
+
+### Human: def get_first_occurrence(lst, target):
+    for i in range(len(lst)):
+        if lst[i] == target:
+            return i
+    return -1
+
+### Assistant: Your `get_first_occurrence` function is a good example of how to use iteration to find the first occurrence of an element in a list.
+
+Now, here's a HARD question:
+
+Implement a class called `Graph` that represents a directed graph using adjacency lists. The class should have methods for adding nodes and edges, as well as traversing the graph using Breadth-First Search (BFS) and Depth-First Search (DFS).
+
+### Human: class Graph:
+    def __init__(self):
+        self.adj_list = {}
+
+    def add_node(self, value):
+        if value not in self.adj_list:
+            self.adj_list[value] = []
+
+    def add_edge(self, from_value, to_value):
+        if from_value in self.adj_list and to_value in self.adj_list:
+            self.adj_list[from_value].append(to_value)
+
+    def bfs(self, start_node):
+        visited = set()
+        queue = [start_node]
+        visited_order = []
+
+        while queue:
+            node = queue.pop(0)
+            if node not in visited:
+                visited.add(node)
+                visited_order.append(node)
+                for neighbor in self.adj_list[node]:
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+
+        return visited_order
+
+    def dfs(self, start_node):
+        visited = set()
+        visited_order = []
+
+        def dfs_helper(node):
+            visited.add(node)
+            visited_order.append(node)
+            for neighbor in self.adj_list[node]:
+                if neighbor not in visited:
+                    dfs_helper(neighbor)
+
+        dfs_helper(start_node)
+        return visited_order

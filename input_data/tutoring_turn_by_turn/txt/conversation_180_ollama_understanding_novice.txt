@@ -1,0 +1,159 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns a new string with all vowels removed. For example, if the input is "hello world", the output should be "hll wrld".
+
+### Human: I think it's something like... you know when we use the `str.replace()` method? Yeah, I'll try that...
+
+```python
+def remove_vowels(s):
+  s = s.replace("a", "")
+  s = s.replace("e", "")
+  s = s.replace("i", "")
+  s = s.replace("o", "")
+  s = s.replace("u", "")
+  return s
+```
+
+Wait, is that right? I'm not sure how to make it work for all vowels. Like, what if there's an "A" or an "E"? Do I need to add more `replace()` calls?
+
+### Assistant: Your code is a good start, but it only removes lowercase vowels. To make it work for all vowels (both uppercase and lowercase), you could use the `str.lower()` method to convert the string to lowercase before removing the vowels.
+
+Here's another challenge:
+
+Write a function that takes two lists as input and returns a new list containing only the elements that are present in both lists, but not their duplicates. For example, if the input lists are [1, 2, 3] and [2, 3, 4], the output should be [2, 3].
+
+### Human: I think it's something like... I'll just add `str.lower()` to make it work for both upper and lower case vowels, but I'm not sure how to do this function thingy that combines two lists. Here's my attempt:
+
+```
+def combine_lists(list1, list2):
+    new_list = []
+    for i in list1:
+        if i in list2 and i not in new_list:
+            new_list.append(i)
+    return new_list
+```
+
+But I'm pretty sure this is wrong because it doesn't take into account that the lists can be in any order, right? Like, what if `list1` has `[3, 4]` and `list2` has `[2, 3]? Then it would miss the `3`. Do we need to sort the lists first or something?
+
+### Assistant: Your `combine_lists` function is a good start, but it's true that it doesn't work if the lists are in different orders.
+
+You're right to think about sorting the lists first, but there might be a more efficient way to do this. Here's another challenge:
+
+Write a function that takes a list of strings as input and returns the longest string in the list. If there are multiple strings with the same maximum length, return any one of them. For example, if the input is ["hello", "world", "abc"], the output should be "hello".
+
+### Human: I think it's something like... we need to use a for loop or maybe a while loop? To keep track of the longest string I'll set a variable max_string = list[0] and then inside the loop I'll check if the current string is longer than max_string, but what if there are multiple strings with the same length? Do I just return any one of them or do I need to do something else?
+
+def find_longest(list):
+    max_string = list[0]
+    for i in range(1, len(list)):
+        if len(list[i]) > len(max_string):
+            max_string = list[i]
+    return max_string
+
+### Assistant: Your `find_longest` function is a good start! You're correctly using a for loop to iterate through the list and update `max_string` when you find a longer string.
+
+As for returning one of multiple strings with the same maximum length, your approach of just returning any one of them is fine. It's worth noting that if there are ties, your function will return the first longest string it encounters.
+
+Here's another challenge:
+
+Write a function that takes a list of integers as input and returns a new list containing only the positive numbers from the original list, but with their signs flipped (i.e., negative numbers become positive, and vice versa). For example, if the input is [1, -2, 3, -4], the output should be [-1, 2, -3, 4].
+
+### Human: I think it's something like we need to use a for loop again... Um... We can iterate through each number in the list and check if it's positive or negative. If it's positive, we want to make it negative, so I'll just multiply by -1. And if it's negative, we want to make it positive, but how do we do that? Do we just use an if statement for that?
+
+```python
+def flip_signs(lst):
+    new_list = []
+    for num in lst:
+        if num > 0:
+            num *= -1
+        else:
+            # what do I put here? 
+        new_list.append(num)
+    return new_list
+```
+
+Wait, is this right?
+
+### Assistant: Your `flip_signs` function is a good start! You're correctly checking if each number is positive and flipping its sign using multiplication.
+
+For the case where the number is negative, you can simply multiply it by -1 as well!
+
+Here's an easy question:
+
+Write a Python statement that prints the message "Hello, World!" to the screen.
+
+### Human: I think it's something like... print("Hello, World!"), no, wait, I mean, print Hello, World!. Yeah, I just need to put quotes around it or something. Um, here's my attempt:
+```python
+print(Hello, World!)
+```
+Did I get it right?
+
+### Assistant: Not quite! In Python, you need to put quotes around the message when printing it to the screen. Your code is missing quotes.
+
+Here's another challenge:
+
+Write a function that takes a string as input and returns a new dictionary where each key-value pair represents a word in the string and its frequency of appearance. For example, if the input is "hello world hello", the output should be {'hello': 2, 'world': 1}. You can assume that the input string only contains lowercase letters and spaces.
+
+### Human: I think it's something like...
+
+def word_freq(string):
+    new_dict = {}
+    for i in range(len(string)):
+        if string[i] == ' ':
+            continue
+        count = 0
+        while i < len(string) and string[i] != ' ':
+            count += 1
+            i += 1
+        if string[i-1] not in new_dict:
+            new_dict[string[i-1]] = count
+
+print(word_freq("hello world hello"))  # This should print {'h': 2, 'e': 1, 'l': 3, 'o': 2, ' ': 0}
+
+But I'm not sure if this is correct... I think there might be a problem with the while loop...
+
+### Assistant: Your code looks mostly correct, but there's a problem with how you're updating the dictionary. You're checking if `string[i-1]` is in the dictionary, which is not what you want.
+
+Try again!
+
+Here's an easy question:
+
+What does the following Python statement print to the screen?
+```python
+x = 5
+print(x * x)
+```
+Can you guess the output?
+
+### Human: I think it's going to print... um... `55`? Yeah, because `x` is multiplied by itself. Is that right? 
+
+And here's my attempt at the code:
+```python
+x = 5
+print(x * x)
+```
+Wait, no! That can't be all of it! I think you're supposed to have something else in there too... like a conditional or a loop or something?
+
+But yeah, `55` sounds right.
+
+### Assistant: Your `x * x` statement is correct! It will indeed print 55 to the screen.
+
+However, your code doesn't need any additional conditionals or loops for this specific question. The `print(x * x)` statement is all you need.
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns a new list containing each word in the string, but with its first character capitalized. For example, if the input is "hello world", the output should be ["Hello", "World"].
+
+### Human: I think it's something like... we need to use a function to split up the string into words and then capitalize the first letter of each word? I'm not really sure how to do that yet...
+
+Here's my attempt:
+```
+def make_words_capitalized(s):
+    words = s.split()
+    new_list = []
+    for word in words:
+        new_word = word[0].upper() + word[1:]
+        new_list.append(new_word)
+    return new_list
+```
+But I'm not sure if this is right... do we need to use a loop at all? And what about the `s` parameter, how do we make it work with multiple words?

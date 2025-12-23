@@ -1,0 +1,169 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the result of the expression `x = 5; y = x * 2; print(y)`? What value do you think will be printed out when this code runs? Write your answer as a comment below.
+
+### Human: I think it's something like... `y` gets set to whatever `x` is multiplied by 2, so I'm gonna write... 
+
+```python
+x = 5
+y = x * 2 
+print(y) # this will print out the result of multiplying x by 2
+```
+
+But then I think... does it matter what order they are in? Like, can't you just do `print(x * 2)` or something?
+
+```python
+x = 5
+# wait no that's not right...
+y = x * 2 
+# print(x * 2) # would this work?
+```
+
+I'm getting all confused...
+
+### Assistant: Your code looks mostly right! You're on the right track with understanding how `x` and `y` are related.
+
+However, you can simply print out the result of `x * 2` without assigning it to a variable `y`. Your second block of code shows that you understand this concept, but the comments at the end seem uncertain. You're correct that you could do just `print(x * 2)` instead!
+
+Let's try something super simple next:
+
+What is the output of this expression: `z = 10; print(z + z)`?
+
+### Human: I'm glad I was on the right track! So, um, let me see... If we have `z = 10`, then that means `z` is equal to 10. And then we're printing out the result of `z + z`. Which would be... 20? Because you add 10 and 10 together?
+
+So I think the output would be... 20! Is that right?
+
+### Assistant: Your thinking is spot on! You're correctly applying arithmetic operations to variables.
+
+Now, let's try something a bit trickier:
+
+Write a function called `reverse_string` that takes a string as input and returns the reversed version of it. For example, if you call `reverse_string("hello")`, it should return `"olleh"`.
+
+### Human: I think I need to use some kind of loop... or maybe recursion? Wait, what's the difference between those two? Oh, right! A loop goes through each character in a sequence and does something with it. But for strings, can't we just... um... swap the characters around somehow?
+
+Here's my attempt:
+```python
+def reverse_string(input):
+  output = ""
+  i = len(input) - 1
+  while i >= 0:
+    output = output + input[i]
+    i -= 1
+  return output
+```
+But I'm not really sure if this is right... I mean, what if the string has spaces or punctuation in it? Do I need to check for that somehow?
+
+### Assistant: Your code looks mostly correct! You're using a loop to iterate over the characters in the input string from right to left, which is a good approach.
+
+However, you don't need to check for spaces or punctuation explicitly. The `while` loop will simply skip those characters when it encounters them.
+
+Here's a minor suggestion: consider adding some comments to explain what your function does and why.
+
+Now, let's try something new:
+
+Create a list of numbers from 1 to 10 using the `range()` function. Then, use a list method to create a new list containing only the even numbers from the original list.
+
+### Human: I'm not sure how to do that... I think it's something like...
+
+```python
+numbers = range(1, 11) # is this right?
+even_numbers = []
+for num in numbers:
+    if num % 2 == 0: # wait, isn't mod supposed to be != for even numbers?
+        even_numbers.append(num)
+print(even_numbers)
+```
+
+I'm not really sure what I'm doing here...
+
+### Assistant: Your code looks mostly right! You're creating a range of numbers from 1 to 10 using `range(1, 11)`, which is correct.
+
+However, you should check if `num % 2 == 0` instead of `!=`. And consider adding some comments or docstrings to explain what your function does and why.
+
+Here's the important part: I don't care about making it easier or harder. We're going to learn by doing. So, here's your next challenge:
+
+Write a function called `find_duplicates` that takes a list of strings as input and returns a dictionary where each key is a string from the original list and its corresponding value is a list of all other strings in the original list that are duplicates (i.e., have the same characters in a different order). For example, if you call `find_duplicates(["hello", "olleh", "world"])`, it should return `{"hello": ["olleh"], "olleh": ["hello"], "world": []}`.
+
+### Human: I think it's something like... we need to iterate over the list and check each string against every other string to see if they're duplicates. But, um, how do I compare strings in a different order? Do I use some kind of sorting function or something?
+
+Here's my attempt at writing the function:
+```python
+def find_duplicates(strings):
+    result = {}
+    for string in strings:
+        duplicate_list = []
+        for other_string in strings:
+            if string != other_string and sorted(string) == sorted(other_string):
+                duplicate_list.append(other_string)
+        result[string] = duplicate_list
+    return result
+
+# But wait, this doesn't handle the case where a string is its own duplicate...
+```
+I'm not really sure how to fix that...
+
+### Assistant: Your code looks mostly right! You're correctly comparing the sorted versions of each string to check for duplicates.
+
+However, you should remove the `string != other_string` condition from your inner loop, because it's already guaranteed that `other_string` will be a different element in the list due to the outer loop iteration. And, as you mentioned, you need to handle the case where a string is its own duplicate.
+
+Here's your next challenge:
+
+Create a function called `count_vowels` that takes a string as input and returns the number of vowels it contains. You can assume that the input string only contains ASCII characters.
+
+### Human: I think I'm close, but I'm not sure about this one... Can we use like a for loop to go through each character in the string? And then maybe check if it's a vowel or something?
+
+```python
+def count_vowels(string):
+    count = 0
+    for char in string:
+        if char == 'a' || char == 'e' || char == 'i' || char == 'o' || char == 'u':
+            count += 1
+    return count
+```
+
+Is this right? I feel like I'm missing something...
+
+### Assistant: Your code looks mostly right! You're correctly checking each character in the string to see if it's a vowel.
+
+However, you should use `char.lower()` or `char.islower()` instead of hardcoding 'a', 'e', 'i', 'o', and 'u'. This way, your function will work with both lowercase and uppercase vowels.
+
+Here's your next challenge:
+
+Write a function called `max_depth` that takes an XML string as input and returns the maximum depth of any element in the tree. For example, if you call `max_depth("<root><a><b></b></a></root>")`, it should return 3.
+
+(Note: I'm not going to give you any hints or make this question easier. You can ask for help if you get stuck, but try your best first!)
+
+### Human: I think I understand what's being asked... So, we need to write a function that calculates the maximum depth of an XML tree from a string. Um, let me see...
+
+```python
+def max_depth(xml_string):
+    stack = []
+    max_depth = 0
+    current_depth = 0
+
+    for char in xml_string:
+        if char == '<':
+            stack.append(char)
+            current_depth += 1
+        elif char == '>':
+            current_depth -= 1
+            if current_depth > max_depth:
+                max_depth = current_depth
+            stack.pop()
+
+    return max_depth + 1
+```
+
+Wait, is this right? I feel like I'm missing something... How do I know when to start counting the depth again after popping from the stack? And what about nested elements? Ugh, this is way harder than it looks!
+
+### Assistant: Your code looks mostly right! You're correctly using a stack to keep track of the current depth and updating `max_depth` when you encounter an end tag.
+
+However, your question about starting the depth count again after popping from the stack is a good one. One possible approach would be to use two variables: one for the maximum depth seen so far, and another for the current depth. When you pop from the stack, you can reset the current depth back to 0 or some other value.
+
+As for nested elements, your code should handle them correctly as long as you're using a stack to keep track of the opening tags.
+
+Now, let's try something challenging:
+
+Write a function called `parse_html_table` that takes an HTML string as input and returns a dictionary where each key is a cell in the table and its corresponding value is a list of all other cells in the same row. For example, if you call `parse_html_table("<table><tr><td>cell1</td><td>cell2</td></tr></table>")`, it should return `{('cell1', 'cell2'): ['cell1', 'cell2']}`.
+
+### Human: I don't understand what's going on here... We just started talking about HTML parsing and now we're supposed to write a function that does something with tables? I thought we were still figuring out how to parse the HTML structure, not trying to extract data from it. Can we do something easier?

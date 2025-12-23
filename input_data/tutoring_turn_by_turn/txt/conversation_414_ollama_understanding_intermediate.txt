@@ -1,0 +1,167 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the output of this code:
+
+```
+x = 5
+y = x * 2
+print(y)
+```
+
+### Human: The output of this code will be:
+```
+10
+```
+This is because we first assign the value `5` to variable `x`, then multiply it by `2` and store the result in `y`. Finally, we print out the value stored in `y`, which is `10`.
+
+### Assistant: Your explanation is clear and concise.
+
+Here's a medium question:
+
+Write a function that takes a string as input and returns the string with all vowels removed. For example, if the input is "hello world", the output should be "hll wrld". What would you name this function?
+
+### Human: I'd call this function `remove_vowels`. Here's how I'd implement it:
+
+```python
+def remove_vowels(s):
+    vowels = 'aeiouAEIOU'
+    return ''.join([c for c in s if c not in vowels])
+```
+
+This function uses a list comprehension to iterate over each character in the input string. It checks if the character is a vowel by seeing if it's in the `vowels` string, and if not, adds it to the new string. The `''.join()` method then combines all these characters into a single string with no vowels.
+
+### Assistant: Good job on implementing the `remove_vowels` function! Your use of a list comprehension and the `''.join()` method is efficient.
+
+Here's a medium question:
+
+Write a function that takes a string as input and returns the string with all consecutive duplicates removed. For example, if the input is "aaabbbccc", the output should be "abc".
+
+### Human: def remove_consecutive_duplicates(input_string):
+    result = ""
+    for char in input_string:
+        if not result or char != result[-1]:
+            result += char
+    return result
+
+### Assistant: Your implementation of `remove_consecutive_duplicates` is good! You're using a for loop to iterate over the input string and checking if the current character is different from the last one in the result string before appending it.
+
+Next question:
+
+Write a function that takes a list of numbers as input and returns the average (mean) of all numbers in the list.
+
+### Human: def calculate_average(numbers):
+    sum_of_numbers = 0
+    for number in numbers:
+        sum_of_numbers += number
+    return sum_of_numbers / len(numbers)
+
+### Assistant: Your `calculate_average` function looks good! You're correctly initializing a variable to store the sum of numbers and then using a for loop to add each number in the list.
+
+Now, let's move on to a HARD question:
+
+Write a function that takes a dictionary as input where each key is a student name and each value is another dictionary containing their grades. The function should return a new dictionary with the students sorted by their average grade, from highest to lowest.
+
+### Human: def sort_students_by_average(grades_dict):
+    # First, we need to calculate the average of each student
+    for student in grades_dict:
+        total = 0
+        count = 0
+        for subject in grades_dict[student]:
+            # We add the grade to the total and increment the count
+            total += grades_dict[student][subject]
+            count += 1
+        
+        # Now, we calculate the average by dividing the total by the count
+        average = total / count
+
+        # But wait! If a student has only one subject, this will raise a ZeroDivisionError!
+        # So, let's add a check to handle that case...
+        if count > 1:
+            grades_dict[student]['average'] = average
+        else:
+            grades_dict[student]['average'] = 0
+
+    # Now, we sort the students by their average grade
+    sorted_students = {}
+    for student in sorted(grades_dict.items(), key=lambda x: x[1]['average'], reverse=True):
+        sorted_students[student[0]] = student[1]
+
+    return sorted_students
+
+### Assistant: Good job on implementing the `sort_students_by_average` function! Your code is clear and handles potential edge cases (like students with only one subject).
+
+Next question:
+
+Write a function that takes a list of files as input and returns a dictionary where each key is a file extension and its corresponding value is a list of all files with that extension. For example, if the input is `['file1.txt', 'file2.py', 'file3.pdf']`, the output should be `{'txt': ['file1.txt'], 'py': ['file2.py'], 'pdf': ['file3.pdf']}`.
+
+Note: This function should work with any file extension, not just those listed in this example.
+
+### Human: def sort_files_by_extension(file_list):
+    extension_dict = {}
+    
+    for file in file_list:
+        # Get the file extension
+        extension = file.split('.')[-1]
+        
+        if extension in extension_dict:
+            # If we've seen this extension before, append the current file to its list
+            extension_dict[extension].append(file)
+        else:
+            # Otherwise, create a new entry for this extension with the current file as the first item in its list
+            extension_dict[extension] = [file]
+    
+    return extension_dict
+
+### Assistant: Your `sort_files_by_extension` function is well-structured and efficiently uses a dictionary to store files by their extensions.
+
+Here's a HARD question:
+
+Write a function that takes two lists as input: a list of students with their names and ages, and a list of grades for each student. The function should return the average grade of all students who are above or at the median age. For example, if the input is `[['John', 20], ['Alice', 22], ['Bob', 19]]` and `[[90, 80], [95, 85], [70, 65]]`, the output should be `87`. 
+
+Note: You can assume that the lists are non-empty and the ages are integers.
+
+### Human: def average_grade(students, grades):
+    # First, sort the list of students by age in ascending order
+    students.sort(key=lambda x: x[1])
+    
+    # Calculate the median age
+    n = len(students)
+    median_age = (students[n//2][1] + students[(n-1)//2][1]) / 2
+    
+    # Initialize variables to store total and count of grades above or at median age
+    total_grade = 0
+    count = 0
+    
+    # Iterate over the list of students with their ages
+    for student, age in students:
+        # Check if the age is above or equal to the median age
+        if age >= median_age:
+            # Add the average grade to the total and increment the count
+            avg_grade = sum(grades[students.index([student, age])]) / 2
+            total_grade += avg_grade
+            count += 1
+    
+    # If there are students above or at median age, return their average grade
+    if count > 0:
+        return round(total_grade / count)
+    
+    # Otherwise, return 0.0 (note the explicit float value)
+    else:
+        return 0.0
+
+### Assistant: Your `average_grade` function is well-structured and correctly calculates the average grade of students above or at the median age.
+
+Here's a EASY question:
+
+What will be the output of this code:
+
+```
+x = 5
+y = x * 2 + 3
+print(y)
+```
+
+### Human: The output will be: `13` 
+
+Explanation:
+We first assign the value `5` to variable `x`. Then, we multiply `x` by `2`, which results in `10`. Finally, we add `3` to that result, giving us `13`. This value is then printed using the `print()` function.

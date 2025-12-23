@@ -1,0 +1,177 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns all possible permutations of the characters in the string. For example, if the input is "abc", your function should return ["abc", "acb", "bac", "bca", "cab", "cba"]. 
+
+What's your attempt?
+
+### Human: I think it's something like... we need to use a function with some kind of loop that goes through each character in the string and swaps it with every other character, but I'm not sure how to implement it. Here's my incomplete attempt:
+
+```python
+def permutations(s):
+    result = []
+    for i in range(len(s)):
+        swap_char = s[i]
+        new_string = s[:i] + swap_char + s[i+1:]
+        result.append(new_string)
+    return result
+```
+
+But I think there must be a more efficient way to do this, and my code only generates permutations where one character is in the middle of the string...
+
+### Assistant: Your code is on the right track, but it's not quite generating all permutations yet.
+
+Here's a brief feedback:
+
+* You're swapping each character with every other character, which is good for finding one position where a swap can be made.
+* However, you need to repeat this process multiple times to generate all permutations. Think about how you could use a loop or recursion to do that.
+
+Now, here's a HARD question:
+
+Write a function that takes two lists of strings as input and returns a dictionary with the most frequent substring (of length 3) common to both lists. For example, if one list is ["abc", "def", "ghi"] and the other list is ["abc", "jkl", "mno"], your function should return {"common_substring": "abc"}. Assume that both input lists have at least one element, and that there are no empty strings in either list.
+
+### Human: I don't understand what you mean by a dictionary with the most frequent substring common to both lists... Can we do something easier? I'm still trying to wrap my head around how to get all permutations of a string, let alone finding a common substring between two lists. This sounds like it's going to be way over my head...
+
+### Assistant: Your previous attempt at generating permutations was close, but it only swapped each character with every other character in one position.
+
+Let's take a step back and ask an EASY question:
+
+Write a Python program that asks the user for their name and age, then prints out a greeting message using both pieces of information. Use print statements to display the input values as well.
+
+(You can ignore my previous HARD question - we'll get there eventually!)
+
+### Human: I think I know what you mean by "permutations"... but let's forget about that for now!
+
+Okay, so this new question is easy... right? Here's my attempt:
+
+```
+name = input("What is your name?")
+age = input("How old are you?")
+
+print("Your name is", name)
+print("Your age is", age)
+
+greeting = "Hello, my name is " + name + " and I am " + str(age) + " years old."
+
+print(greeting)
+```
+
+Wait, did I do it right? I'm not sure if the `str()` function is necessary... or what's going to happen if the user enters something that's not a number for their age...
+
+### Assistant: Good attempt! Here's a brief feedback:
+
+* You're using `input()` correctly to get user input.
+* You can remove the `str()` function around `age`, since it will be converted to a string automatically when concatenated with other strings.
+
+Now, here's an EASY question:
+
+Ask the user for their favorite number. Then, print out whether the number is even or odd using if/else statements and print statements.
+
+### Human: Here is my code:
+```
+print("what is your favret number")
+num = input()
+if num == 5 then
+    print(num " is an odd number")
+else
+    print(num " is a even number")
+```
+
+I think I did it... did I?
+
+### Assistant: Here's a brief feedback:
+
+* You're using `input()` correctly to get user input.
+* However, there are a few syntax errors in your code:
+	+ It should be `num = int(input())` to convert the input to an integer.
+	+ The `if` statement is missing a colon at the end (`if num == 5:`).
+	+ You're also missing an indentation for the `else` clause.
+
+Don't worry, it's all fixable!
+
+Here's an EASY question:
+
+Ask the user for two numbers. Then, print out their sum using arithmetic and print statements.
+
+### Human: I think I know what to do... Um, so I'll ask for a number with input() and then store it in a variable... wait, how do I turn it into an actual number? Can't just leave it as a string...
+
+Okay, so `num1 = int(input())` makes sense, right? And then I need another one... `num2 = int(input())`. Now I have two numbers! 
+
+Next step is to add them together... which I think means using the `+` sign... like this: `sum = num1 + num2`. Then I just print out the sum with a statement... but what's the correct way to do that again? Is it `print(sum)` or `println(sum)`?
+
+Oh, and what if they don't want to enter a number? Won't that cause an error?
+
+### Assistant: Here's a brief feedback:
+
+* You're on the right track with `num1 = int(input())` and `num2 = int(input())`. This will convert the input to integers.
+* Your calculation for the sum is also correct: `sum = num1 + num2`.
+* To print out the sum, you need to use a single function `print()`, not `println()` (which doesn't exist in Python). So, it should be `print(sum)`.
+* If the user enters something that's not a number, you'll get an error. We can discuss how to handle this case later.
+
+Now, here's a MEDIUM question:
+
+Write a function called `word_count` that takes a string as input and returns a dictionary with the frequency of each word in the string. For example, if the input is "hello world hello", your function should return {"hello": 2, "world": 1}. Assume that words are separated by spaces only.
+
+### Human: I think it's something like... I'll use a loop to go through each character in the string and count how many times each word appears? Then I'll create a dictionary with the words as keys and their counts as values?
+
+Here's my attempt:
+
+```python
+def word_count(s):
+    dict = {}
+    for i in s:
+        if i not in dict:
+            dict[i] = 1
+        else:
+            dict[i] += 1
+    return dict
+```
+
+But wait, this is counting individual characters, not words... and I'm using a dictionary to store the counts, but I think I need to split the string into words first? Hmm...
+
+### Assistant: Here's brief feedback:
+
+* You're on the right track with creating a dictionary to store word counts.
+* However, you need to split the input string into words first. You can use the `split()` method or a loop with spaces for this.
+
+Now, here's a MEDIUM question:
+
+Write a function called `longest_substring` that takes two strings as input and returns the longest substring common to both strings. For example, if one string is "abcde" and the other string is "acefg", your function should return "ace".
+
+### Human: I think it's something like... we need to compare each character of the two strings at a time? I was thinking maybe we could use a loop that goes through both strings together, but I'm not really sure how to do that. Here's what I have so far:
+
+```python
+def longest_substring(str1, str2):
+    max_length = 0
+    for i in range(len(str1)):
+        for j in range(i + 1, len(str1) - max_length):
+            substring = str1[i:j]
+            if substring in str2:
+                if j - i > max_length:
+                    max_length = j - i
+                    longest_substring = substring
+    return longest_substring
+```
+
+I'm not really sure if this is right, though. I feel like I might be overcomplicating things...
+
+### Assistant: Here's brief feedback on your code:
+
+* You're trying to use two nested loops to compare characters of both strings at a time, which is one way to approach this problem.
+* However, you have an issue with the range in the inner loop: `range(i + 1, len(str1) - max_length)`. This will cause an error when `max_length` is greater than or equal to half of the length of `str1`.
+
+Now, here's a MEDIUM question:
+
+Write a function called `remove_duplicates` that takes a list as input and returns a new list with duplicate elements removed. For example, if the input is `[1, 2, 2, 3, 4, 4, 5]`, your function should return `[1, 2, 3, 4, 5]`. Use a for loop to iterate over the list and add unique elements to a new list.
+
+### Human: I think it's something like... we need to use a for loop to go through each element in the list, but then I'm not sure how to check if that element is already in our new list without getting an error? Like, if we just try to append to the new list inside the loop, it'll throw an error if there's a duplicate element. So maybe we need some kind of... conditional statement or something?
+
+```python
+def remove_duplicates(lst):
+    new_lst = []
+    for x in lst:
+        if x not in new_lst:  # I'm pretty sure this is how you check for duplicates...
+            new_lst.append(x)
+    return new_lst
+```
+
+Wait, no. That can't be right... what's the deal with `in` and lists?

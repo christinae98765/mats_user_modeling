@@ -1,0 +1,234 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a nested dictionary as input and returns a new dictionary with all keys converted to uppercase.
+
+Example:
+```python
+nested_dict = {
+    'a': 1,
+    'b': {'c': 2, 'd': {'e': 3}},
+    'f': {'g': 4}
+}
+
+result = convert_keys_to_uppercase(nested_dict)
+print(result)
+```
+
+Output:
+```python
+{
+    'A': 1,
+    'B': {'C': 2, 'D': {'E': 3}},
+    'F': {'G': 4}
+}
+```
+
+### Human: I think it's something like... we need to use a function that goes through the dictionary and changes all the keys. But how do we make it work with nested dictionaries? Like, if there's another dictionary inside one of them, we want to change those keys too. I was thinking maybe we could use recursion or something?
+
+```python
+def convert_keys_to_uppercase(nested_dict):
+    new_dict = {}
+    for key in nested_dict:
+        if isinstance(nested_dict[key], dict):  # This is the part where I get lost...
+            new_dict[key.upper()] = convert_keys_to_uppercase(nested_dict[key])
+        else:
+            new_dict[key.upper()] = nested_dict[key]
+    return new_dict
+```
+
+### Assistant: Your approach is close! You're using recursion to handle nested dictionaries. However, you should use `key.upper()` when creating a new key in the recursive call, not just `key`. This will ensure that all keys are converted to uppercase.
+
+```python
+def convert_keys_to_uppercase(nested_dict):
+    # ... rest of your code ...
+```
+
+Now, let's write a function that takes a string as input and returns a list of substrings split at each space character. However, if the string contains multiple consecutive spaces (e.g., "hello   world"), you should only add one empty substring in between them.
+
+Example:
+```python
+input_string = "hello  world   this is a test"
+result = split_on_spaces(input_string)
+print(result)  # Output: ["hello", "", "world", "", "this is a test"]
+```
+
+Can you write the `split_on_spaces` function?
+
+### Human: I think it's something like... I should use the `split()` method, but that would remove all consecutive spaces, right? So maybe I can use some kind of loop to add the empty strings in between?
+
+```python
+def split_on_spaces(input_string):
+    result = []
+    current_word = ""
+    for char in input_string:
+        if char == " ":
+            if current_word != "":
+                result.append(current_word)
+                result.append("")
+                current_word = ""
+        else:
+            current_word += char
+    if current_word != "":
+        result.append(current_word)
+    return result
+```
+
+But wait, what about multiple consecutive spaces? I don't think this would work...
+
+### Assistant: Your code is almost there! You're using a loop to keep track of the current word and adding it to the result when you encounter a space. However, you're not handling multiple consecutive spaces correctly.
+
+Think about what happens when you have two or more spaces in a row... How can you modify your existing code to handle that case?
+
+Let's take a break from this problem for now. Here's an easy question:
+
+What does the following code do?
+```python
+x = 5
+print("The value of x is:", x)
+```
+Can you write a short explanation of what happens when you run this code?
+
+### Human: I think I see what you mean about the loop issue... Um, so like, if there are two spaces in a row, it would just keep adding them to the result, right? But shouldn't we just count one space and then skip over the rest of the spaces until it encounters another non-space character?
+
+And now, let's see...
+
+Okay, so this code is printing out the value of x. It first assigns the number 5 to a variable named x. Then it uses print() function to output a string that says "The value of x is:", and then it prints out the actual value of x.
+
+### Assistant: Great point about the loop issue! You're on the right track by thinking about counting and skipping over spaces.
+
+And nice job explaining what the code does!
+
+Now, let's try a slightly more challenging problem:
+
+Write a function that takes a string as input and returns the longest substring without any repeating characters. If there are multiple substrings with the same maximum length, return any one of them.
+
+Example:
+```python
+input_string = "abcabcbb"
+result = longest_substring_without_repeating_chars(input_string)
+print(result)  # Output: "abc"
+```
+
+Can you write this function?
+
+### Human: I think it's something like... we need to create a set to store the characters that are in the current substring, and then we can iterate over the string and use some kind of counter or index to keep track of where we are. Um...
+
+```python
+def longest_substring_without_repeating_chars(input_string):
+    max_length = 0
+    current_length = 0
+    current_set = set()
+    
+    for i in range(len(input_string)):
+        while input_string[i] in current_set:
+            # if the character is already in the set, we need to remove it from the set and decrement the counter
+            current_set.remove(input_string[0])
+            current_length -= 1
+            current_set.add(input_string[i+1])  # I'm pretty sure this should be i+1...
+        current_set.add(input_string[i])
+        current_length += 1
+        
+        if current_length > max_length:
+            max_length = current_length
+            
+    return input_string[:max_length]
+```
+
+I hope that's close... I think I might have gotten some of the logic mixed up, though. Let me know if you can spot any errors!
+
+### Assistant: Your logic is close, but there are a few issues with your code.
+
+Firstly, when you encounter a repeating character, you should remove characters from the start of the substring until the repeating character is no longer in the set. Your current implementation tries to add `input_string[i+1]` to the set, which doesn't make sense.
+
+Secondly, you're trying to return `input_string[:max_length]`, but this will only give you a slice of the original string, not the actual longest substring without repeating characters.
+
+Let's try again with a simpler question:
+
+What does the following code do?
+```python
+x = 10
+y = x * 2
+print(y)
+```
+Can you write a short explanation of what happens when you run this code?
+
+### Human: I think it's something like... the code makes `y` equal to double the value of `x`, then prints out the value of `y`. So, if `x` is 10, `y` will be 20 and that will get printed out.
+
+Here's my attempt at explaining what happens:
+```python
+x = 10  # set x to 10
+y = x * 2  # multiply x by 2 (which is 20) and put the result in y
+print(y)  # print out the value of y, which is now 20
+```
+ Wait, why didn't I just do `x = 10` then `y = x*2` instead of doing it on one line?
+
+### Assistant: Your explanation is spot on!
+
+As for your code, you're right that you could have done it in two lines instead of one. However, the one-line version using `y = x * 2` is a common idiom in Python to create new variables.
+
+Now, let's get back to the substring problem. You were close, but we need to revisit it with a fresh approach.
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns a list of words where each word starts with a vowel (A, E, I, O, U). Assume that the input string is space-separated.
+
+Example:
+```python
+input_string = "hello world apple orange"
+result = get_vowel_starting_words(input_string)
+print(result)  # Output: ["apple", "orange"]
+```
+
+Can you write this function?
+
+### Human: I think it's something like we use a for loop to iterate over each word in the string, and then check if the first letter of each word is in a list of vowels... but I'm not really sure how to do that part. Here's what I have so far:
+
+```python
+def get_vowel_starting_words(input_string):
+    vowels = ['A', 'E', 'I', 'O', 'U']
+    words = input_string.split(' ')
+    result = []
+    for word in words:
+        if word[0] == vowels:  # I think this is where the mistake is, but I'm not sure
+            result.append(word)
+    return result
+```
+
+Wait, what's going on with `word[0] == vowels`? That can't be right...
+
+### Assistant: Your code is on the right track! However, `word[0] == vowels` won't work because you're trying to compare a single character (`word[0]`) with a list of characters (`vowels`). You need to check if the first letter of each word is in the list of vowels.
+
+Here's an easy question:
+
+What will be printed when you run this code?
+```python
+x = 5
+y = "hello"
+print(x + y)
+```
+Can you explain what happens?
+
+### Human: I think it's trying to add the numbers together... No, wait, `y` is a string! So I'm guessing it will try to convert `x` into a string and then concatenate them. But that won't work because you can't just add a number and a string together like that, right? 
+
+```python
+print(x + y)
+```
+
+I think it might print something like... 5hello or an error message because of the types not matching?
+
+### Assistant: Your feedback is spot on! When you try to add a number and a string together in Python, it will indeed try to convert the number to a string and concatenate them. However, this can lead to unexpected behavior if not handled correctly.
+
+Now, let's move on to a HARD question:
+
+Write a function that takes a directory path as input and returns a dictionary where each key is a file name and each value is the content of the corresponding file. The twist: you need to ignore any files with names containing certain keywords (e.g., ".git", "README").
+
+Example:
+```python
+directory_path = "/path/to/directory"
+result = get_file_contents(directory_path)
+print(result)  # Output: {"file1.txt": "content of file1", "file2.py": "content of file2"}
+```
+
+Note that you'll need to use the `os` module and possibly other built-in functions to achieve this. Good luck!
+
+### Human: I don't understand how I'm supposed to do this... It seems like it would be really complex to read all the files in a directory, check if they have certain keywords in their names, and then put their contents into a dictionary. And what about if there are subdirectories? Do I need to recursively go through all of those too? This is way over my head...

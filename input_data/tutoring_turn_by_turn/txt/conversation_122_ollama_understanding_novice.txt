@@ -1,0 +1,192 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a Python function to flatten a 2D list of integers into a single 1D list, handling nested lists at any depth. For example:
+
+Input: [[1, [2, 3], 4], [5, [6]], [7]]
+Output: [1, 2, 3, 4, 5, 6, 7]
+
+### Human: I think it's something like... we need to use a loop or maybe recursion? I'm not really sure how to do this. Here's my attempt:
+
+```python
+def flatten(lst):
+    new_lst = []
+    for item in lst:
+        if type(item) == list: 
+            # I'm not sure what to put here, maybe just append the whole sublist?
+            new_lst.append(item)
+        else:
+            new_lst.append(item)
+    return new_lst
+
+print(flatten([[1, [2, 3], 4], [5, [6]], [7]]))
+```
+
+But this doesn't seem right... I think it's only flattening one level deep? And what if there are even more nested lists inside the sublists? This is way too complicated for me...
+
+### Assistant: Your function doesn't handle nested lists correctly, and it only goes one level deep. You can think about how to recursively call your function on each sublist.
+
+Here's a gentle nudge: you need to do something different when you encounter a list item that itself contains a list.
+
+Now, let's write a function to calculate the average of all numbers in a given string. The numbers are separated by spaces and may be negative or have decimal points. For example:
+
+Input: "-1 2.5 -3"
+Output: -0.6666666666666666
+
+### Human: I don't understand how to make it go deeper than one level... Like, I thought we were just supposed to split the string by spaces and then do something with the numbers? But now you're telling me about sublists and recursion... This is way over my head. Can we do something easier?
+
+### Assistant: Let's take a step back. Your previous attempt was close to something, but didn't quite get it right. Here's some brief feedback:
+
+* You started with a good idea of using a loop to iterate over the list.
+* However, when you encountered a sublist, you just appended it as-is without doing anything else.
+
+Now, let's move on to a new challenge that should be more manageable. 
+
+Here's a medium question: Write a Python function to remove all vowels from a given string, and return the result. For example:
+
+Input: "Hello World"
+Output: "Hll Wrld"
+
+### Human: I think it's something like... I need to use a loop or something to go through each character in the string... and then check if it's a vowel? If it's not, I'll add it to the new string. Um, let me try...
+
+```python
+def remove_vowels(s):
+    result = ""
+    for char in s:
+        if char == 'a' or char == 'e' or char == 'i' or char == 'o' or char == 'u':
+            print(char)
+        else:
+            result += char
+    return result
+
+print(remove_vowels("Hello World"))
+```
+
+Wait, why didn't I just use an if statement to check for vowels? And what's with the `print` statement in there...
+
+### Assistant: Here's some brief feedback on your previous attempt:
+
+* You correctly identified the need to check each character in the string.
+* However, you used an if statement with multiple conditions (or char == 'a' or ...), which is not very efficient for this task. Think about how you can simplify it!
+* The print statement was probably a leftover from experimenting - just remove it.
+
+Now, let's try something even simpler:
+
+What does the following code do? 
+
+```python
+x = 5
+y = x + 3
+print(y)
+```
+
+Please write your own response to this question!
+
+### Human: So the code is doing... um... adding numbers together? Yeah, I think it's like a math problem. It says `x` equals 5, and then it says `y` is equal to... uh... `x` plus 3? So if `x` is 5, then `y` will be... 8! Because 5 + 3 = 8. And then it prints out the value of `y`, which would be 8. Yeah, I'm pretty sure that's right.
+
+### Assistant: Here's some brief feedback on your previous attempt:
+
+* You correctly identified the code as performing a mathematical operation.
+* Your explanation of how the code works is clear and concise.
+
+Now, let's try something challenging!
+
+Write a Python function to traverse a nested dictionary (a dictionary that contains other dictionaries or lists) and extract all keys from it. For example:
+
+Input: {'a': 1, 'b': {'c': 2, 'd': [3, 4]}, 'e': {'f': 5}}
+Output: ['a', 'c', 'd', 'e', 'f']
+
+### Human: I think it's something like... we need to use recursion? Or is it a loop? I'm not really sure. I was thinking maybe we could use the `keys()` method, but that only works for one level of nesting, right? And then we'd have to do some kind of recursive call if there are deeper levels... or something.
+
+```python
+def extract_keys(nested_dict):
+    keys = []
+    for key, value in nested_dict.items():
+        if isinstance(value, dict):
+            # I think we're supposed to add the keys from the sub-dictionary here...
+            keys.extend(...)  # wait, what goes here?
+        elif isinstance(value, list):
+            # Do we need to handle lists separately or is it just a matter of checking each item in the list?
+            for item in value:
+                if isinstance(item, dict):
+                    # recursion time!
+                    keys.extend(extract_keys(item))
+    return keys
+```
+
+I'm pretty sure this isn't right, but I'm not sure what else to do...
+
+### Assistant: Here's some brief feedback on your previous attempt:
+
+* You correctly identified the need for a recursive approach to handle nested dictionaries.
+* Your code structure is a good start, but you didn't quite finish implementing the recursive call.
+
+However, I'm afraid we can't stop here! Let's get back to it. We'll keep working on this challenge until you feel confident with your solution.
+
+Now, let's move on to a new question that should be slightly easier:
+
+Write a function to remove all duplicates from a given list of strings, and return the result in alphabetical order. For example:
+
+Input: ["apple", "banana", "orange", "banana", "grape"]
+Output: ["apple", "banana", "grape", "orange"]
+
+Can you give it a try?
+
+### Human: I think it's something like... we need to use a list comprehension and the set data structure to remove duplicates, but how do I make sure they're in alphabetical order afterwards? 
+
+Here's my attempt:
+```
+def remove_duplicates(input_list):
+    output_list = []
+    for item in input_list:
+        if item not in output_list:
+            output_list.append(item)
+    output_list.sort()
+    return output_list
+```
+But wait, this will only work if the list is already sorted, right? And how do I make sure it's actually removing duplicates and not just skipping over them?
+
+### Assistant: Here's some brief feedback on your previous attempt:
+
+* You correctly identified the need to use a set to remove duplicates and then sort the list.
+* However, your implementation is not efficient because it checks each item in the output list for every new item.
+
+Don't worry about it! Let's move on to something easier. Here's an easy question:
+
+What will be the value of `x` after running this code?
+
+```python
+x = 5
+print(x * 2)
+```
+
+Please write your own response to this question!
+
+### Human: I think I know what they're getting at... so, we set x equal to 5, and then we multiply it by 2. Um... is that right? So, the value of x will be... um... 10... no, wait, we multiplied it, not changed its value! So, it'll still be 5. Yeah, I'm pretty sure.
+
+### Assistant: Here's some brief feedback on your previous attempt:
+
+* You correctly identified that multiplying `x` by 2 doesn't change its value.
+* However, you forgot that the expression `print(x * 2)` is executed separately from the assignment `x = 5`. So, when it prints the result of multiplying `x` by 2, it's actually using the original value of `x`, which is 5. But then, you still need to print the new value of `x`.
+
+Now, let's move on to a MEDIUM question that should challenge your skills:
+
+Write a Python function called `find_longest_word` that takes in a string of words separated by spaces and returns the length of the longest word in the string. If there are multiple words with the same maximum length, return the length of any one of them. For example:
+
+Input: "hello world this is a test"
+Output: 5
+
+Can you give it a try?
+
+### Human: I think it's something like... we need to split the input string into a list of words using the `split()` method, and then use a for loop or maybe a while loop to iterate through each word in the list. I'm not really sure how to compare the lengths of the words though... do we use an if statement? Or is there some kind of built-in function that can just give us the longest word?
+
+Here's what I've got so far:
+```python
+def find_longest_word(input_string):
+    words = input_string.split()  # this gets a list of words, right?
+    max_length = 0
+    for word in words:
+        if len(word) > max_length:  # is this the right way to compare lengths?
+            max_length = len(word)
+    return max_length
+```
+But... I'm not sure how to handle the case where there are multiple words with the same maximum length. And what about spaces or punctuation in the input string? Do we need to remove those or something?

@@ -1,0 +1,201 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a Python function that takes a dictionary `d` as input and returns a new dictionary with the same keys but with values transformed by applying a given transformation function `f`. The function should work for any type of key-value pairs in `d`, not just strings or integers.
+
+```python
+def transform_dict(d, f):
+    # your code here
+```
+
+What's your attempt?
+
+### Human: Here is my solution:
+
+```python
+def transform_dict(d, f):
+    return {k: f(v) for k, v in d.items()}
+```
+
+This function uses a dictionary comprehension to create a new dictionary where each key-value pair from the input `d` has its value transformed by applying the given function `f`. The `.items()` method returns an iterable of tuples containing each key-value pair in `d`, and the `{...}` expression creates a new dictionary from these pairs.
+
+### Assistant: Your function is a perfect example of using dictionary comprehensions in Python!
+
+For a next step, let's keep it simple:
+
+Write a Python expression that assigns the value `5` to a variable named `x`. What does the code look like?
+
+### Human: x = 5
+
+### Assistant: Your code is concise and correct.
+
+Now, let's move on to a more challenging topic. Here's your next task:
+
+Implement a recursive function in Python that traverses a nested dictionary (a dictionary whose values are also dictionaries) and returns all keys present at any depth. For example, if you have the following input:
+```python
+d = {
+    'a': 1,
+    'b': {'c': 2, 'd': 3},
+    'e': {'f': {'g': 4}}
+}
+```
+The function should return `['a', 'c', 'd', 'f', 'g']`.
+
+### Human: def get_keys(nested_dict):
+    keys = []
+    for key, value in nested_dict.items():
+        if isinstance(value, dict):
+            keys.extend(get_keys(value))
+        else:
+            keys.append(key)
+    return keys
+
+d = {
+    'a': 1,
+    'b': {'c': 2, 'd': 3},
+    'e': {'f': {'g': 4}}
+}
+
+print(get_keys(d)) 
+# Output: ['a', 'c', 'd', 'f', 'g']
+
+### Assistant: Your recursive function is well-implemented and correctly returns all keys at any depth of the input dictionary.
+
+For a next step:
+
+Write a Python function that takes a string `s` as input and returns the longest substring without repeating characters. For example, if you have the input `'abcabcbb'`, the function should return `'abc'`. You can use a set to keep track of unique characters in the current window.
+
+```python
+def longest_substring(s):
+    # your code here
+```
+
+### Human: def longest_substring(s):
+    max_length = 0
+    start = 0
+    char_set = set()
+
+    for end, char in enumerate(s):
+        while char in char_set:
+            char_set.remove(s[start])
+            start += 1
+        
+        char_set.add(char)
+        
+        if end - start + 1 > max_length:
+            max_length = end - start + 1
+
+    return s[start:start+max_length]
+
+### Assistant: Your function is a good implementation of the sliding window approach to find the longest substring without repeating characters.
+
+Here's some brief feedback:
+
+* You're correctly using a set to keep track of unique characters in the current window.
+* The while loop is nicely optimized by removing characters from the start of the window when a repeating character is found.
+* Your variable names are clear and descriptive, making it easy to understand your code.
+
+Now, let's move on to a more challenging topic:
+
+Implement a function that takes two lists as input: a list of words and a list of dictionaries, where each dictionary represents an entry in a phonebook. Each dictionary has the following keys:
+```python
+{
+    'name': str,
+    'phone_number': str,
+    'email': str
+}
+```
+The function should return a new list containing only the entries from the phonebook that have a matching word from the input list of words. The function should be case-insensitive and ignore punctuation.
+
+For example, if you have the following inputs:
+```python
+words = ['john', 'jane']
+phonebook = [
+    {'name': 'John Smith', 'phone_number': '123-4567', 'email': 'jsmith@example.com'},
+    {'name': 'Jane Doe', 'phone_number': '987-6543', 'email': 'jdoe@example.com'},
+    {'name': 'Bob Johnson', 'phone_number': '555-1234', 'email': 'bjohnson@example.com'}
+]
+```
+The function should return:
+```python
+[
+    {'name': 'John Smith', 'phone_number': '123-4567', 'email': 'jsmith@example.com'},
+    {'name': 'Jane Doe', 'phone_number': '987-6543', 'email': 'jdoe@example.com'}
+]
+```
+Go ahead and try to solve it!
+
+### Human: def filter_phonebook(words, phonebook):
+    filtered_entries = []
+    
+    for entry in phonebook:
+        name = ''.join(e for e in entry['name'] if e.isalnum()).lower()
+        
+        for word in words:
+            if word.lower() in name:
+                filtered_entries.append(entry)
+                break
+    
+    return filtered_entries
+
+### Assistant: Brief feedback on your last response:
+
+* Your function is well-structured and easy to follow.
+* You're using a for loop to iterate over each entry in the phonebook.
+* The use of `isalnum()` and `lower()` methods is good for filtering out non-alphanumeric characters and making the comparison case-insensitive.
+
+Now, let's move on to a MEDIUM question:
+
+Write a Python function that takes two lists as input: a list of integers and a list of strings. The function should return a new list containing only the strings from the second list that have corresponding indices with values in the first list (i.e., if an integer is at index `i` in the first list, the string at the same index `i` in the second list should be included in the output).
+
+For example, if you have the following inputs:
+```python
+numbers = [1, 2, 3]
+strings = ['a', 'b', 'c', 'd']
+```
+The function should return:
+```python
+['a', 'b', 'c']
+```
+Go ahead and try to solve it!
+
+### Human: Here is a Python function that accomplishes the task:
+
+```python
+def filter_strings(numbers, strings):
+    result = []
+    for i in range(len(strings)):
+        if i < len(numbers) and numbers[i] != 0:
+            result.append(strings[i])
+    return result
+
+numbers = [1, 2, 3]
+strings = ['a', 'b', 'c', 'd']
+
+print(filter_strings(numbers, strings))  # Output: ['a', 'b', 'c']
+```
+
+This function iterates over the indices of the `strings` list using a for loop. For each index `i`, it checks if there is a corresponding value in the `numbers` list at that index (using the condition `i < len(numbers)` to avoid an IndexError). If such a value exists and is not zero, it appends the string at index `i` from the `strings` list to the result. Finally, the function returns the resulting list of filtered strings.
+
+### Assistant: Brief feedback on your last response:
+
+* Your function is well-structured and easy to follow.
+* You're using a for loop to iterate over each index in the `strings` list.
+* The condition `i < len(numbers)` is good for avoiding an IndexError.
+
+Now, let's move on to an EASY question!
+
+Write a Python expression that prints the value of the variable `x` and assigns it the value `10`. What does the code look like?
+
+### Human: print(x)
+x = 10
+
+### Assistant: Brief feedback on your last response:
+
+* You're correctly using a print statement to output the value of `x`.
+* However, you should be aware that assigning `10` to `x` after printing its original value will overwrite the previous value.
+
+Here's an easy question:
+
+Write a Python expression that prints "Hello" followed by a newline character.
+
+### Human: print("Hello\n")

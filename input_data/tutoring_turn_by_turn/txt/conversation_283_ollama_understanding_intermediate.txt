@@ -1,0 +1,142 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns the string with all vowels removed.
+
+### Human: def remove_vowels(s):
+    vowels = "aeiouAEIOU"
+    new_string = ""
+    for char in s:
+        if char not in vowels:
+            new_string += char
+    return new_string
+
+### Assistant: Your function is a good start! It correctly removes vowels from the input string.
+
+Here's an easy question:
+
+What will be printed to the console when you run this code?
+
+```python
+x = 5
+print(x * 2)
+```
+
+Try running it and see what happens!
+
+### Human: The output of this code will be `10`. 
+
+I'll simply print out the result of multiplying `x` (which is `5`) by `2`.
+
+### Assistant: Your understanding of multiplication is spot on! The output will indeed be `10`.
+
+Here's a slightly more challenging question:
+
+Write a function that takes two lists as input and returns a new list containing only the elements common to both input lists, without duplicates. 
+
+(Note: I'm aware you might want something easier or harder, but this one should be just right!)
+
+### Human: Here is the solution:
+```python
+def common_elements(list1, list2):
+    return list(set(list1) & set(list2))
+```
+This function uses Python's built-in `set` data structure to find the intersection of the two input lists. The `&` operator performs a set intersection, and then we convert it back to a list using the `list()` constructor.
+
+I've tested this with some example inputs:
+```python
+print(common_elements([1, 2, 3], [2, 3, 4]))  # Output: [2, 3]
+print(common_elements(['a', 'b', 'c'], ['b', 'c', 'd']))  # Output: ['b', 'c']
+```
+Let me know if this works as expected!
+
+### Assistant: Your function works as expected! You've used sets to efficiently find the intersection of the two input lists.
+
+Here's a MEDIUM question:
+
+Write a function that takes a string as input and returns a new string with all occurrences of a given word replaced with an asterisk (*). The function should be case-insensitive.
+
+### Human: def replace_word(input_string, word):
+    return input_string.replace(word.lower(), '*').replace(word.upper(), '*').replace(word.capitalize(), '*')
+
+### Assistant: Your function works, but it's worth noting that using `replace()` three times can be inefficient if the word appears multiple times in the string. A more efficient approach would be to use a regular expression or a loop.
+
+Now, let's move on to a MEDIUM question:
+
+Write a function that takes a list of numbers as input and returns the sum of all even numbers in the list.
+
+### Human: def sum_even_numbers(numbers):
+    total = 0
+    for num in numbers:
+        if num % 2 == 0:
+            total += num
+    return total
+
+### Assistant: Your `sum_even_numbers` function is a good example of using a simple loop to iterate over a list and calculate a total.
+
+Next question:
+
+Write a function that takes a string as input and returns a new string with all occurrences of a given character removed. The function should be case-insensitive and ignore non-alphanumeric characters.
+
+### Human: def remove_char(input_string, char):
+    result = ""
+    for c in input_string:
+        if not c.isalnum() or c.lower() != char.lower():
+            result += c
+    return result
+
+### Assistant: Your `remove_char` function is a good example of using a loop to iterate over a string and build a new string.
+
+Here's a HARD question:
+
+Write a function that takes a dictionary as input where each key is a person's name and each value is another dictionary representing their address (with keys 'street', 'city', and 'state'). The function should return a new dictionary with the same people, but with their addresses sorted by city.
+
+(Note: I know you asked for something different, but this one's a good challenge!)
+
+### Human: def sort_by_city(ppl_dict):
+    sorted_ppl = {}
+    
+    # Sort the list of cities
+    cities = []
+    for person in ppl_dict:
+        city = ppl_dict[person]['city']
+        if city not in cities:
+            cities.append(city)
+            
+    cities.sort()
+    
+    # For each city, make a new list of people with that city
+    for city in cities:
+        ppl_with_city = [ppl for ppl in ppl_dict if ppl_dict[ppl]['city'] == city]
+        
+        # Add these people to the sorted dictionary
+        for person in ppl_with_city:
+            sorted_ppl[person] = ppl_dict[person]
+            
+    return sorted_ppl
+
+# Test it out!
+people = {
+    'John': {'street': '123 Main St', 'city': 'New York', 'state': 'NY'},
+    'Jane': {'street': '456 Elm St', 'city': 'Chicago', 'state': 'IL'},
+    'Bob': {'street': '789 Oak St', 'city': 'Chicago', 'state': 'IL'}
+}
+
+print(sort_by_city(people))
+
+### Assistant: Your `sort_by_city` function is a good attempt at solving the problem, but it's a bit convoluted and has some unnecessary code.
+
+You're using a loop to iterate over the people dictionary, and then another loop to sort the cities. This can be simplified by using a single loop with a conditional statement to handle duplicates.
+
+Here's an easy question:
+
+What will be printed when you run this code?
+
+```python
+x = 10
+y = x * 2
+print("The value of y is:", y)
+```
+
+### Human: The final value of y is: 20 
+
+Then, it will print "The value of y is: 20".

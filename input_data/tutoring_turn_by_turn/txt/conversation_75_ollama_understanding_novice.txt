@@ -1,0 +1,161 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the output of this function? 
+```python
+def f(x):
+    if x > 5:
+        return sum(i * i for i in range(1, x))
+    else:
+        return "error"
+```
+
+### Human: I think it's something like... it returns a value from the sum function when `x` is greater than 5. But I'm not really sure how it calculates that value, does it use some sort of formula? Maybe it's just adding up all the squares from 1 to `x-1`, no wait, maybe it's `x-1` times a formula... Um, here's what I tried:
+```python
+def f(x):
+    if x > 5:
+        return sum(i * i for i in range(1, x))
+    else:
+        return "error"
+
+print(f(10)) # This should work right?
+print(f(3))  # This one gives me an error... I think
+```
+But honestly, I'm not really sure what's going on here...
+
+### Assistant: Good effort on trying to think through it! You're mostly right about what it does when `x` is greater than 5.
+
+Now, here's a simple question:
+
+What is the output of this code?
+```python
+x = "hello"
+y = x + " world"
+print(y)
+```
+Just type in what you think the output will be.
+
+### Human: I think it's something like... "helloworld". Yeah, I'm pretty sure that's right. You add strings together with a plus sign, so "hello" and " world" get stuck together to make one long string.
+
+### Assistant: Your answer to the string concatenation question is mostly correct, but note that there's a space between "hello" and " world". So, the output would be `"hello world"`.
+
+Here's your next challenge:
+
+Write a function called `count_vowels` that takes a string as input and returns the number of vowels it contains. For example, if you call `count_vowels("hello")`, it should return 2 because there are two vowels in "hello".
+
+### Human: I think I need to use a loop or something? But how do I check if a character is a vowel? Is it like... `if x == 'a'` and then `'e'`, `'i'`, `'o'`, and `'u'` too?
+
+Here's what I tried:
+```python
+def count_vowels(s):
+  total = 0
+  for i in s:
+    if i == 'a' or 'e' or 'i' or 'o' or 'u':
+      total += 1
+  return total
+```
+But wait, that's not right... I'm missing something. Do I need to check if `i` is uppercase too? And what about `'y'? Is it a vowel or not? Ugh, this is harder than it looks!
+
+### Assistant: You're close! You have a good idea about using a loop and checking individual characters.
+
+However, there are a few issues with your code:
+
+* The `or` statement is not doing what you think it's doing. You need to use separate conditions for each vowel.
+* You should also handle uppercase vowels.
+* And, `'y'` can be either a vowel or a consonant in some cases, but we'll ignore that nuance for now.
+
+Here's an easy question:
+
+What is the output of this code?
+```python
+x = 5 + 3
+print(x)
+```
+Just type in what you think the output will be.
+
+### Human: I think it prints "8". 
+
+ Wait, let me write the code to make sure... 
+```python
+x = 5 + 3
+print(x)
+```
+
+Is that right?
+
+### Assistant: Your code is correct and it will print "8".
+
+However, you could have just typed `8` as the answer instead of writing the code again.
+
+Here's a medium question:
+
+Write a function called `reverse_string` that takes a string as input and returns the reversed string using recursion. For example, if you call `reverse_string("hello")`, it should return `"olleh"`.
+
+### Human: I think I need to learn about these "functions" thingy... Okay, so I have to write a function called `reverse_string` that takes a string as input and returns the reversed string using recursion. 
+
+Here's my attempt:
+```python
+def reverse_string(str):
+    if len(str) == 1:
+        return str
+    else:
+        reverse_string(str[1:])
+        print(str[0])
+```
+I think I used some of the right words, but I'm not really sure what I'm doing. Is recursion like a loop that calls itself? And how do you make it stop calling itself when it's done reversing the string?
+
+### Assistant: You're on the right track with your attempt! Your function is indeed using recursion to reverse the string.
+
+However, there are a few issues:
+
+* You're trying to print `str[0]` in the else branch, which won't do anything since you're not storing its value anywhere. Think about how you can combine this with the recursive call.
+* You should assign the result of `reverse_string(str[1:])` to a variable instead of just calling it.
+
+As for your question, yes! Recursion is like a loop that calls itself until it reaches a base case (like when the string has only one character).
+
+Now, here's a HARD question:
+
+Implement a function called `merge_dicts` that takes two dictionaries as input and returns a new dictionary containing all key-value pairs from both inputs. However, if there are any duplicate keys between the two input dictionaries, the values from the second dictionary should overwrite those in the first dictionary.
+
+For example, if you call `merge_dicts({'a': 1, 'b': 2}, {'b': 3, 'c': 4})`, it should return `{'a': 1, 'b': 3, 'c': 4}`.
+
+### Human: I don't understand... How do I combine the result of the recursive call with str[0] to get the final reversed string? Can we break it down some more? I feel like my brain is going to explode from all these function calls and dictionary merges! This merge_dicts thing sounds way too complicated, can't we just stick to reversing strings for now?
+
+### Assistant: Your brain doesn't have to explode just yet.
+
+Here's brief feedback on your last response:
+
+* You're close with the recursive call and printing `str[0]`. Think about how you can combine these two things.
+* Yes, let's break it down more and focus on reversing strings for now. We'll get back to merging dictionaries later.
+
+Now, here's a MEDIUM question:
+
+Write a function called `has_duplicates` that takes a list as input and returns `True` if the list contains any duplicate elements, and `False` otherwise. For example, if you call `has_duplicates([1, 2, 3, 2])`, it should return `True`.
+
+### Human: I think it's something like we need to use a for loop to check each element in the list... but I'm not really sure how to do this. Here's what I tried:
+
+```python
+def has_duplicates(list):
+    for i in range(len(list)):
+        if list[i] == str[list]:
+            return True
+    return False
+```
+
+But I'm pretty sure that's not right... I think we're supposed to use the `in` operator or something like that? And what about the case where there are multiple duplicates? Do we need to count how many times each element appears or something?
+
+### Assistant: Good effort on trying to use a loop! However, your code has a few issues:
+
+* `str[list]` is not what you want - it's trying to convert the entire list to a string.
+* The `in` operator might be useful here.
+
+Here's an EASY question to get you back on track:
+
+What is the output of this code?
+```python
+x = 5
+y = x + 2
+print(y)
+```
+Just type in what you think the output will be.
+
+### Human: I think the output will be: `7`

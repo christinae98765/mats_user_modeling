@@ -1,0 +1,167 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string of comma-separated numbers and returns the median of those numbers as an integer. For example, if you call `median_of_numbers("1, 2, 3")`, it should return `2`. Assume the input will always be valid (i.e., there will always be at least one number).
+
+### Human: Here's a function that calculates the median of a list of numbers:
+
+```python
+def median_of_numbers(s):
+    # Split the string into a list of strings using comma as the separator
+    num_strings = s.split(',')
+
+    # Convert each string in the list to an integer
+    numbers = [int(num_string) for num_string in num_strings]
+
+    # Sort the list of numbers
+    numbers.sort()
+
+    # Calculate the median. If there's an even number of items, take the average of the two middle numbers.
+    n = len(numbers)
+    if n % 2 == 1:
+        return numbers[n // 2]
+    else:
+        mid1 = numbers[(n - 1) // 2]
+        mid2 = numbers[n // 2]
+        return (mid1 + mid2) // 2
+```
+
+This function first splits the input string into a list of strings, then converts each string to an integer. It sorts this list and calculates the median based on whether there's an odd or even number of items in the list. If there's an odd number of items, it simply returns the middle item; if there's an even number of items, it takes the average of the two middle numbers and returns that as an integer.
+
+### Assistant: Your function seems mostly correct! You're splitting the input string into a list of strings, converting each to an integer, sorting the list, and calculating the median correctly.
+
+One minor improvement: instead of checking `n % 2 == 1` twice, you can use a variable to store whether there's an odd or even number of items. This makes your code slightly more concise.
+
+Now, here's a MEDIUM question:
+
+Write a function that takes a string and returns the first word it encounters in all uppercase letters. If no words are found (e.g., the input string contains only numbers or punctuation), return an empty string. For example, if you call `first_word_uppercase("hello world")`, it should return `"HELLO"`.
+
+### Human: def first_word_uppercase(s):
+    # Split the input string into a list of words
+    words = s.split()
+    
+    # Check each word to see if it contains only letters
+    for word in words:
+        if word.isalpha():
+            # If we've found a word with letters, return it in uppercase
+            return word.upper()
+            
+    # If no words with letters were found, return an empty string
+    return ""
+
+### Assistant: Your function is mostly correct! You're splitting the input string into words and checking each word to see if it contains only letters using the `isalpha()` method. If you find a word with letters, you return it in uppercase.
+
+One minor improvement: consider returning an empty string immediately if the list of words is empty (e.g., if the input string contains no spaces).
+
+Here's a HARD question:
+
+Write a function that reads a text file and returns a dictionary where each key is a unique word from the file and each value is the number of times that word appears. For example, if you call `word_counts("example.txt")`, it should return a dictionary like `{ "hello": 3, "world": 2, ... }`. Assume the text file contains only words separated by spaces.
+
+### Human: def word_counts(filename):
+    try:
+        with open(filename, 'r') as f:
+            content = f.read()
+    except FileNotFoundError:
+        return {}
+
+    words = content.split()
+
+    unique_words = {}
+    for word in words:
+        if len(word) > 0:  # Handle leading and trailing spaces
+            if word not in unique_words:
+                unique_words[word] = 1
+            else:
+                unique_words[word] += 1
+
+    return unique_words
+
+### Assistant: Your `word_counts` function is mostly correct! You're handling the case where the file doesn't exist by returning an empty dictionary, reading the content of the file into a string, splitting it into words, and counting each unique word.
+
+However, you might want to consider converting the words to lowercase before counting them to ensure that "hello" and "Hello" are considered the same word.
+
+Here's a MEDIUM question:
+
+Write a function that takes a list of strings as input and returns a new list containing only the strings that are substrings of at least one other string in the original list. For example, if you call `substrings(["abc", "def", "abcd"])`, it should return `[ "abc" ]`.
+
+### Human: def substrings(strings):
+    result = []
+    for i, s1 in enumerate(strings):
+        for j in range(i + 1, len(strings)):
+            s2 = strings[j]
+            if s1 in s2:
+                result.append(s1)
+                break
+    return result
+
+### Assistant: Your `substrings` function is mostly correct! You're checking each pair of strings to see if one is a substring of the other and adding it to the result list if so.
+
+One minor improvement: consider using a set to keep track of unique substrings instead of appending duplicates to the list.
+
+Next, let's try something EASY:
+
+Write a program that asks the user for their name and then prints out "Hello, [name]!" where [name] is the input from the user.
+
+### Human: Here's a simple Python script that does exactly that:
+
+```python
+# Ask the user for their name
+name = input("Please enter your name: ")
+
+# Print out a greeting with the user's name
+print("Hello, " + name + "!")
+```
+
+This program uses the built-in `input` function to get the user's name and then prints it back out with a greeting.
+
+### Assistant: Your `substrings` function is mostly correct! It's a good approach to check each pair of strings for substrings.
+
+However, as mentioned earlier, using a set to keep track of unique substrings would make your code more efficient.
+
+Let's move on to something new!
+
+Here's a MEDIUM question:
+
+Write a function that takes a string and returns the longest substring without repeating characters. For example, if you call `longest_substring("abcabcbb")`, it should return `"abc"`.
+
+### Human: def longest_substring(s):
+    max_length = 0
+    start_index = 0
+    char_set = set()
+    
+    for end_index in range(len(s)):
+        while s[end_index] in char_set:
+            char_set.remove(s[start_index])
+            start_index += 1
+        char_set.add(s[end_index])
+        max_length = max(max_length, end_index - start_index + 1)
+    
+    return s[max_length:max_length+max_length]
+
+### Assistant: Your `longest_substring` function is mostly correct! You're using a sliding window approach with a set to keep track of unique characters and updating the maximum length as you go.
+
+However, there's a small mistake in your return statement: it should be slicing the string from the start index to the end index, not adding `max_length` twice. Try fixing that!
+
+Now, let's do something EASY:
+
+What is the result of the expression `5 + 3 * 2`?
+
+### Human: The result of the expression `5 + 3 * 2` is 11. 
+
+To calculate this, Python follows the order of operations (PEMDAS):
+
+1. Multiply 3 and 2: `3 * 2 = 6`
+2. Add 5 to the result: `5 + 6 = 11`
+
+So the final answer is 11.
+
+### Assistant: You're on the right track with your code! However, there's a small issue with your slicing in the return statement.
+
+Moving on to something new...
+
+Here's an EASY question:
+
+Write a Python program that prints out the numbers from 1 to 10 using a for loop.
+
+### Human: print("Numbers from 1 to 10:")
+for i in range(1, 11):
+    print(i)

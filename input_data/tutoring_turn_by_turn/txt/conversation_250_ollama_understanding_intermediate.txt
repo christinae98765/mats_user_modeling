@@ -1,0 +1,133 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns the string with all vowels removed. For example, if the input is "hello world", the output should be "hll wrld".
+
+### Human: def remove_vowels(s):
+    vowels = 'aeiouAEIOU'
+    return ''.join([c for c in s if c not in vowels])
+
+print(remove_vowels("hello world"))  # Output: hll wrld
+
+### Assistant: Good job! Your function correctly removes all vowels from a given string.
+
+Now, let's try something even simpler. Assign the value 5 to a variable named `x`. Then, print out the value of `x` to the console.
+
+### Human: Here is how you can do it:
+
+```python
+# First, I'll assign the value 5 to a variable named x.
+x = 5
+
+# Now, I'll print out the value of x to the console.
+print(x)
+```
+
+When you run this code, it should output `5` to the console.
+
+### Assistant: Your code is perfect! You assigned a value to `x` and printed it out correctly.
+
+Now, let's do something easy. Assign the values 10 and 20 to two separate variables named `a` and `b`. Then, print out their sum to the console. Don't forget to use a print statement!
+
+### Human: Here is the code:
+
+```python
+a = 10
+b = 20
+print(a + b)
+```
+
+This will output: `30`
+
+### Assistant: Your code is spot on! The sum of `a` and `b` indeed prints 30 to the console.
+
+You think you're ready for something easy? Don't be fooled! Here's a challenging one: Write a function that takes an arbitrary number of arguments, where each argument is a dictionary containing a person's name and age. The function should return a list of dictionaries, where each dictionary contains the same information as its original input, but with all ages incremented by 1 (except for people who are already 100 or older). Good luck!
+
+### Human: Here's my attempt at solving this problem:
+
+```python
+def increment_ages(**kwargs):
+    result = []
+    for person in kwargs:
+        age = kwargs[person]['age']
+        if age < 100:
+            new_age = age + 1
+            result.append({'name': kwargs[person]['name'], 'age': new_age})
+        else:
+            result.append(kwargs[person])
+    return result
+
+# Example usage:
+people = {
+    'John': {'name': 'John', 'age': 25},
+    'Jane': {'name': 'Jane', 'age': 30},
+    'Bob': {'name': 'Bob', 'age': 110}
+}
+
+print(increment_ages(**people))
+```
+
+This should output:
+
+```python
+[
+    {'name': 'John', 'age': 26},
+    {'name': 'Jane', 'age': 31},
+    {'name': 'Bob', 'age': 110}
+]
+```
+
+### Assistant: Your code looks good! You correctly incremented the ages of people who are under 100 years old and left others unchanged.
+
+Now, here's a medium question:
+
+Write a function called `get_longest_word` that takes a list of strings as input. The function should return the longest word in the list. If there are multiple words with the same maximum length, it should return any one of them. For example, if the input is ["hello", "world", "abc"], the output should be "world".
+
+### Human: def get_longest_word(words):
+    max_length = 0
+    longest_word = ""
+    
+    for word in words:
+        if len(word) > max_length:
+            max_length = len(word)
+            longest_word = word
+            
+    return longest_word
+
+### Assistant: Your code is spot on! You correctly implemented a simple loop to find and store the longest word in the input list.
+
+Now, here's a challenging question that should test your understanding of data structures:
+
+Write a function called `find_duplicates` that takes a dictionary as input where each key-value pair represents an edge in a graph (key is node A, value is node B). The function should return a list of nodes that have multiple edges pointing to them. For example, if the input is {1: 2, 2: 3, 3: 4, 4: 5, 2: 3}, the output should be [2, 3].
+
+### Human: def find_duplicates(graph):
+    duplicates = []
+    for node in graph:
+        if graph[node] in graph.values():
+            if graph.count(graph[node]) > 1 and node not in duplicates:
+                duplicates.append(node)
+    return duplicates
+
+### Assistant: Your code attempts to solve the problem, but it's not quite correct. The `count` method is a list method, so you should be calling it on the dictionary's values instead of the graph object as a whole. Also, your condition for adding a node to the `duplicates` list is not necessary and might lead to incorrect results.
+
+Here's a medium question:
+
+Write a function called `reverse_sentence` that takes a string as input and returns a new string with all words in reverse order. For example, if the input is "hello world", the output should be "world hello".
+
+### Human: def reverse_sentence(sentence):
+    words = sentence.split()
+    reversed_words = []
+    
+    for word in words:
+        reversed_words.insert(0, word)
+        
+    return ' '.join(reversed_words)
+
+### Assistant: Good job on your attempt to solve the problem! You were close, but you used `insert(0, word)` instead of simply using `reversed_words.append(word)`. Also, since `split()` splits the string into words by default, you don't need to specify it.
+
+Now, let's move on to a MEDIUM question. Here it is:
+
+Write a function called `count_vowels` that takes a string as input and returns the number of vowels in the string. For example, if the input is "hello world", the output should be 3.
+
+### Human: def count_vowels(s):
+    vowels = 'aeiou'
+    return sum(1 for char in s.lower() if char in vowels)

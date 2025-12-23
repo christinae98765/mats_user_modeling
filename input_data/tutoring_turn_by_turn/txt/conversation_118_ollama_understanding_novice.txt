@@ -1,0 +1,128 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What's a way to use Python to read a CSV file and return a dictionary where each key is a unique value in the 'name' column and the value is a list of corresponding values from the 'age' column? Assume the CSV file has two columns: 'name', 'age'.
+
+### Human: I think it's something like... you can use a function with a loop that reads each line of the CSV file, splits it into name and age, then adds it to a dictionary. Something like this...
+
+```
+import csv
+
+def read_csv(file_name):
+    dict = {}
+    with open(file_name, 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row[0] not in dict:
+                dict[row[0]] = [row[1]]
+            else:
+                dict[row[0]].append(row[1])
+    return dict
+```
+
+But I'm pretty sure that's wrong because it doesn't handle cases where there are multiple rows with the same name, and it doesn't check if row[1] is actually a number. Maybe you need to use some kind of error checking?
+
+### Assistant: Your function is on the right track! You're correctly reading each line of the CSV file and adding it to a dictionary. However, as you mentioned, there are some edge cases that need attention: handling duplicate names and checking if row[1] is indeed an integer.
+
+To make this more robust, consider using `set` to keep track of unique names, and use a `try-except` block to handle potential errors when converting age to an integer.
+
+Here's a question for you:
+
+What Python function can be used to convert the string 'hello' to uppercase?
+
+### Human: I think it's something like... upper() or capitalize()? I'm not really sure, but isn't there a method in strings that does this? 
+
+```python
+string = "hello"
+return string.upper()
+```
+
+Wait, is that right? Does `upper()` only work if the word is already in quotes? And what if it's a variable instead of a specific string? Ugh, I'm getting all confused...
+
+### Assistant: You're on the right track with `string.upper()`, but let's focus on making it more flexible. Yes, you can use this method with variables instead of hard-coded strings.
+
+Here's a simple question to get you back on track:
+
+What will be printed when you run this code: `x = 5; y = x * 2; print(y)`
+
+### Human: I think it's something like... the output will be 10? 
+
+```python
+x = 5 
+y = x * 2
+print(y)
+```
+
+Wait, no! I'm pretty sure that's right. You multiply 5 by 2 and get 10, so yeah...
+
+### Assistant: Your code is correct! The output will indeed be 10.
+
+Let's move on to something a bit more challenging. Here's a hard question:
+
+Write a function that takes in a dictionary where each key-value pair represents a person's name and age, and returns a new dictionary with the same keys but sorted by age in descending order (newest to oldest). For example, if the input dictionary is `{'Alice': 25, 'Bob': 30, 'Charlie': 20}`, the function should return `{'Bob': 30, 'Alice': 25, 'Charlie': 20}`.
+
+### Human: I don't understand how I'm supposed to sort a dictionary by value and keep the keys in order. It sounds like it would be way easier if we were just working with lists or something. Can we do something else? This is all a bit too complicated for me right now...
+
+### Assistant: You're right to feel overwhelmed - dictionary manipulation can be tricky! Don't worry about it for now.
+
+Here's some brief feedback on your last response: You were close in recognizing the importance of handling edge cases and error checking, but you didn't quite address them in code.
+
+Let's take a step back. Here's an easy question:
+
+What will be printed when you run this code: `x = 5; print(x + x * 2)`?
+
+### Human: I think it'll just print the sum of x and then x multiplied by 2... so, um, `print(x + x * 2)` is like, `x` plus... `x times 2`, right? 
+
+```python
+x = 5
+print(x + x * 2)
+```
+
+So it'll be... `10`! Yeah, that's what I think.
+
+### Assistant: Your code is almost correct! You're right that `x + x * 2` will perform two operations in order of precedence (multiplication comes before addition). However, since you didn't explicitly assign the result to a new variable or print it separately, I'd suggest modifying your print statement to something like `print((x + x * 2))`. This way, you'll get the correct output.
+
+Now, let's try something a bit more involved. Here's a MEDIUM question:
+
+Write a function that takes in a string and returns the same string with all vowels removed. For example, if the input is "hello world", the function should return "hll wrld". What's the name of this function?
+
+### Human: I think it's something like... `remove_vowels()` or maybe `vowel_removal()`. I'm not really sure what to do with strings in Python, but I'll try to write some code. Um, you need to use a loop to go through each character in the string and check if it's a vowel, right? And then you can just print out the characters that aren't vowels?
+
+Here's my attempt:
+```python
+def remove_vowels(s):
+  for x in s:
+    if x != "a" or "e" or "i" or "o" or "u":
+      print(x)
+```
+Wait, no... I think I got it backwards. Is the `or` supposed to be inside the quotes? And do I need a colon at the end of the line where I define the function? Uh...
+
+### Assistant: Your code is close, but there are a few issues. You're using `or` incorrectly - it's meant to be used with two conditions that must both be true for the whole expression to be true. In your case, you want to check if each character is not one of the vowels.
+
+As for your function definition, yes, you need a colon at the end of the line where you define the function.
+
+Let's move on to an EASY question:
+
+What will be printed when you run this code: `x = 3; y = x * 2; print(x)`?
+
+### Human: I think the answer is... um... it will print 6! Because we multiplied x by 2 and assigned it to y, so now y is 6, but x is still 3. Wait, no... why is that? Shouldn't it also print 6 because y is 6 now?
+
+```python
+x = 3; y = x * 2; print(y)
+```
+
+No, I'm pretty sure the answer is 3! Because we only assigned the result to y, not x. Right?
+
+### Assistant: Brief feedback on your last response:
+
+You correctly identified that `x` remains 3 because you only assigned the result of the multiplication to `y`, not `x`. Well done!
+
+Here's a MEDIUM question:
+
+Write a function that takes in a string and returns the number of words it contains. For example, if the input is "hello world", the function should return 2. How would you handle cases where there are leading or trailing spaces?
+
+### Human: I think it's something like... we need to use the split() method to break up the string into a list of words, but how do we make sure it doesn't count extra spaces as words? Do we need to use a loop or something? I tried doing this:
+
+def word_count(s):
+  return len(s.split())
+
+But what if there are leading or trailing spaces? Won't that mess up the count? Should I just use s.strip() before splitting it or... uh...

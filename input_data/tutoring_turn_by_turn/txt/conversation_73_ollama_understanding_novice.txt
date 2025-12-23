@@ -1,0 +1,168 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function `greet` that takes a name as input and returns a greeting message. If the name is empty, it should return 'Hello!'. The function should be case-insensitive (i.e., it should work with names like "John", "JOHN", or "john").
+
+### Human: I think it's something like... we need to use an if statement inside a function? But how do we make the name thing case-insensitive? Do we use a loop or something?
+
+```python
+def greet(name):
+    if name == '':
+        return 'Hello!'
+    else:
+        print("Hello, " + name)
+```
+
+But I don't know if that's right... it seems like it should be more complicated than just an if statement. And what about the case-insensitive thing? Do we use a special function for that?
+
+### Assistant: You're on the right track with the if statement! However, you mentioned using a loop for case-insensitivity, which isn't necessary here.
+
+For case-insensitivity, Python has built-in string methods that can help. You could use `name.lower()` to convert the input name to lowercase before comparing it. But let's not focus on that yet...
+
+Here's your task: Write a function `find_max` that takes two arguments, `numbers`, which is a list of numbers, and `index`, which is an index into that list. The function should return the maximum number at or after the given index in the list. If the index is out of range (i.e., it's larger than the length of the list), the function should raise a ValueError with a helpful error message.
+
+Don't worry about handling edge cases like empty lists; we'll get to those later!
+
+### Human: I think I need to use some kind of loop to check every number after the given index... and then compare them all to find the max one. But how do I make it stop at the end of the list? Like, if the index is already at the last element, I don't want it to try to look for more numbers.
+
+```python
+def find_max(numbers, index):
+    max_num = 0
+    while (index < len(numbers)):
+        for num in numbers:
+            if num > max_num:
+                max_num = num
+        index += 1
+    return max_num
+```
+
+Wait, is this even right? I feel like I'm doing something wrong...
+
+### Assistant: Your code has a few issues. First, you're using `max_num = 0` as the initial value, but it should be initialized to the smallest possible number (e.g., `-float('inf')`) because the maximum number could be negative.
+
+Second, the inner loop is unnecessary; you only need to check the next number in the list, not all of them. You can directly compare `numbers[index]` with `max_num`.
+
+Lastly, your condition in the while loop should be `index < len(numbers)` and `index <= len(numbers)`, because you want to stop one element before the end of the list.
+
+Here's a MEDIUM question:
+
+Write a function `count_vowels` that takes a string as input and returns the number of vowels (both lowercase and uppercase) it contains. The function should ignore non-alphabetical characters (e.g., spaces, numbers).
+
+### Human: I don't know where to start... I think we need some kind of loop to go through each character in the string? But how do we check if a character is a vowel? Is there like a list of vowels or something?
+
+```python
+def count_vowels(string):
+    count = 0
+    for char in string:
+        if char == 'a' or 'e' or 'i' or 'o' or 'u':
+            count += 1
+    return count
+```
+
+Wait, is that even right? I think we need to check for both lowercase and uppercase vowels. And what about the `string` variable being passed in? Can we just use a list instead of a string?
+
+### Assistant: Your code has a good start, but there's an issue with how you're checking for vowels. You should use `or` between each condition, not just after them.
+
+For example: `if char == 'a' or char == 'e' or ...`
+
+You can also use a string of vowels and iterate over it to check if the character is in that string.
+
+```python
+vowels = 'aeiouAEIOU'
+```
+
+Now, regarding your request for using lists instead of strings... No need to change that. Strings are fine for this task.
+
+Here's a MEDIUM question:
+
+Write a function `remove_duplicates` that takes a list of numbers as input and returns a new list with duplicate elements removed. The original list should remain unchanged.
+
+### Human: I think it's something like I need to use a while loop or maybe even a for loop, but how do I make the function only return a new list? Can't just assign it directly to `remove_duplicates`... and then there's this part about not changing the original list...
+
+```python
+def remove_duplicates(lst):
+    new_lst = []
+    for num in lst:
+        if num not in new_lst:
+            new_lst.append(num)
+    return new_lst
+
+# But what if I want to use a while loop? Or maybe I can just sort the list and then... no, that won't work...
+
+# Also, how do I make sure it only returns one instance of each number? Like, if there are two 5s in the original list, I still want one 5 in the new list...
+
+### Assistant: Good effort on using a for loop and creating a new list to avoid modifying the original. However, your condition `if num not in new_lst` is not efficient for large lists because it involves multiple lookups.
+
+To make sure each number appears only once, you should use a set instead of a list to store unique numbers. But let's focus on the main issue: returning a new list without modifying the original.
+
+Here's your task:
+
+Write a function `find_longest_substring` that takes two strings as input and returns the longest substring they have in common (i.e., the longest contiguous sequence of characters shared by both strings). If there are multiple substrings with the same maximum length, return any one of them.
+
+### Human: I think it's something like we need to compare each character of the two strings at the same position and build up a new string... But I'm not sure how to do that without using a bunch of if statements... 
+
+Here's my attempt:
+```
+def find_longest_substring(str1, str2):
+    new_str = ""
+    for i in range(len(str1)):
+        if str1[i] == str2[i]:
+            new_str += str1[i]
+        else:
+            # I don't know what to do here...
+            pass
+    return new_str
+```
+But wait, this doesn't even handle the case where one string is longer than the other... Ugh, this is way harder than it looks!
+
+### Assistant: Your code has a good start on comparing characters at the same position. However, you're missing a crucial part: when the characters don't match, you should reset the new substring.
+
+You also mentioned handling cases where one string is longer than the other. That's a great point to consider!
+
+Here's an EASY question:
+
+What will be printed out if we run this code?
+```python
+x = 5
+y = x + 3
+print(y)
+```
+Can you predict the output?
+
+### Human: I think it'll print... um... `8`! Yeah, I'm pretty sure that's right. You're adding 5 and 3 together and storing it in y, so when you print y, it should be 8, right?
+
+### Assistant: Your code has a good start on comparing characters at the same position. However, you're missing a crucial part: when the characters don't match, you should reset the new substring.
+
+You also mentioned handling cases where one string is longer than the other. That's a great point to consider!
+
+Here's an EASY question:
+
+What will be printed out if we run this code?
+```python
+name = "John"
+print(name.upper())
+```
+Can you predict the output?
+
+### Human: I think it'll print out something like... um, 'JOHN'? Yeah, because `upper()` is a method that makes everything uppercase, right?
+
+Here's my attempt:
+```python
+name = "John"
+print(name.upper())
+```
+
+I'm pretty sure this will work!
+
+### Assistant: Your code is mostly correct! You're using the `upper()` method to convert the string to uppercase. Well done!
+
+Here's an EASY question:
+
+What will be printed out if we run this code?
+```python
+x = 5
+y = x * 3
+print(y)
+```
+Can you predict the output?
+
+### Human: I think it will print... umm... "6"? No, wait, that's not right. Let me try again. I'm pretty sure it will print out... "15". Yeah, because we multiplied x by 3 and stored it in y, so y is now equal to... 15! Did I get it right?

@@ -1,0 +1,194 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the output of this code:
+
+```python
+x = 5
+y = "hello"
+print(x + y)
+```
+
+Type your answer.
+
+### Human: I think it's something like... uh, an error? Because we're trying to add a number and a string together, right? So I'll try...
+
+```python
+x = 5
+y = "hello"
+print(x + y)
+```
+
+But wait, what if I swap the order of `x` and `y`? No, that won't make it work either... Hmm, maybe we need to use a function or something?
+
+```python
+x = int("hello")
+y = 5
+print(x + y)
+```
+
+Nope, still getting an error...
+
+### Assistant: Good effort! You're on the right track thinking about data types and trying to convert between them. However, `int("hello")` will raise a `ValueError`. Instead of focusing on functions or other complex concepts, you're heading in the right direction by considering how to add a number and a string together.
+
+Here's your next challenge:
+
+Write a function called `is_even` that takes an integer as input and returns `True` if it's even, and `False` otherwise. For example, calling `is_even(4)` should return `True`.
+
+### Human: I think I need to use the modulus operator... or is it the division operator? Hmm, I'm thinking something like this:
+
+def is_even(x):
+  if x % 2 == 0:
+    return True
+  else:
+    return False
+
+But wait, isn't there a more Pythonic way of writing this? Can't we just use an if statement without the else part or something?
+
+### Assistant: Your `is_even` function looks good! You're using the modulus operator (`%`) correctly to check if a number is even.
+
+As for your question about a more Pythonic way of writing this, you're on the right track. In Python, it's common to use an expression as the value returned by a function instead of explicitly returning `True` or `False`. This can be done using a simple `return` statement with the conditional expression itself.
+
+Now, here's your next challenge:
+
+Write a function called `deep_copy_list` that takes a list of lists (i.e., a nested list) as input and returns a deep copy of it. For example, if you pass in `[ [1, 2], [3, 4] ]`, the function should return `[ [1, 2], [3, 4] ]` but without any shared references between the inner lists.
+
+(Note: I know this is a bit harder than your previous question, but don't worry, you'll get there!)
+
+### Human: I think it's something like... we use another function that makes copies of all the sublists? Maybe `copy()` or `clone()`?
+
+Here's my attempt:
+```python
+def deep_copy_list(nested_list):
+  copy = []
+  for sublist in nested_list:
+    new_sublist = copy(sublist) # not sure if this is right...
+    copy.append(new_sublist)
+  return copy
+```
+But I'm not really sure... do we need to use a loop or can we just use some built-in function? And what's the difference between `copy()` and `clone()` again?
+
+### Assistant: Your `deep_copy_list` function is a good start, but you're not quite there yet.
+
+You're on the right track using a loop to iterate over the sublists, and calling `copy()` or some similar method on each sublist. However, you'll need to use the correct method to create deep copies of the sublists.
+
+As for your questions about `copy()` vs. `clone()`, in Python, there is no built-in function called `clone()`. The `copy()` method is a common one, but it's not sufficient for creating deep copies of nested lists.
+
+Here's your next challenge:
+
+Write a function that takes two dictionaries as input and merges them into a single dictionary, with values from the second dictionary overriding any duplicate keys in the first. However, if a key is present in both dictionaries but its value in the second dictionary is `None`, you should keep the original value from the first dictionary.
+
+For example:
+
+```python
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'b': None, 'c': 3}
+result = merge_dicts(dict1, dict2)
+print(result)  # Output: {'a': 1, 'b': 2, 'c': 3}
+```
+
+Note that this is a bit of a tricky problem! You'll need to think carefully about how to handle the case where a key appears in both dictionaries but its value in the second dictionary is `None`.
+
+### Human: I'm not sure I fully understand... so it sounds like we're supposed to take two dictionaries and merge them together, right? But if there's a duplicate key in the second dictionary and its value is None, we should keep the original value from the first dictionary. Like this:
+
+```python
+def merge_dicts(dict1, dict2):
+    for key in dict2:
+        if dict2[key] == None:
+            # I'm not sure what to do here... maybe just skip it?
+            continue
+        else:
+            dict1[key] = dict2[key]
+    return dict1
+```
+
+Wait, that can't be right. What about the case where there's a duplicate key and the value in the second dictionary isn't None? Do we just overwrite the original value every time? I don't know...
+
+### Assistant: Your `merge_dicts` function is a good start, but you're not quite there yet.
+
+You're on the right track thinking about how to handle duplicate keys and `None` values in the second dictionary. However, your current implementation will simply overwrite any value in the first dictionary with a non-`None` value from the second dictionary, regardless of whether it's a duplicate key or not.
+
+As for the student's request for help, I appreciate their willingness to ask questions! However, we're going to stick with a HARD question, as per your request.
+
+Here's your next challenge:
+
+Write a function that takes a nested list (i.e., a list of lists) and returns the sum of all numbers in it. For example, if you pass in `[[1, 2], [3, [4, 5]]]`, the function should return `15` (since there are five numbers: 1, 2, 3, 4, and 5).
+
+Note that this is a recursive problem! You'll need to think carefully about how to handle nested lists of arbitrary depth.
+
+```python
+def sum_numbers(nested_list):
+    # Your code here!
+    pass
+```
+
+Good luck!
+
+### Human: I don't understand what's going on here. I thought we were just supposed to add up all the numbers in a list, but now you're telling me it's recursive? What does that even mean? Can we do something easier? Like, how about just summing up all the numbers in a flat list instead of this nested business?
+
+### Assistant: Your response shows a good willingness to ask questions and clarify your understanding.
+
+However, I'm afraid that simplifying the problem to summing up numbers in a flat list doesn't quite address the original challenge. Recursive problems are a fundamental concept in computer science, and it's essential to understand how they work.
+
+Here's a MEDIUM question:
+
+Write a function called `count_vowels` that takes a string as input and returns the number of vowels (i.e., 'a', 'e', 'i', 'o', 'u') in it. You can assume that the input string only contains ASCII letters. For example, if you pass in the string `"hello"`, the function should return `2`.
+
+### Human: I think it's something like... we need to create a loop that goes through each character in the string? And then check if it's a vowel by using an if statement or something?
+
+Here's my attempt:
+```python
+def count_vowels(string):
+    count = 0
+    for x in string:
+        if x == 'a':
+            count += 1
+        elif x == 'e'
+            count += 1
+        elif x == 'i'
+            count += 1
+        elif x == 'o'
+            count += 1
+        elif x == 'u'
+            count += 1
+    return count
+
+print(count_vowels("hello"))
+```
+But wait, I think there's something wrong here...
+
+### Assistant: Your code is a good start! However, you're missing some important details in your `elif` statements. Specifically, you're using an incomplete syntax for each statement (e.g., `x == 'e'` should be `if x == 'e':`). Also, this approach will only count the exact vowel characters 'a', 'e', 'i', 'o', and 'u', but it won't handle other vowels like 'A', 'E', 'I', 'O', and 'U'.
+
+Here's your next challenge:
+
+What is the output of this code?
+
+```python
+x = 5 + 3
+print(x)
+```
+
+Type your answer.
+
+### Human: The output will be... uh... *checks syntax* ... `8`? Yeah, I'm pretty sure it's just `8`. Is that right?
+
+### Assistant: Your answer is... correct! The output of that code will indeed be `8`.
+
+However, your code for counting vowels was a bit too simple. You should consider using an if statement with multiple conditions (e.g., `if x in 'aeiouAEIOU':`) to check for all the vowels at once.
+
+Here's your next challenge:
+
+Write a function called `reverse_pairs` that takes a list of integers as input and returns a new list where each pair of adjacent elements is reversed. For example, if you pass in `[1, 2, 3, 4]`, the function should return `[2, 1, 4, 3]`. However, if the length of the list is odd, the last element should remain unchanged.
+
+### Human: I think it's something like...
+
+```python
+def reverse_pairs(lst):
+    new_lst = []
+    for i in range(0, len(lst) - 1, 2):
+        new_lst.append(lst[i + 1])
+        new_lst.append(lst[i])
+    if len(lst) % 2 != 0:
+        new_lst.append(lst[-1])
+```
+
+But I'm not sure if this is right... I feel like I'm missing something. Do I need to use a while loop or something? And what about the last element when the list has an odd length?

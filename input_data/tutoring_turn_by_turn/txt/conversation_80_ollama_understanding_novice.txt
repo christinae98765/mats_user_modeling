@@ -1,0 +1,119 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: What is the output of this code? `x = 5; y = x * 2 + 1`
+
+### Human: I think it's something like... we're setting x to be equal to 5, and then multiplying it by 2, which would give us... uh... 10. And then adding 1... so that would make it... *counts on fingers* ...11! Yeah, I'm pretty sure the output is 11.
+
+### Assistant: Your calculation is correct! The output of that code would indeed be 11.
+
+Here's a harder question:
+
+Write a function called `reverse_list` that takes a list of strings as input and returns a new list with the elements in reverse order, but only for even-indexed elements (i.e. every other element from start to end).
+
+### Human: I think it's something like... you use the `range()` function to create an index list, then use a loop or something to iterate over that and swap the elements around? But I'm not really sure how to do the "every other" part...
+
+Here's what I came up with so far:
+```python
+def reverse_list(lst):
+    new_lst = []
+    for i in range(len(lst)):
+        if i % 2 == 0: # is this right?
+            new_lst.append(lst[i])
+        else:
+            new_lst.append(lst[-(i+1)]) # wait, no... this can't be right...
+```
+But I'm getting a feeling that I'm doing it all wrong...
+
+### Assistant: Your approach is on the right track, but you're overcomplicating things with the `range` and indexing. Think about how you can use slicing to get every other element.
+
+Here's a hint: you want to focus on getting the even-indexed elements first, and then append them to a new list in reverse order.
+
+Now, here's a HARD question:
+
+Write a function called `merge_files` that takes two file paths as input and merges their contents into a single text file. The catch: each line from both files should be interleaved, like this:
+```
+line1_from_file1
+line1_from_file2
+line2_from_file1
+line2_from_file2
+...
+```
+
+### Human: I don't understand how to merge two files like that... It sounds like a lot of code and I'm not even sure where to start. Can we do something easier? I've never worked with file paths or merging files before, so this is way over my head...
+
+### Assistant: No worries about the merge_files function - it's a bit of an advanced topic.
+
+Brief feedback on your last response: You were close with using slicing to get every other element, but you didn't quite nail it. Think about how you can use slicing to directly get the even-indexed elements.
+
+Here's an EASY question:
+
+What is the output of this code? `x = 5; print(x * x)`
+
+### Human: I think it's something like... the square of x, right? Like, if x is 5, then it prints out... um... `print(5 * 5)`. Is that how it works?
+
+```
+x = 5
+print(5 * 5)
+```
+
+### Assistant: Brief feedback on your last response: You're close! The code is actually `x = 5; print(x * x)`, not `print(5 * 5)`. That's because `x` is a variable that holds the value 5.
+
+Here's an EASY question:
+
+Write a Python expression to add 2 and 3 together.
+
+### Human: I think it's something like... `print(2 + 3)`? 
+
+But wait, I remember now! You can also use variables in expressions, right? So maybe it would be `x = 2; print(x + 3)`. But what if I want to store the result in a variable instead of printing it? Do I just replace `print` with something else...
+
+### Assistant: Brief feedback on your last response: You're absolutely right! The expression to add 2 and 3 together is `2 + 3`, and you can use variables like you showed with `x = 2; print(x + 3)`. To store the result in a variable, you would replace `print` with something like `result =`.
+
+Here's a HARD question:
+
+Implement a function called `group_by_length` that takes a list of strings as input and returns a dictionary where each key is the length of the string, and each value is a list of strings of that length. For example, if you pass in `["hello", "hi", "world", "abc"]`, it should return `{"3": ["abc"], "5": ["hello"], "2": ["hi"], "5": ["world"]}` (note the duplicate key - dictionaries can have multiple values for the same key).
+
+### Human: I don't understand how to make a function that does this. I know we've been doing simple things with print statements and variables, but this sounds like something much more complicated. I'm not even sure where to start... How do I define a function in Python again? And what's the difference between a list and a dictionary exactly?
+
+### Assistant: Brief feedback on your last response: That's completely okay to feel overwhelmed! Defining a function in Python is as simple as using the `def` keyword followed by the name of the function and parentheses with parameters inside. A list is an ordered collection of items, while a dictionary is an unordered collection of key-value pairs.
+
+Here's a MEDIUM question:
+
+Write a function called `count_vowels` that takes a string as input and returns the number of vowels in that string.
+
+### Human: I think it's something like... I've seen the def keyword before, so maybe I can do this?
+
+```
+def count_vowels(string):
+  for x in range(0, len(string)):
+    if string[x] == a or string[x] == e or string[x] == i or string[x] == o or string[x] == u:
+      counter = counter + 1
+  return counter
+```
+
+Wait, what about the 'vowels' part? Do I need to count all of them separately? And what if there's a space between two vowels? Does that count as one vowel or two?
+
+I'm pretty sure this is right though...
+
+### Assistant: Brief feedback on your last response:
+
+* You're using a `for` loop and conditionals correctly.
+* To count all vowels (a, e, i, o, u), you can use the `in` operator to check if each character is in the string 'aeiou'.
+* The code doesn't handle spaces between vowels. If you want to count consecutive vowels as a single unit, you'll need to modify your approach.
+
+Here's a MEDIUM question:
+
+Write a function called `find_substring` that takes two strings as input and returns the first occurrence of one string within another. For example, if you pass in `"hello world"` and `"world"`, it should return `"world"`. If there is no match, it should return an empty string.
+
+### Human: I think I'm supposed to make a function... like, that takes two strings as arguments... and returns the first occurrence of one string inside the other... but how do I tell Python which one is inside the other? And what if they don't have any matches?
+
+Here's something I tried:
+
+```python
+def find_substring(str1, str2):
+    for i in range(len(str1)):
+        if str1[i] == str2:
+            return str2
+    return ""
+```
+
+Wait, no... that won't work. That just checks each character individually, not the whole string. I need to check if str2 is a substring of str1... but how do I do that?

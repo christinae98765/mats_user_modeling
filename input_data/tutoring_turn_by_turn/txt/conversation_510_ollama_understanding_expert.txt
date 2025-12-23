@@ -1,0 +1,219 @@
+### Human: Hi! I'm here to learn Python. Can you help me practice?
+
+### Assistant: Write a function that takes a string as input and returns the reversed string. For example, if the input is "hello", the output should be "olleh". Don't forget to handle empty strings!
+
+### Human: Here's a simple function using slicing:
+
+```python
+def reverse_string(s: str) -> str:
+    """Return the reversed string."""
+    return s[::-1]
+```
+
+This will work correctly even for empty strings, as an empty slice (`[]`) of any sequence (including strings) is still defined.
+
+### Assistant: Your function is concise and uses a nice Python idiom to reverse the string.
+
+Here's a medium question:
+
+Write a function that takes a list of strings as input and returns a new list with each string converted to uppercase. For example, if the input is `["hello", "world"]`, the output should be `["HELLO", "WORLD"]`.
+
+### Human: Here's a simple function that achieves this:
+
+```python
+def convert_to_uppercase(strings):
+    """Return a new list with each string converted to uppercase."""
+    return [s.upper() for s in strings]
+```
+
+This uses a list comprehension, which is a concise and readable way to create lists. The `str.upper()` method is used to convert each string to uppercase.
+
+You can test it like this:
+
+```python
+print(convert_to_uppercase(["hello", "world"]))  # Output: ["HELLO", "WORLD"]
+```
+
+### Assistant: Your function is indeed concise and uses a clear, readable approach.
+
+Here's an easy question:
+
+What will be printed when you run this code?
+```python
+x = 5
+y = "hello"
+print(x + y)
+```
+(Note: Don't worry about error messages or exceptions; just think about what the output will be.)
+
+### Human: When we run this code, it'll try to add `int` and `str` together. In Python, you can't directly add these two types. However, if one of them is converted to a string (which happens implicitly in some operations), the other gets converted too.
+
+So, `x + y` will convert both `x` and `y` to strings using their default representations (`5` as `"5"` and `"hello"` stays the same) and then concatenate them. The output will be:
+```
+"5hello"
+```
+
+### Assistant: Good analysis! You correctly identified that `x + y` will implicitly convert both to strings and concatenate them.
+
+Here's a HARD question:
+
+Write a function called `parse_csv` that takes a string containing comma-separated values as input, parses it into a dictionary where each key is a column header and each value is a list of corresponding cell values. For example, if the input is `"Name,Age,Country\nJohn,30,USA\nJane,25,Canada"`, the output should be `{'Name': ['John', 'Jane'], 'Age': ['30', '25'], 'Country': ['USA', 'Canada']}`.
+
+Note that this function needs to handle cases where the input string may have empty lines or malformed CSV data.
+
+### Human: Here's a Python function that uses the built-in `csv` module to safely parse the CSV data:
+
+```python
+import csv
+from io import StringIO
+
+def parse_csv(csv_str):
+    # Split the input into lines, ignoring empty lines
+    lines = [line.strip() for line in csv_str.split('\n') if line]
+
+    # Use a list comprehension with f-strings to create a dictionary from the CSV data
+    headers = next(iter(lines), None)
+    data = {header: [] for header in headers.split(',')}
+    
+    for line in lines[1:]:
+        values = [value.strip() for value in line.split(',') if value]
+        zip_values = dict(zip(headers.split(','), values))
+        for key, value in zip_values.items():
+            data[key].append(value)
+
+    return data
+```
+
+However, a more robust approach would be to use the `csv.DictReader` class from the `csv` module directly:
+
+```python
+import csv
+
+def parse_csv(csv_str):
+    reader = csv.DictReader(StringIO(csv_str))
+    headers = reader.fieldnames
+    
+    # Use a list comprehension with f-strings to create a dictionary from the CSV data
+    return {header: [row[header] for row in reader] for header in headers}
+```
+
+This second version directly parses the input string into a `DictReader`, which automatically handles edge cases like malformed CSV data or empty lines. The resulting dictionary is then returned with each key corresponding to a column header and its value being a list of cell values.
+
+Example usage:
+
+```python
+csv_str = "Name,Age,Country\nJohn,30,USA\nJane,25,Canada"
+print(parse_csv(csv_str))
+# Output: {'Name': ['John', 'Jane'], 'Age': ['30', '25'], 'Country': ['USA', 'Canada']}
+```
+
+### Assistant: Your revised function is a great improvement over the initial one! You've correctly identified the limitations of the first approach and replaced it with a more robust method using `csv.DictReader`. This is a good practice to follow when working with CSV data in Python.
+
+Here's an easy question:
+
+Write a simple program that prints your name 5 times. Use only print statements and no variables.
+
+### Human: ```python
+print("Your Name")
+print("Your Name")
+print("Your Name")
+print("Your Name")
+print("Your Name")
+```
+
+### Assistant: Your code is straightforward and accomplishes what's asked of it.
+
+Now, here's a HARD question:
+
+Write a function called `load_data` that reads data from a JSON file named `data.json` in the same directory as your script, parses its contents into a dictionary, and returns this dictionary. If the file does not exist or cannot be parsed, raise a custom exception with an informative error message.
+
+Note: You'll need to use the `json` module for this task.
+
+### Human: Here's how I'd implement the `load_data` function:
+
+```python
+import json
+from pathlib import Path
+from typing import Dict
+
+class DataLoadError(Exception):
+    """Custom exception raised when data loading fails."""
+    pass
+
+def load_data() -> Dict:
+    """
+    Reads and parses JSON file into a dictionary.
+
+    Returns:
+        dict: Dictionary representation of the JSON file contents.
+    Raises:
+        DataLoadError: If the file does not exist or cannot be parsed.
+    """
+    file_path = Path(__file__).parent / 'data.json'
+    
+    try:
+        with file_path.open('r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        raise DataLoadError(f"File '{file_path.name}' not found.")
+    except json.JSONDecodeError as e:
+        raise DataLoadError(f"Failed to parse JSON: {e}")
+```
+
+In this code:
+
+1.  I've defined a custom `DataLoadError` exception class for informative error messages.
+2.  The `load_data` function uses the `Path` class from the `pathlib` module to construct the file path, ensuring it's in the same directory as the script.
+3.  It attempts to open and read the JSON file using a context manager (`with`) to ensure the file is properly closed after reading.
+4.  The `json.load()` function is used to parse the JSON content into a dictionary.
+
+This implementation covers both edge cases where the file does not exist or cannot be parsed, raising informative exceptions with detailed error messages.
+
+### Assistant: Your `load_data` function is well-implemented and covers all necessary cases when loading data from a JSON file.
+
+Here's a MEDIUM question:
+
+Write a function called `filter_even_numbers` that takes a list of integers as input and returns a new list containing only the even numbers from the original list. The function should be case-insensitive, meaning it will treat negative numbers as "even" if their absolute value is even.
+
+### Human: ```python
+def filter_even_numbers(numbers):
+    """
+    Returns a list of even numbers (including negatives) from the input list.
+
+    Args:
+        numbers (list): A list of integers.
+
+    Returns:
+        list: A new list containing only the even numbers from the original list.
+    """
+
+    # Use a list comprehension to create a new list with only the even numbers
+    # The 'if' condition checks if the absolute value of each number is even
+    return [num for num in numbers if abs(num) % 2 == 0]
+```
+
+This function uses a common Python idiom, the modulo operator (`%`), to check whether a number is even. The `abs()` function is used to ensure that negative numbers are treated as "even" if their absolute value is even.
+
+Example use case:
+```python
+numbers = [1, 2, 3, -4, 5, 6]
+print(filter_even_numbers(numbers))  # Output: [2, -4, 6]
+```
+
+### Assistant: Your function is well-implemented and easy to understand.
+
+Here's an EASY question:
+
+Write a Python statement that prints the string "Hello, World!" followed by a new line character (`\n`).
+
+### Human: You can use f-strings for this:
+
+```python
+print(f"Hello, World!\n")
+```
+
+Alternatively, you could use string concatenation with `+`:
+
+```python
+print("Hello, World!" + "\n")
+```
