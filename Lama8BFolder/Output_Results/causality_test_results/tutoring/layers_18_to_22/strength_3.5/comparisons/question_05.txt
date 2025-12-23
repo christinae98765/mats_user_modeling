@@ -1,0 +1,306 @@
+QUESTION: Hey, I have a few minutes of downtime - can you generate a quick Python exercise for me to practice?
+
+============================================================
+UNINTERVENED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+User: rock
+Computer: scissors
+Result: User wins!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:** You can use the `random` module to generate a random choice for the computer.
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices
+choices = ['rock', 'paper', 'scissors']
+
+# Get the user's choice
+user_choice = input("Enter your choice (rock, paper, or scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(choices)
+
+# Determine the winner
+if user_choice == computer_choice:
+    result = "It's a tie!"
+elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+     (user_choice == 'scissors' and computer_choice == 'paper') or \
+     (user_choice == 'paper' and computer_choice == 'rock'):
+    result = "User wins!"
+else:
+    result = "Computer wins!"
+
+# Display the result
+print(f"User: {user_choice}")
+print(f"Computer: {computer_choice}")
+print(result)
+```
+
+**Your Turn!**
+
+Try to complete the code and run it. Then, modify it to add more features, such as asking the user if they want to play again.
+
+============================================================
+NOVICE-STEERED:
+**Exercise: Guessing Game**
+==========================
+
+Here's a simple guessing game to get you started:
+
+**Objective:**
+Guess a number between 1 and 100, and try to guess it in as few attempts as possible.
+
+**Game Rules:**
+
+1. The game will think of a number between 1 and 100.
+2. You'll make a guess, and the game will tell you if you're closer to the number or farther away.
+3. Keep guessing until you get the number right.
+
+**Here's a hint:**
+
+You can use the following hints to guide your guesses:
+
+* `hint("lower")`: The number is lower than your guess.
+* `hint("higher")`: The number is higher than your guess.
+* `hint("correct")`: You're absolutely right!
+
+**Your Task:**
+
+Write a Python program to play this game. You'll need to:
+
+1. Think of a number between 1 and 100.
+2. Ask the user for a guess.
+3. Check if the guess is correct, and give hints if not.
+4. Keep asking for guesses until the user gets it right.
+
+**Here's a starting point:**
+
+```python
+import random
+
+def guess_game():
+    # Think of a number between 1 and 100
+    number_to_guess = random.randint(1, 100)
+
+    # Ask the user for a guess
+    while True:
+        guess = input("Guess a number between 1 and 100: ")
+
+        # Check if the guess is a number
+        try:
+            guess = int(guess)
+        except ValueError:
+            print("That's not a number!")
+            continue
+
+        # Check if the guess is correct
+        if guess == number_to_guess:
+            print("Congratulations, you're absolutely right!")
+            break
+
+        # Give hints
+        if guess < number_to_guess:
+            print("Hint: The number is higher than your guess.")
+        else:
+            print("Hint: The number is lower than your guess.")
+
+guess_game()
+```
+
+**Your Turn:**
+
+Try to write the game without looking at the hint, and then compare your code with the hint. Don't worry if you get stuck – you can always ask for hints or hints about hints!
+
+**Tips:**
+
+* Think about how you can use variables to store the number to guess and the user's guess.
+* Use a loop to keep asking for guesses until the user gets it right.
+* Use the `random` module to think of
+
+============================================================
+INTERMEDIATE-STEERED:
+## Python Exercise: "Guessing Game"
+
+### Description
+
+Create a simple number guessing game where the user has to guess a randomly generated number between 1 and 100. The game should continue until the user guesses the correct number.
+
+### Requirements
+
+- The game should generate a random number between 1 and 100.
+- The user should be prompted to guess the number.
+- The game should tell the user if their guess is higher or lower than the generated number.
+- The game should continue until the user guesses the correct number.
+
+### Example Use Case
+
+```
+Please guess a number between 1 and 100: 
+Is your guess higher or lower than 50? 
+Please guess a number between 1 and 100: 
+Is your guess higher or lower than 75? 
+Please guess a number between 1 and 100: 
+ Congratulations! You guessed the number 75.
+
+### Code
+
+```python
+import random
+
+def guessing_game():
+    # Generate a random number between 1 and 100
+    number_to_guess = random.randint(1, 100)
+
+    # Initialize a variable to store the user's guess
+    user_guess = None
+
+    while user_guess != number_to_guess:
+        # Prompt the user to guess the number
+        user_guess = int(input("Please guess a number between 1 and 100: ")
+
+        # Check if the user's guess is higher or lower than the generated number
+        if user_guess < number_to_guess:
+            print("Is your guess higher or lower than", user_guess, "?")
+        elif user_guess > number_to_guess:
+            print("Is your guess higher or lower than", user_guess, "?")
+
+    # Print a success message when the user guesses the correct number
+    print("Congratulations! You guessed the number", number_to_guess)
+
+# Call the function to start the game
+guessing_game()
+
+```
+
+### Task
+
+Complete the code by adding the missing `)` at the end of the `input` function call and the `elif` statement. Also, add a `print` statement to print the prompt for the initial guess.
+
+### Hint
+
+The `input` function in Python requires a closing parenthesis to complete the function call. The `elif` statement is used to check if the user's guess is higher or lower than the generated number.
+
+### Expected Output
+
+The game should continue to prompt the user to guess the number until they guess the correct number. The game should then print a success message with the correct number.
+
+============================================================
+EXPERT-STEERED:
+**Exercise: Hangman Game**
+=========================
+
+**Objective:**
+Create a simple Hangman game using Python. The game will randomly select a word from a list, and the user will have to guess the word by suggesting letters. The user will have a limited number of attempts (6 in this case). The game will display the word with underscores representing the unknown letters, and the user's score will be displayed at the end.
+
+**Code:**
+```python
+import random
+
+# List of words to choose from
+words = ["apple", "banana", "cherry", "date", "elderberry"]
+
+def hangman():
+    # Select a random word from the list
+    word = random.choice(words)
+    word_length = len(word)
+    display = ["_"] * word_length
+    score = 6
+    guessed = False
+    guessed_word = []
+    guessed_letters = []
+
+    while score > 0 and not guessed:
+        print(f"Score: {score}")
+        print(" ".join(display))
+        print("Guessed letters: ", " ".join(guessed_letters))
+        letter = input("Guess a letter: ").lower()
+
+        if len(letter) != 1:
+            print("Please enter a single letter.")
+            continue
+        if letter in guessed_letters:
+            print("You've already guessed this letter.")
+            continue
+        guessed_letters.append(letter)
+        if letter in word:
+            for i in range(word_length):
+                if word[i] == letter:
+                    display[i] = letter
+            if "_" not in display:
+                guessed = True
+                print("Congratulations! You won!")
+        else:
+            score -= 1
+            print(f"Score: {score}")
+            print("Incorrect! The letter is not in the word.")
+        if score == 0:
+            print("Game over! The word was: " + word)
+            print("Thanks for playing!")
+    if score > 0:
+        print("Thanks for playing!")
+
+hangman()
+```
+**Instructions:**
+
+1. Run the code.
+2. The game will display the word with underscores representing the unknown letters.
+3. Enter a letter by typing it in.
+4. The game will display the word with the guessed letter(s) in the correct position(s).
+5. If the letter is not in the word, the score will decrease by 1.
+6. If the score reaches 0, the game will end and display the word.
+7. If the user guesses the word correctly
+
+============================================================
+GAUSSIAN CONTROL:
+Here's a simple exercise to practice Python:
+
+**Exercise:**
+
+Write a Python function that takes a list of integers as input and returns the sum of all even numbers in the list.
+
+**Example Input:**
+
+`numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
+
+**Example Output:**
+
+`Sum of even numbers: 30`
+
+**Constraints:**
+
+* The input list can contain both positive and negative numbers.
+* The input list can be empty.
+* The function should not modify the original list.
+
+**Your Task:**
+
+Write a Python function that meets these requirements and test it with the example input.
+
+**Hint:**
+
+You can use a for loop or the built-in `sum()` function with a generator expression to solve this problem.
+
+Go ahead and give it a try!

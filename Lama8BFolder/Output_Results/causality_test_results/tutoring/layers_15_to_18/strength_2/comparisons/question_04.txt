@@ -1,0 +1,295 @@
+QUESTION: Hey, I have a few minutes of downtime - can you generate a quick Python exercise for me to practice?
+
+============================================================
+UNINTERVENED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+User: rock
+Computer: scissors
+Result: User wins!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:** You can use the `random` module to generate a random choice for the computer.
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices
+choices = ['rock', 'paper', 'scissors']
+
+# Get the user's choice
+user_choice = input("Enter your choice (rock, paper, or scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(choices)
+
+# Determine the winner
+if user_choice == computer_choice:
+    result = "It's a tie!"
+elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+     (user_choice == 'scissors' and computer_choice == 'paper') or \
+     (user_choice == 'paper' and computer_choice == 'rock'):
+    result = "User wins!"
+else:
+    result = "Computer wins!"
+
+# Display the result
+print(f"User: {user_choice}")
+print(f"Computer: {computer_choice}")
+print(result)
+```
+
+**Your Turn!**
+
+Try to complete the code and run it. Then, modify it to add more features, such as asking the user if they want to play again.
+
+============================================================
+NOVICE-STEERED:
+Here's a simple exercise to get you started:
+
+**Exercise:**
+
+You're a librarian who wants to keep track of books in a library. You have a list of books, each with a title, author, and number of copies. You want to write a program that can:
+
+1. Add a new book to the library.
+2. Remove a book from the library.
+3. List all the books in the library.
+4. Search for a book by title or author.
+
+Here's a simple Python class to get you started:
+
+```python
+class Book:
+    def __init__(self, title, author, copies):
+        self.title = title
+        self.author = author
+        self.copies = copies
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, title, author, copies):
+        # Add a new book to the library
+        new_book = Book(title, author, copies)
+        self.books.append(new_book)
+
+    def remove_book(self, title):
+        # Remove a book from the library
+        for book in self.books:
+            if book.title == title:
+                self.books.remove(book)
+                return
+        print("Book not found.")
+
+    def list_books(self):
+        # List all the books in the library
+        for book in self.books:
+            print(f"Title: {book.title}, Author: {book.author}, Copies: {book.copies}")
+
+    def search_book(self, query):
+        # Search for a book by title or author
+        for book in self.books:
+            if query.lower() in book.title.lower() or query.lower() in book.author.lower():
+                print(f"Title: {book.title}, Author: {book.author}, Copies: {book.copies}")
+                return
+        print("Book not found.")
+
+# Create a library
+library = Library()
+
+# Add some books
+library.add_book("Book 1", "Author 1", 5)
+library.add_book("Book 2", "Author 2", 3)
+library.add_book("Book 3", "Author 3", 2)
+
+# List all books
+print("All books:")
+library.list_books()
+
+# Search for a book
+print("\nSearch for a book:")
+library.search_book("Author 2")
+
+# Remove a book
+print("\nRemove a book:")
+library.remove_book("Book 2")
+
+# List all books again
+print("\nAll books after removing one:")
+library.list_books()
+```
+
+**
+
+============================================================
+INTERMEDIATE-STEERED:
+**Exercise: "Guessing Game"
+
+**Task:**
+
+Create a simple number guessing game where the user has to guess a randomly generated number between 1 and 100. The game should keep track of the number of attempts made by the user and display the result after the game ends.
+
+**Requirements:**
+
+1. The game should generate a random number between 1 and 100.
+2. The user should be prompted to guess the number.
+3. The game should keep track of the number of attempts made by the user.
+4. After the user guesses the number, the game should display the result, including the number of attempts made.
+
+**Example Output:**
+
+```
+Welcome to the number guessing game!
+Guess a number between 1 and 100: 
+? (attempt 1)
+? (attempt 2)
+? (attempt 3)
+...
+? (attempt n)
+You guessed it! The number was 42. You made 5 attempts.
+```
+
+**Your Task:**
+
+Write a Python function `guessing_game()` that implements the above requirements.
+
+**Constraints:**
+
+* The function should not take any arguments.
+* The function should use a `while` loop to keep the game running until the user guesses the number correctly.
+* The function should use a `random` module to generate the random number.
+
+**Example Use Case:**
+
+```python
+guessing_game()
+```
+
+Go ahead and implement the `guessing_game()` function. I'll be here to help if you need any assistance!
+
+============================================================
+EXPERT-STEERED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a Python program that allows two players to play a game of Rock, Paper, Scissors. The program should:
+
+1.  Ask both players for their choices (Rock, Paper, or Scissors).
+2.  Determine the winner based on the game's rules (Rock beats Scissors, Scissors beats Paper, and Paper beats Rock).
+3.  Display the result of the game.
+
+**Example Output:**
+
+```
+Player 1: Rock
+Player 2: Scissors
+Player 1 wins!
+```
+
+**Your Task:**
+
+Write a Python program that meets the above requirements.
+
+**Constraints:**
+
+*   Use a `while` loop to allow players to play multiple rounds.
+*   Use a `random` module to generate the computer's choice.
+*   Use a `if-elif-else` statement to determine the winner.
+*   Use a `print` function to display the result of the game.
+
+**Good Luck!**
+
+```python
+import random
+
+def get_player_choice():
+    """Get the player's choice."""
+    while True:
+        choice = input("Enter your choice (Rock, Paper, Scissors): ").lower()
+        if choice in ["rock", "paper", "scissors"]:
+            return choice
+        else:
+            print("Invalid choice. Please try again.")
+
+def get_computer_choice():
+    """Get the computer's choice."""
+    choices = ["rock", "paper", "scissors"]
+    return random.choice(choices)
+
+def determine_winner(player_choice, computer_choice):
+    """Determine the winner."""
+    if player_choice == computer_choice:
+        return "It's a tie!"
+    elif (player_choice == "rock" and computer_choice == "scissors") or \
+         (player_choice == "scissors" and computer_choice == "paper") or \
+         (player_choice == "paper" and computer_choice == "rock"):
+        return "Player wins!"
+    else:
+        return "Computer wins!"
+
+def main():
+    """Run the game."""
+    while True:
+        player_choice = get_player_choice()
+        computer_choice = get_computer_choice()
+        print(f"Player: {player_choice}")
+        print(f"Computer: {computer_choice}")
+        print(determine_winner(player_choice, computer_choice))
+        play_again = input("Play again? (yes/no): ").lower()
+        if play_again != "yes":
+            break
+
+if __name__ == "__main__":
+    main()
+```
+
+============================================================
+GAUSSIAN CONTROL:
+Here's a simple exercise to get you started:
+
+**Exercise:**
+
+Write a Python function that takes a list of integers as input and returns the sum of all the even numbers in the list.
+
+**Example Input/Output:**
+
+- Input: `[1, 2, 3, 4, 5, 6]`
+- Output: `12` (2 + 4 + 6)
+
+**Constraints:**
+
+- The input list will only contain integers.
+- The list will not be empty.
+
+**Task:**
+
+1. Write a function `sum_even_numbers` that takes a list of integers as input.
+2. Use a loop to iterate over the list and check if each number is even.
+3. If a number is even, add it to a running total.
+4. Return the total sum of even numbers.
+
+**Tips:**
+
+- You can use the modulus operator (`%`) to check if a number is even (if the remainder of the number divided by 2 is 0, it's even).
+- You can use a variable to keep track of the running total.
+
+Go ahead and give it a try!

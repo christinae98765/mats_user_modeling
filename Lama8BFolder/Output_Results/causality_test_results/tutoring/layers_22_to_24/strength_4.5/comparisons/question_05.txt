@@ -1,0 +1,290 @@
+QUESTION: Hey, I have a few minutes of downtime - can you generate a quick Python exercise for me to practice?
+
+============================================================
+UNINTERVENED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+User: rock
+Computer: scissors
+Result: User wins!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:** You can use the `random` module to generate a random choice for the computer.
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices
+choices = ['rock', 'paper', 'scissors']
+
+# Get the user's choice
+user_choice = input("Enter your choice (rock, paper, or scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(choices)
+
+# Determine the winner
+if user_choice == computer_choice:
+    result = "It's a tie!"
+elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+     (user_choice == 'scissors' and computer_choice == 'paper') or \
+     (user_choice == 'paper' and computer_choice == 'rock'):
+    result = "User wins!"
+else:
+    result = "Computer wins!"
+
+# Display the result
+print(f"User: {user_choice}")
+print(f"Computer: {computer_choice}")
+print(result)
+```
+
+**Your Turn!**
+
+Try to complete the code and run it. Then, modify it to add more features, such as asking the user if they want to play again.
+
+============================================================
+NOVICE-STEERED:
+Here's a quick exercise to practice Python:
+
+**Exercise:**
+
+Write a Python function that takes a list of integers as input and returns the sum of all the even numbers in the list.
+
+**Example Input/Output:**
+
+- Input: `[1, 2, 3, 4, 5, 6]`
+- Output: `12` (2 + 4 + 6)
+
+**Constraints:**
+
+- The input list can be of any size.
+- The list can contain both positive and negative integers.
+- The list can contain non-integer values (e.g., floats, strings).
+
+**Task:**
+
+Write a Python function that meets the above requirements and test it with the example input.
+
+**Hint:**
+
+You can use a for loop to iterate over the list and check if each number is even using the modulus operator (`%`). If a number is even, add it to a running total.
+
+**Bonus:**
+
+Try to write the function in a way that handles non-integer values in the list. You can use a conditional statement to check if a value is an integer before trying to add it to the total.
+
+Here's a basic template to get you started:
+```python
+def sum_even_numbers(numbers):
+    total = 0
+    for num in numbers:
+        # Check if num is an integer
+        if isinstance(num, int):
+            # Check if num is even
+            if num % 2 == 0:
+                total += num
+    return total
+```
+Go ahead and try to complete the function and test it with the example input!
+
+============================================================
+INTERMEDIATE-STEERED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (Rock, Paper, or Scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+	* Rock beats Scissors
+	* Scissors beats Paper
+	* Paper beats Rock
+4. Print out the result of the game
+
+**Example Output:**
+
+```
+Please enter your choice (Rock, Paper, or Scissors): Rock
+Computer chose: Scissors
+You win!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:**
+
+* Use the `random` module to generate a random choice for the computer
+* Use an `if-elif-else` statement to determine the winner
+* Use a dictionary to map the choices to their corresponding winning conditions
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices and their winning conditions
+choices = {
+    "Rock": "Scissors",
+    "Paper": "Rock",
+    "Scissors": "Paper"
+}
+
+# Get the user's choice
+user_choice = input("Please enter your choice (Rock, Paper, or Scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(list(choices.keys()))
+
+# Determine the winner
+if user_choice == computer_choice:
+    print("It's a tie!")
+elif choices[user_choice] == computer_choice:
+    print(f"You win! {user_choice} beats {computer_choice}")
+else:
+    print(f"You lose! {computer_choice} beats {user_choice}")
+```
+
+**Your turn!**
+
+Complete the code to make it work as described. Good luck and have fun!
+
+============================================================
+EXPERT-STEERED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Output:**
+
+```
+Enter your choice (rock, paper, or scissors): rock
+Computer chose: scissors
+You win!
+```
+
+**Task:**
+
+1. Create a new Python file (e.g., `rock_paper_scissors.py`)
+2. Write the code to implement the game
+3. Run the code and test it with different inputs
+
+**Hint:**
+
+* Use the `random` module to generate a random choice for the computer
+* Use an `if-elif-else` statement to determine the winner
+* Use a `print` statement to display the result of the game
+
+**Get started!**
+
+============================================================
+GAUSSIAN CONTROL:
+**Exercise: Hangman Game**
+
+Create a simple Hangman game in Python. The game should:
+
+1.  Choose a random word from a predefined list of words.
+2.  Ask the user to guess a letter.
+3.  If the letter is in the word, fill in the corresponding blanks.
+4.  If the letter is not in the word, draw a part of a hangman's gallows.
+5.  The game should end when the word is guessed or the gallows is complete.
+
+**Example Use Case:**
+
+```
+_ _ _ _ _ _ (6 letters)
+Guess a letter: e
+_ e _ _ _ _
+
+_ _ _ _ _ _ (6 letters)
+Guess a letter: a
+_ e a _ _ _
+
+_ _ _ _ _ _ (6 letters)
+Guess a letter: t
+_ e a t _ _
+
+_ _ _ _ _ _ (6 letters)
+Guess a letter: x
+ Gallows: |
+ Guess again!
+```
+
+**Your Task:**
+
+Create a Python program that implements the above functionality.
+
+**Hint:** You can use the `random` module to choose a random word from a list, and the `input` function to get user input.
+
+**Example Code to Get You Started:**
+
+```python
+import random
+
+# List of words to choose from
+words = ['apple', 'banana', 'cherry', 'date', 'elderberry']
+
+# Choose a random word
+word = random.choice(words)
+
+# Create a list to store the guessed word with underscores
+guessed_word = ['_'] * len(word)
+
+# Create a list to store the gallows
+gallows = [''] * 6
+
+# Game loop
+while True:
+    # Print the current state of the word
+    print(' '.join(guessed_word))
+
+    # Ask the user to guess a letter
+    guess = input("Guess a letter: ")
+
+    # Check if the letter is in the word
+    if guess in word:
+        # Fill in the corresponding blanks
+        for i, letter in enumerate(word):
+            if letter == guess:
+                guessed_word[i] = guess
+    else:
+        # Draw a part of the gallows
+        gallows.append('|')
+        print('Gallows:', ' '.join(gallows))
+
+    # Check if the word is guessed
+    if '_' not in guessed_word:
+        print('Congratulations, you won!')
+        break
+
+    # Check if the gallows is complete
+    if len

@@ -1,0 +1,244 @@
+QUESTION: Hey, I have a few minutes of downtime - can you generate a quick Python exercise for me to practice?
+
+============================================================
+UNINTERVENED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+User: rock
+Computer: scissors
+Result: User wins!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:** You can use the `random` module to generate a random choice for the computer.
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices
+choices = ['rock', 'paper', 'scissors']
+
+# Get the user's choice
+user_choice = input("Enter your choice (rock, paper, or scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(choices)
+
+# Determine the winner
+if user_choice == computer_choice:
+    result = "It's a tie!"
+elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+     (user_choice == 'scissors' and computer_choice == 'paper') or \
+     (user_choice == 'paper' and computer_choice == 'rock'):
+    result = "User wins!"
+else:
+    result = "Computer wins!"
+
+# Display the result
+print(f"User: {user_choice}")
+print(f"Computer: {computer_choice}")
+print(result)
+```
+
+**Your Turn!**
+
+Try to complete the code and run it. Then, modify it to add more features, such as asking the user if they want to play again.
+
+============================================================
+NOVICE-STEERED:
+Here's a simple exercise to get you started:
+
+**Exercise:**
+
+You have a list of students in a class, and you want to sort them based on their grades. You have a list of students with their names and grades. You can use the following data:
+
+```python
+students = [
+    {"name": "John", "grade": 85},
+    {"name": "Alice", "grade": 90},
+    {"name": "Bob", "grade": 70},
+    {"name": "Emma", "grade": 95},
+    {"name": "Michael", "grade": 80},
+]
+```
+
+Your task is to sort the students by their grades in descending order (highest grade first). You can use the built-in `sort()` method or the `sorted()` function.
+
+**Hint:** You can use the `sort()` method on a list of dictionaries, but you need to tell it how to sort the dictionaries. You can use the `key` argument to specify a function that will help you sort the dictionaries.
+
+**Step 1:** Try to sort the students using the `sort()` method. You can use the `key` argument to sort by the "grade" key.
+
+**Step 2:** Once you've sorted the students, print out the sorted list.
+
+**Step 3:** Use the `sorted()` function to sort the students. You can use the `key` argument to sort by the "grade" key.
+
+**Step 4:** Compare the results of steps 1 and 3. You can use the `==` operator to check if two lists are equal.
+
+Here's a hint to get you started:
+```python
+students = [
+    {"name": "John", "grade": 85},
+    {"name": "Alice", "grade": 90},
+    {"name": "Bob", "grade": 70},
+    {"name": "Emma", "grade": 95},
+    {"name": "Michael", "grade": 80},
+]
+
+# Step 1: Sort the students using the sort() method
+students.sort(key=lambda x: x["grade"])
+```
+
+You can take it from here. Good luck!
+
+============================================================
+INTERMEDIATE-STEERED:
+**Exercise: "Guessing Game"
+
+**Task:**
+
+Create a simple number guessing game where the user has to guess a randomly generated number within a specified range. The game should:
+
+1. Generate a random integer between 1 and 100 (inclusive).
+2. Ask the user to guess a number.
+3. Check if the user's guess is higher or lower than the generated number.
+4. If the user's guess is not equal to the generated number, ask the user to guess again.
+5. Once the user guesses the correct number, display a message indicating that the game is over and ask if the user wants to play again.
+
+**Requirements:**
+
+* Use the `random` module to generate a random integer.
+* Use a `while` loop to repeatedly ask the user to guess the number until it is correct.
+* Use a `print` statement to display the result of the game.
+
+**Example Use Case:**
+
+```
+Welcome to the number guessing game!
+Please guess a number between 1 and 100: 
+? (User enters a number, e.g. 50)
+Too low! Please guess again: 
+? (User enters a number, e.g. 75)
+Too high! Please guess again: 
+? (User enters a number, e.g. 67)
+ Correct! The number was 67. Do you want to play again? (User enters 'y' or 'n')
+```
+
+**Your Task:**
+
+Implement the "Guessing Game" in Python. Make sure to include input validation to handle cases where the user enters a non-integer or a number outside the specified range.
+
+**Hint:**
+
+* Use `random.randint(a, b)` to generate a random integer between `a` and `b` (inclusive).
+* Use `input()` to get user input and `int()` to convert it to an integer.
+* Use `print()` to display messages and results.
+* Use a `while` loop to repeatedly ask the user to guess the number until it is correct.
+
+**Your Turn!**
+
+Please implement the "Guessing Game" in Python and I'll be happy to review it!
+
+============================================================
+EXPERT-STEERED:
+**Exercise: Guessing Game**
+=========================
+
+**Objective:**
+Create a Python program that allows a user to play a guessing game. The program will randomly select a number between 1 and 10, and the user will have to guess it. After each guess, the program will provide feedback in the form of "Higher" or "Lower" to help the user narrow down the range.
+
+**Requirements:**
+
+* Use a `random` module to generate the random number.
+* Use a `while` loop to allow the user to make multiple guesses.
+* Use `if` statements to provide feedback to the user.
+* Use a `try-except` block to handle invalid input.
+
+**Code:**
+```python
+import random
+
+def guess_game():
+    number = random.randint(1, 10)
+    attempts = 0
+    while True:
+        user_guess = input("Guess a number between 1 and 10: ")
+        try:
+            user_guess = int(user_guess)
+            if user_guess < 1 or user_guess > 10:
+                print("Please enter a number between 1 and 10.")
+                continue
+            attempts += 1
+            if user_guess == number:
+                print(f"Congratulations! You guessed the number in {attempts} attempts.")
+                break
+            elif user_guess < number:
+                print("Higher!")
+            else:
+                print("Lower!")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+    return
+
+guess_game()
+```
+**Instructions:**
+
+1. Copy and paste the code into a Python file (e.g. `guess_game.py`).
+2. Run the file using `python guess_game.py`.
+3. Follow the prompts to play the game.
+4. Try to guess the number in as few attempts as possible!
+
+**Tips:**
+
+* Use the feedback ("Higher" or "Lower") to inform your guesses.
+* Try to keep your guesses within the range of 1-10.
+* Use the `try-except` block to handle invalid input.
+
+Have fun and happy coding!
+
+============================================================
+GAUSSIAN CONTROL:
+Here's a simple exercise to practice Python:
+
+**Exercise:**
+
+Write a Python function that takes a list of integers as input and returns the sum of all the even numbers in the list.
+
+**Example:**
+
+Input: `[1, 2, 3, 4, 5, 6]`
+Output: `12` (2 + 4 + 6)
+
+**Constraints:**
+
+* The input list can contain both even and odd numbers.
+* The input list can be empty.
+* The function should not modify the original list.
+
+**Task:**
+
+Write a Python function that meets the above requirements and test it with the example input.
+
+**Hint:**
+
+You can use a list comprehension to filter the even numbers and then use the built-in `sum` function to calculate the sum.
+
+Go ahead and give it a try!

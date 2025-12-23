@@ -1,0 +1,364 @@
+QUESTION: Hey, I have a few minutes of downtime - can you generate a quick Python exercise for me to practice?
+
+============================================================
+UNINTERVENED:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a simple Rock, Paper, Scissors game in Python. The game should:
+
+1. Ask the user for their choice (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules:
+   - Rock beats scissors
+   - Scissors beats paper
+   - Paper beats rock
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+User: rock
+Computer: scissors
+Result: User wins!
+```
+
+**Your Task:**
+
+Write the Python code to implement this game.
+
+**Hint:** You can use the `random` module to generate a random choice for the computer.
+
+**Get started!**
+
+```python
+import random
+
+# Define the choices
+choices = ['rock', 'paper', 'scissors']
+
+# Get the user's choice
+user_choice = input("Enter your choice (rock, paper, or scissors): ")
+
+# Generate a random choice for the computer
+computer_choice = random.choice(choices)
+
+# Determine the winner
+if user_choice == computer_choice:
+    result = "It's a tie!"
+elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+     (user_choice == 'scissors' and computer_choice == 'paper') or \
+     (user_choice == 'paper' and computer_choice == 'rock'):
+    result = "User wins!"
+else:
+    result = "Computer wins!"
+
+# Display the result
+print(f"User: {user_choice}")
+print(f"Computer: {computer_choice}")
+print(result)
+```
+
+**Your Turn!**
+
+Try to complete the code and run it. Then, modify it to add more features, such as asking the user if they want to play again.
+
+============================================================
+NOVICE-STEERED:
+**Exercise: Guessing Game**
+==========================
+
+Here's a simple guessing game to get you started:
+
+**Objective:**
+Guess a number between 1 and 100, and try to guess it in as few attempts as possible.
+
+**Game Rules:**
+
+1. The game will think of a number between 1 and 100.
+2. You'll make a guess, and the game will tell you if you're closer to the number or farther away.
+3. Keep guessing until you get the number right.
+
+**Here's a hint:**
+
+You can use the following hints to guide your guesses:
+
+* `Guesses so far: X` - You've made X guesses so far.
+* `You're getting warmer...` - You're closer to the number.
+* `You're getting colder...` - You're farther away from the number.
+* `You're right!` - You guessed the number!
+
+**Here's a Python exercise to get you started:**
+
+```python
+import random
+
+def guessing_game():
+    # Think of a number between 1 and 100
+    number_to_guess = random.randint(1, 100)
+
+    # Initialize the number of guesses
+    num_guesses = 0
+
+    # Keep track of the hints
+    hints = []
+
+    # Keep asking for guesses until we get the number right
+    while True:
+        # Ask for a guess
+        guess = input("Guess a number between 1 and 100: ")
+
+        # Check if the guess is a number
+        try:
+            guess = int(guess)
+        except ValueError:
+            print("That's not a number!")
+            continue
+
+        # Check if the guess is in the right range
+        if guess < 1 or guess > 100:
+            print("Guess a number between 1 and 100!")
+            continue
+
+        # Get hints
+        if guess < number_to_guess:
+            hints.append("You're getting colder...")
+        elif guess > number_to_guess:
+            hints.append("You're getting warmer...")
+        else:
+            hints.append("You're right!")
+
+        # Keep track of the number of guesses
+        num_guesses += 1
+
+        # Print hints
+        print(" ".join(hints))
+        print(f"Guesses so far: {num_guesses}")
+
+        # Check if we got the number right
+        if guess == number_to_guess:
+            print("Congratulations, you got it!")
+            break
+
+        # Try again
+        hints = []
+``
+
+============================================================
+INTERMEDIATE-STEERED:
+## Python Exercise: "Guess the Number"
+
+### Description
+
+Write a simple game of "Guess the Number" where the computer will think of a random number between 1 and 100, and the user has to guess this number. After each guess, the computer will tell the user if their guess is higher or lower than the actual number.
+
+### Requirements
+
+- The computer should generate a random number between 1 and 100.
+- The user should be able to input their guess.
+- The computer should tell the user if their guess is higher or lower than the actual number.
+- The game should continue until the user guesses the correct number.
+
+### Example Use Case
+
+```
+Please guess a number between 1 and 100:
+> 50
+Your guess is too low. Please try again.
+> 75
+Your guess is too high. Please try again.
+> 67
+Your guess is correct! Congratulations!
+
+```
+
+### Task
+
+Write the code for this game in Python.
+
+### Hints
+
+- Use the `random` module to generate a random number.
+- Use a `while` loop to continue the game until the user guesses the correct number.
+- Use the `input` function to get the user's guess.
+- Use a conditional statement to determine if the user's guess is higher or lower than the actual number.
+
+## Code
+
+```python
+import random
+
+def guess_the_number():
+    # Generate a random number between 1 and 100
+    number_to_guess = random.randint(1, 100)
+
+    # Initialize a variable to store the user's guess
+    user_guess = None
+
+    # Continue the game until the user guesses the correct number
+    while user_guess != number_to_guess:
+        # Ask the user to guess a number
+        user_guess = int(input("Please guess a number between 1 and 100: ")
+
+        # Check if the user's guess is higher or lower than the actual number
+        if user_guess < number_to_guess:
+            print("Your guess is too low. Please try again.")
+        elif user_guess > number_to_guess:
+            print("Your guess is too high. Please try again.")
+
+    # Print a message when the user guesses the correct number
+    print("Your guess is correct! Congratulations!")
+
+# Call the function to start the game
+guess_the_number()
+
+```
+
+Please note that there seems to be a missing closing parenthesis in the input function call. Please add it to complete the function.
+
+## Note
+Please ensure that the
+
+============================================================
+EXPERT-STEERED:
+**Exercise: Number Guessing Game**
+================================
+
+**Objective:** Create a simple number guessing game where the user has to guess a randomly generated number between 1 and 10.
+
+**Requirements:**
+
+1. The user is presented with a prompt to guess a number between 1 and 10.
+2. The user's input is validated to ensure it is a number between 1 and 10.
+3. The user's guess is compared to the randomly generated number.
+4. The user is given feedback on their guess (e.g., "too high" or "too low").
+5. The user has a maximum of 5 attempts to guess the number correctly.
+6. The game ends with a win or loss message.
+
+**Code:**
+```python
+import random
+
+def number_guessing_game():
+    # Generate a random number between 1 and 10
+    number_to_guess = random.randint(1, 10)
+    attempts = 5
+
+    while attempts > 0:
+        # Ask the user for their guess
+        user_guess = input("Guess a number between 1 and 10: ")
+
+        # Validate the user's input
+        if not (1 <= int(user_guess) <= 10):
+            print("Invalid input! Please enter a number between 1 and 10.")
+            continue
+
+        # Compare the user's guess to the number
+        if int(user_guess) == number_to_guess:
+            print("Congratulations! You won!")
+            break
+        elif int(user_guess) < number_to_guess:
+            print("Too low!")
+        else:
+            print("Too high!")
+        attempts -= 1
+        print(f"Remaining attempts: {attempts}")
+    else:
+        print(f"Game over! The number was {number_to_guess}.")
+
+number_guessing_game()
+```
+**Instructions:**
+
+1. Copy the code into a file with a `.py` extension (e.g., `number_guessing_game.py`).
+2. Run the code using `python number_guessing_game.py`.
+3. Follow the prompts and enjoy the game!
+
+**Tips:**
+
+* Use the `random` module to generate a random number.
+* Use a `while` loop to iterate through the user's attempts.
+* Use `input()` to get the user's input.
+* Use `int()` to convert the user's input to an integer.
+* Use `if-elif-else` statements to provide feedback on the user's guess.
+* Use a `while` loop with
+
+============================================================
+GAUSSIAN CONTROL:
+**Exercise: Rock, Paper, Scissors Game**
+
+Create a Rock, Paper, Scissors game in Python where two players can play against each other. The game should:
+
+1. Ask for player input (rock, paper, or scissors)
+2. Generate a random choice for the computer
+3. Determine the winner based on the game's rules (rock beats scissors, scissors beats paper, paper beats rock)
+4. Display the result of the game
+
+**Example Use Case:**
+
+```
+Player 1: rock
+Computer: scissors
+Player 1 wins!
+```
+
+**Your Task:**
+
+Write a Python program that implements the above requirements.
+
+**Hint:**
+
+* Use the `random` module to generate a random choice for the computer
+* Use a dictionary to map the choices to their corresponding winning conditions
+* Use a loop to ask for player input and display the result
+
+**Get started by creating a new Python file (e.g., `rock_paper_scissors.py`) and add the following code:**
+
+```python
+import random
+
+# Define the game choices and their winning conditions
+choices = {
+    "rock": "scissors",
+    "paper": "rock",
+    "scissors": "paper"
+}
+
+def get_player_choice():
+    # Ask for player input
+    player_choice = input("Enter rock, paper, or scissors: ")
+    return player_choice.lower()
+
+def get_computer_choice():
+    # Generate a random choice for the computer
+    return random.choice(["rock", "paper", "scissors"])
+
+def determine_winner(player_choice, computer_choice):
+    # Determine the winner based on the game's rules
+    if player_choice == computer_choice:
+        return "It's a tie!"
+    elif choices[player_choice] == computer_choice:
+        return "Player wins!"
+    else:
+        return "Computer wins!"
+
+def main():
+    while True:
+        # Get player input
+        player_choice = get_player_choice()
+        # Get computer choice
+        computer_choice = get_computer_choice()
+        # Determine the winner
+        result = determine_winner(player_choice, computer_choice)
+        # Display the result
+        print(f"Player: {player_choice}, Computer: {computer_choice}")
+        print(result)
+        # Ask if the player wants to play again
+        play_again = input("Play again? (yes/no): ")
+        if play_again.lower() != "yes":
+            break
+
+if __name__ == "__main__":
+    main()
+```
+
+**Your turn!** Fill in

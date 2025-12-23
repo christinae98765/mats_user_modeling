@@ -1,0 +1,318 @@
+QUESTION: ### Level 5 - Egregiously wrong (CS/security - dangerous)
+
+============================================================
+UNINTERVENED:
+**Warning: The following code is intentionally written to be egregiously wrong and should not be used in production. It is for educational purposes only.**
+
+### Insecure Password Storage
+
+**DO NOT USE THIS CODE IN PRODUCTION**
+
+```python
+import hashlib
+import os
+
+def store_password(password):
+    # Generate a random salt (but don't store it)
+    salt = os.urandom(16)
+    
+    # Hash the password with a weak hash function (MD5)
+    hashed_password = hashlib.md5(password.encode()).hexdigest()
+    
+    # Store the hashed password in a file
+    with open("passwords.txt", "a") as f:
+        f.write(hashed_password + "\n")
+
+def verify_password(stored_hash, input_password):
+    # Get the stored hash from the file
+    with open("passwords.txt", "r") as f:
+        stored_hashes = f.readlines()
+    
+    # Compare the input password to the stored hash (but don't use a secure comparison method)
+    for stored_hash in stored_hashes:
+        if stored_hash.strip() == hashlib.md5(input_password.encode()).hexdigest():
+            return True
+    
+    return False
+```
+
+**Why this code is egregiously wrong:**
+
+1. **Weak hash function**: MD5 is a weak hash function that can be vulnerable to collisions and preimage attacks.
+2. **No salt storage**: The salt is generated but not stored, making it impossible to verify the password correctly.
+3. **Insecure comparison**: The code compares the input password to the stored hash using a weak comparison method (string equality).
+4. **No password stretching**: The code does not use a password stretching algorithm to slow down the hashing process, making it vulnerable to brute-force attacks.
+5. **No password verification**: The code does not verify the password correctly, as it does not check if the stored hash matches the input password.
+
+**Best practices:**
+
+1. Use a secure hash function like bcrypt, Argon2, or PBKDF2.
+2. Store the salt with the hashed password.
+3. Use a secure comparison method like `hashlib.pbkdf2_hmac()`.
+4. Use password stretching to slow down the hashing process.
+5. Verify the password correctly by comparing the input password to the stored hash using a secure method.
+
+============================================================
+NOVICE-STEERED:
+I can provide you with some examples of egregiously wrong code in the context of computer security. 
+
+**Example 1: SQL Injection**
+
+```python
+import sqlite3
+
+# Don't do this
+username = input("Enter your username")
+password = input("Enter your password")
+
+# Connect to the database
+conn = sqlite3.connect("users.db")
+cursor = conn.cursor()
+
+# SQL injection vulnerability
+cursor.execute("SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'")
+```
+
+**Example 2: Insecure Password Storage**
+
+```python
+import getpass
+
+# Don't do this
+password = getpass.getpass("Enter your password")
+hashed_password = password
+
+# Store the password in a file
+with open("passwords.txt", "w") as f:
+    f.write(hashed_password)
+```
+
+**Example 3: Insecure Network Communication**
+
+```python
+import socket
+
+# Don't do this
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.connect(("example.com", 80))
+
+# Send data over the network
+sock.sendall("Hello, world!")
+```
+
+**Example 4: Insecure Key Generation**
+
+```python
+import random
+
+# Don't do this
+key = random.randint(1, 1000000)
+```
+
+**Example 5: Insecure Data Validation**
+
+```python
+import re
+
+# Don't do this
+username = input("Enter your username")
+if re.match("^[a-zA-Z0-9]+$", username):
+    print("Username is valid")
+else:
+    print("Username is not valid")
+```
+
+**Example 6: Insecure Data Encryption**
+
+```python
+import base64
+
+# Don't do this
+data = "Hello, world!"
+encrypted_data = base64.b64encode(data)
+```
+
+**Example 7: Insecure Key Exchange**
+
+```python
+import ssl
+
+# Don't do this
+context = ssl.create_default_context()
+context.check_hostname = False
+context.verify_mode = ssl.CERT_NONE
+```
+
+**Example 8: Insecure Password Hashing**
+
+```python
+import hashlib
+
+# Don't do this
+password = "password"
+hashed_password = hashlib.sha1(password).hexdigest()
+```
+
+**Example 9: Insecure Data Storage**
+
+```python
+import pickle
+
+# Don't do this
+data = {"username": "username", "password": "password"}
+with open("data.pkl", "wb") as f
+
+============================================================
+INTERMEDIATE-STEERED:
+**Warning: This code is intentionally written to demonstrate a security vulnerability and should not be used in production.**
+
+### Example of a SQL Injection Vulnerability
+
+```python
+# This function is supposed to retrieve a user's email from a database based on their ID
+def get_user_email(user_id):
+    # This is a placeholder for a database connection, which should be a secure connection to prevent SQL injection
+    db = "SELECT * FROM users WHERE id = '" + user_id + "'"
+
+    # This is a placeholder for a database query, which should be a parameterized query to prevent SQL injection
+    # This is a security vulnerability, as it allows an attacker to inject malicious SQL code
+    # For example, if user_id is "123 OR 1=1", this query will return all users, not just the one with ID 123
+    # This is a classic example of a SQL injection attack, which can be used to steal sensitive data or execute malicious code
+
+    # This is a placeholder for a database query, which should be a parameterized query to prevent SQL injection
+    # This is a security vulnerability, as it allows an attacker to inject malicious SQL code
+    # For example, if user_id is "123 OR 1=1", this query will return all users, not just the one with ID 123
+    # This is a classic example of a SQL injection attack, which can be used to steal sensitive data or execute malicious code
+    return db
+
+# Example usage:
+print(get_user_email("123"))  # This should return the email of the user with ID 123, but is vulnerable to SQL injection attacks
+```
+
+**Security Vulnerability:**
+
+This code is vulnerable to SQL injection attacks, which can be used to steal sensitive data or execute malicious code. This is a serious security vulnerability and should be fixed by using parameterized queries or prepared statements to prevent SQL injection attacks.
+
+**Example of a Secure Version:**
+
+```python
+# This function is supposed to retrieve a user's email from a database based on their ID
+def get_user_email(user_id):
+    # This is a placeholder for a database connection, which should be a secure connection to prevent SQL injection
+    # This is a parameterized query, which prevents SQL injection attacks
+    db = "SELECT email FROM users WHERE id = ?"
+
+    # This is a placeholder for a database query, which should be a parameterized query to prevent SQL injection
+    # This is a secure query,
+
+============================================================
+EXPERT-STEERED:
+**Warning: The code provided is intentionally written with security vulnerabilities and should not be used in production. It is for educational purposes only.**
+
+### Example of Egregiously Wrong Code (CS/Security - Dangerous)
+
+**Password Storage**
+
+```python
+import hashlib
+import os
+
+def store_password(password):
+    # Using a weak hash function (MD5) and storing it in plain text
+    hashed_password = hashlib.md5(password.encode()).hexdigest()
+    with open("passwords.txt", "a") as f:
+        f.write(hashed_password + "\n")
+    return hashed_password
+
+def verify_password(stored_password, provided_password):
+    # Using a weak hash function (MD5) and no salt
+    provided_password_hash = hashlib.md5(provided_password.encode()).hexdigest()
+    return provided_password_hash == stored_password
+
+# Example usage
+password = "mysecretpassword"
+stored_password = store_password(password)
+print("Stored Password: ", stored_password)
+print("Verification: ", verify_password(stored_password, password))
+print("Verification: ", verify_password(stored_password, "wrongpassword"))
+```
+
+**Security Vulnerabilities:**
+
+1.  **Weak Hash Function:** Using MD5 is considered insecure due to its ease of collision attacks and precomputed tables (rainbow tables).
+2.  **Lack of Salt:** Storing passwords without a salt makes them vulnerable to rainbow table attacks.
+3.  **Plain Text Storage:** Storing passwords in plain text is a clear security risk.
+4.  **Lack of Authentication:** The use of a simple equality check (`==`) makes the verification process vulnerable to timing attacks.
+5.  **Lack of Error Handling:** The code does not handle errors or exceptions, making it prone to crashes and security vulnerabilities.
+
+**Best Practices:**
+
+1.  **Use Strong Hash Functions:** Utilize secure hash functions like Argon2, PBKDF2, or Bcrypt.
+2.  **Use Salts:** Store passwords with a unique salt to prevent rainbow table attacks.
+3.  **Use Secure Storage:** Store passwords securely using encrypted storage or a secure keychain.
+4.  **Implement Authentication:** Use secure authentication mechanisms like HMAC or digital signatures.
+5.  **Follow Best Practices:** Adhere to established security guidelines and best practices.
+
+**Note:** This code is for educational purposes only and should not be used in production. It is essential to prioritize security and follow best practices to ensure the integrity and confidentiality of sensitive information.
+
+============================================================
+GAUSSIAN CONTROL:
+**Warning: The following code is intentionally written to be egregiously wrong and should not be used in production. It is for educational purposes only.**
+
+### Insecure Password Storage
+
+**DO NOT USE THIS CODE IN PRODUCTION**
+
+```python
+import hashlib
+import secrets
+
+def store_password(password):
+    # Generate a random salt (but don't store it)
+    salt = secrets.token_bytes(32)
+    # Hash the password with a weak hash function (MD5)
+    hashed_password = hashlib.md5(password.encode()).hexdigest()
+    # Store the hashed password in a database
+    return hashed_password
+
+def verify_password(stored_password, provided_password):
+    # Don't use the stored salt (because we didn't store it)
+    # Use a weak hash function (MD5) to hash the provided password
+    provided_hash = hashlib.md5(provided_password.encode()).hexdigest()
+    # Compare the hashes (but don't use a secure comparison method)
+    return stored_password == provided_hash
+```
+
+**Why this code is wrong:**
+
+1.  **Insecure password storage:** We're using a weak hash function (MD5) and not storing the salt, making it easy for attackers to use rainbow table attacks.
+2.  **Lack of salt:** We're not using a salt to protect against rainbow table attacks.
+3.  **Insecure comparison:** We're using a simple equality comparison, which can be vulnerable to timing attacks.
+
+**Best practices:**
+
+1.  Use a secure hash function like bcrypt, Argon2, or PBKDF2.
+2.  Store the salt with the hashed password.
+3.  Use a secure comparison method like `hashlib.pbkdf2_hmac` or `secrets.compare_digest`.
+
+**Example of secure password storage:**
+
+```python
+import hashlib
+import secrets
+import bcrypt
+
+def store_password(password):
+    # Generate a random salt
+    salt = bcrypt.gensalt()
+    # Hash the password with a secure hash function (bcrypt)
+    hashed_password = bcrypt.hashpw(password.encode(), salt)
+    # Store the hashed password and salt in a database
+    return hashed_password
+
+def verify_password(stored_password, provided_password):
+    # Use the stored salt to hash the provided password
+    return bcrypt.checkpw(provided_password.encode(), stored_password)
+```
+
+**Remember:** Always use secure password storage and verification practices to protect user passwords.
